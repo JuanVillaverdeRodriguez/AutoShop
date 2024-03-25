@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject;
+using System.Management.Instrumentation;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao
 {
@@ -14,13 +15,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao
         //Constructor
         public UsuarioDaoEF() {}
 
-        DbSet<Usuario> usuario = Context.Set<Usuario>();
+        Usuario user = null;
 
-        Usuario IUsuarioDaoEF.findAllUsers()
+        Usuario IUsuarioDaoEF.findUsuarioByAlias(string alias)
         {
-            var result = from user in usuario where user.user_name == "User3" select user;
+            DbSet<Usuario> usuario = Context.Set<Usuario>();
 
-            return result;
+            var result = from user in usuario where user.user_name == alias select user;
+
+            user = result.FirstOrDefault();
+            if (user == null)
+                //TODO: Utilizar una excepcion dedicada
+                throw new Exception();
+
+            return user;
         }
     }
 }

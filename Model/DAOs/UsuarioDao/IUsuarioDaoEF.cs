@@ -9,6 +9,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao
 {
     public interface IUsuarioDaoEF : IGenericDao<Usuario, Int64>
     {
-        Usuario findAllUsers();
+        Usuario findUsuarioByAlias(string loginName);
     }
 }

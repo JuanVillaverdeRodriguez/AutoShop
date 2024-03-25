@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
@@ -38,17 +39,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
         [Transactional]
         void RegisterWorkshop(long workshopId, int postalCode, String location, String workshopName);
-        
-        void ChangePassword(long userProfileId, String oldClearPassword,
-            String newClearPassword);
-
-        bool UserExists(string loginName);
 
         [Transactional]
         string GetUserName(long usrId);
 
         [Transactional]
         void UpdateCard(long cardNumber, long userProfileId, String type, int csv, DateTime endDate);
+
+        void ChangePassword(long userProfileId, String oldClearPassword,
+            String newClearPassword);
+
+        bool UserExists(string loginName);
+
+        
+
+       
 
     }
 }

@@ -5,25 +5,95 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Es.Udc.DotNet.ModelUtil.Transactions;
+using System.Management.Instrumentation;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
-    class UsuarioService
+    class UsuarioService : IUsuarioService
     {
         public UsuarioService() {}
 
         [Inject]
         public IUsuarioDaoEF UsuarioDao { get; set; }
 
+
         [Transactional]
-        public getAllUsers FindFeedUserDetails(long usrId, int startIndex, int size)
+        public long RegisterUsuario(string loginName, string clearPassword, UserProfileDetails userProfileDetails)
         {
+            // 1) Comprobar si el usuario ya existe
+                // 1.1) Si el usuario ya existe lanzar excepcion
+                // 1.2) Si el usuario no existe seguir
+            // 2) Añadir al usuario a la base de datos
 
-            UserProfile user = UserProfileDao.Find(usrId);
+            try {
+                //Si no existe, lanzará una excepcion
+                UsuarioDao.findUsuarioByAlias(loginName);
 
-            FeedUserDetails feedUserDetails = new FeedUserDetails(user.usrId, user.loginName, user.numFollows, user.numFollowers, FindPostUser(usrId, startIndex, size));
+                //Cambiar por una excepcion más precisa
+                throw new Exception();
 
-            return feedUserDetails;
+            }
+            catch (InstanceNotFoundException) {
+                // Deberiamos poner la contraseña encriptada
+                //String passwordEncrypted = PasswordEncrypter.Crypt(clearPassword);
+
+                Usuario newUser = new Usuario();
+
+                newUser.alias = loginName;
+                newUser.password = clearPassword; // Poner contraseña encriptada
+                /*newUser.user_name;
+                newUser.user_surname;
+                newUser.email;
+                newUser.workshopId;
+                newUser.language;*/
+
+                UsuarioDao.Create(newUser);
+
+                return newUser.userId;
+            }
+        }
+
+        public void ChangePassword(long userProfileId, string oldClearPassword, string newClearPassword)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserProfileDetails FindUserProfileDetails(long userProfileId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetUserName(long usrId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public LoginResult Login(string loginName, string password, bool passwordIsEncrypted)
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        public void RegisterWorkshop(long workshopId, int postalCode, string location, string workshopName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateCard(long cardNumber, long userProfileId, string type, int csv, DateTime endDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateUserProfileDetails(long userProfileId, UserProfileDetails userProfileDetails)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UserExists(string loginName)
+        {
+            throw new NotImplementedException();
         }
     }   
 }
