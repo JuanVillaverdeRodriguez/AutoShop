@@ -10,7 +10,7 @@ using System.Management.Instrumentation;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
-    class UsuarioService : IUsuarioService
+    public class UsuarioService : IUsuarioService
     {
         public UsuarioService() {}
 
