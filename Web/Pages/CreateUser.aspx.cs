@@ -31,12 +31,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             this.LabelUserCreated.Visible = false;
             this.LabelUserAlreadyCreated.Visible = false;
             String loginName = TxtBoxUserName.Text;
-            String password = TxtBoxUserName.Text;
+            String password = TxtBoxPassword.Text;
+            String user_name = TextBoxNombre.Text;
+            String user_apellido = TextBoxApellidos.Text;
+            String email = TextBoxEmail.Text;
+            String idioma = TextBoxLanguage.Text;
+            long workshopId = 1;
 
-
+            
             try
             {
-                usuarioService.RegisterUsuario(loginName, password, null);
+                UserProfileDetails details;
+                if (idioma == "")
+                    details = new UserProfileDetails(user_name, user_apellido, email, workshopId);
+                else
+                    details = new UserProfileDetails(user_name, user_apellido, email, idioma, workshopId);
+
+                usuarioService.RegisterUsuario(loginName, password, details);
                 this.LabelUserAlreadyCreated.Visible = true;
 
 

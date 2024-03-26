@@ -5,11 +5,44 @@
     <form id ="form1" runat="server">
         <asp:Label ID="Label1" runat="server" Text="Introduce el nombre de usuario"></asp:Label>
         <br />
+
         <asp:TextBox ID="TxtBoxUserName" runat="server"></asp:TextBox>
         <br />
+
         <asp:Label ID="Label4" runat="server" Text="Introduce la contraseña"></asp:Label>
         <br />
+
         <asp:TextBox ID="TxtBoxPassword" runat="server"></asp:TextBox>
+        <br />
+
+        <asp:Label ID="LabelNombre" runat="server" Text="Nombre: "></asp:Label>
+        <br />
+
+        <asp:TextBox ID="TextBoxNombre" runat="server"></asp:TextBox>
+        <br />
+
+        <asp:Label ID="LabelApellidos" runat="server" Text="Apellidos: "></asp:Label>
+        <br />
+
+        <asp:TextBox ID="TextBoxApellidos" runat="server"></asp:TextBox>
+        <br />
+
+        <asp:Label ID="LabelEmail" runat="server" Text="Email: "></asp:Label>
+        <br />
+
+        <asp:TextBox ID="TextBoxEmail" runat="server"></asp:TextBox>
+        <br />
+
+        <asp:Label ID="LabelLanguage" runat="server" Text="Idioma: "></asp:Label>
+        <br />
+
+        <asp:TextBox ID="TextBoxLanguage" runat="server"></asp:TextBox>
+        <br />
+
+        <asp:Label ID="LabelWorkshopId" runat="server" Text="WorkshopId: "></asp:Label>
+        <br />
+
+        <asp:TextBox ID="TextBoxWorkshopId" runat="server"></asp:TextBox>
         <br />
 
         <asp:Label ID="LabelUserCreated" runat="server" Text="Usuario creado" Visible="false"></asp:Label>

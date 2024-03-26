@@ -147,7 +147,7 @@ CREATE TABLE Usuario (
 	userId bigint IDENTITY(1,1) NOT NULL,
 	user_name varchar(30) NOT NULL,
 	user_surname varchar(30) NOT NULL,
-	email varchar(30) NOT NULL,
+	email varchar(80) NOT NULL,
 	alias varchar(30) NOT NULL,
 	password varchar(50) NOT NULL,
 	language varchar(2),

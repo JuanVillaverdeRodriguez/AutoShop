@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using System.Management.Instrumentation;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
@@ -28,28 +29,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
             try {
                 //Si no existe, lanzará una excepcion
-                UsuarioDao.findUsuarioByAlias(loginName);
+                Usuario user = UsuarioDao.findUsuarioByAlias(loginName);
 
                 //Cambiar por una excepcion más precisa
-                throw new Exception();
+                throw new DuplicateInstanceException(user, "El usuario {user} ya existe");
 
             }
-            catch (Exception) {
+            catch (ModelUtil.Exceptions.InstanceNotFoundException) {
                 // Deberiamos poner la contraseña encriptada
                 //String passwordEncrypted = PasswordEncrypter.Crypt(clearPassword);
 
                 Usuario newUser = new Usuario();
 
-
                 newUser.alias = loginName;
                 newUser.password = clearPassword; // Poner contraseña encriptada
-                newUser.user_name = "a";
-                newUser.user_surname = "b";
-                newUser.email = "juanvillaverde@gmail.com";
-                newUser.workshopId = 1;
-                newUser.language = "es";
-                
-
+                newUser.user_name = userProfileDetails.user_name;
+                newUser.user_surname = userProfileDetails.user_surname;
+                newUser.email = userProfileDetails.email;
+                newUser.workshopId = userProfileDetails.workshopId;
+                newUser.language = userProfileDetails.language;
 
                 UsuarioDao.Create(newUser);
 
@@ -76,9 +74,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         {
             throw new NotImplementedException();
         }
-
-        
-
         public void RegisterWorkshop(long workshopId, int postalCode, string location, string workshopName)
         {
             throw new NotImplementedException();

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject;
 using System.Management.Instrumentation;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao
 {
@@ -23,11 +25,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao
 
             var result = from user in usuario where user.alias == alias select user;
 
-            Console.WriteLine($"Usuario encontrado: {alias}");
             user = result.FirstOrDefault();
             if (user == null)
-                //TODO: Utilizar una excepcion dedicada
-                throw new Exception();
+                throw new ModelUtil.Exceptions.InstanceNotFoundException(user, "No existe el usuario {user}");
 
             return user;
         }
