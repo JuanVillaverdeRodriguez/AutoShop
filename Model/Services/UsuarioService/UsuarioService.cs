@@ -34,19 +34,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 throw new Exception();
 
             }
-            catch (InstanceNotFoundException) {
+            catch (Exception) {
                 // Deberiamos poner la contraseña encriptada
                 //String passwordEncrypted = PasswordEncrypter.Crypt(clearPassword);
 
                 Usuario newUser = new Usuario();
 
+
                 newUser.alias = loginName;
                 newUser.password = clearPassword; // Poner contraseña encriptada
-                /*newUser.user_name;
-                newUser.user_surname;
-                newUser.email;
-                newUser.workshopId;
-                newUser.language;*/
+                newUser.user_name = "a";
+                newUser.user_surname = "b";
+                newUser.email = "juanvillaverde@gmail.com";
+                newUser.workshopId = 1;
+                newUser.language = "es";
+                
+
 
                 UsuarioDao.Create(newUser);
 

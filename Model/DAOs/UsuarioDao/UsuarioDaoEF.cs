@@ -21,8 +21,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao
         {
             DbSet<Usuario> usuario = Context.Set<Usuario>();
 
-            var result = from user in usuario where user.user_name == alias select user;
+            var result = from user in usuario where user.alias == alias select user;
 
+            Console.WriteLine($"Usuario encontrado: {alias}");
             user = result.FirstOrDefault();
             if (user == null)
                 //TODO: Utilizar una excepcion dedicada
