@@ -18,7 +18,7 @@
         <asp:Label ID="LabelNombre" runat="server" Text="Nombre: "></asp:Label>
         <br />
 
-        <asp:TextBox ID="TextBoxNombre" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TxtBoxNombre" runat="server"></asp:TextBox>
         <br />
 
         <asp:Label ID="LabelApellidos" runat="server" Text="Apellidos: "></asp:Label>

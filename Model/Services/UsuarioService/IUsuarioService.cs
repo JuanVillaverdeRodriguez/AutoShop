@@ -31,8 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         //-------------------------------------------------------------------
 
         [Transactional]
-        LoginResult Login(String loginName, String password,
-            Boolean passwordIsEncrypted);
+        SignInResult SignIn(String loginName, String password);
 
         [Transactional]
         UserProfileDetails FindUserProfileDetails(long userProfileId);

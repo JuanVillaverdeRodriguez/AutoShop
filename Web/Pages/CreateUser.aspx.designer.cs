@@ -69,13 +69,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         protected global::System.Web.UI.WebControls.Label LabelNombre;
 
         /// <summary>
-        /// Control TextBoxNombre.
+        /// Control TxtBoxNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxNombre;
+        protected global::System.Web.UI.WebControls.TextBox TxtBoxNombre;
 
         /// <summary>
         /// Control LabelApellidos.

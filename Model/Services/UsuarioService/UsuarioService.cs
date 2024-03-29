@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using System.Management.Instrumentation;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
@@ -74,9 +75,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             throw new NotImplementedException();
         }
 
-        public LoginResult Login(string loginName, string password, bool passwordIsEncrypted)
+        public SignInResult SignIn(string loginName, string password)
         {
-            throw new NotImplementedException();
+                
+            // Si el usuario existe, se hace el login
+            // Si el usuario no existe, se lanza excepcion
+
+            try
+            {
+                Usuario user = UsuarioDao.findUsuarioByAlias(loginName);
+
+                if (password.Equals(password))
+                {
+                    throw new MistakenPasswordException(loginName);
+                }
+
+                SignInResult signInResult = new SignInResult(user.user_name, user.user_surname, user.email, user.workshopId, user.language);
+
+                return signInResult;
+            }
+            catch (Exception e)
+            {
+                // Cambiar por excepcion general, obtener la excepcion interior para saber el error:
+                // Posibles fallos : De red, de acceso a bd, de contraseña o usuario incorrecto (MistakenCredentialsException)
+                throw new MistakenCredentialsException(loginName, e);
+            }
+
         }
         [Transactional]
         public long RegisterWorkshop(int postalCode, string location, string workshopName)

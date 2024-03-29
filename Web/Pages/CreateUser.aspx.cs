@@ -32,7 +32,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             this.LabelUserAlreadyCreated.Visible = false;
             String loginName = TxtBoxUserName.Text;
             String password = TxtBoxPassword.Text;
-            String user_name = TextBoxNombre.Text;
+            String user_name = TxtBoxNombre.Text;
             String user_apellido = TextBoxApellidos.Text;
             String email = TextBoxEmail.Text;
             String idioma = TextBoxLanguage.Text;
