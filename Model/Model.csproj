@@ -27,9 +27,9 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -167,6 +167,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DAOs\UsuarioDao\IUsuarioDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\UsuarioDaoEF.cs" />
+    <Compile Include="DAOs\WorkshopDao\IWorkshopDaoEF.cs" />
+    <Compile Include="DAOs\WorkshopDao\WorkshopDaoEF.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

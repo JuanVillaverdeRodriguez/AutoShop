@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Web"
+    "\\Model",
+    "\\Model\\Services",
+    "\\Model\\Services\\UsuarioService",
+    "\\Web",
+    "\\Web\\Pages"
   ],
-  "SelectedNode": "\\PracticaMaD.sln",
+  "SelectedNode": "\\Model\\Services\\UsuarioService\\UsuarioService.cs",
   "PreviewInSolutionExplorer": false
 }

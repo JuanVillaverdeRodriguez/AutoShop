@@ -36,7 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             String user_apellido = TextBoxApellidos.Text;
             String email = TextBoxEmail.Text;
             String idioma = TextBoxLanguage.Text;
-            long workshopId = 1;
+            long workshopId = long.Parse(TextBoxWorkshopId.Text);
 
             
             try
@@ -48,13 +48,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                     details = new UserProfileDetails(user_name, user_apellido, email, idioma, workshopId);
 
                 usuarioService.RegisterUsuario(loginName, password, details);
-                this.LabelUserAlreadyCreated.Visible = true;
+                this.LabelUserCreated.Visible = true;
 
 
             }
             catch (Exception)
             {
-                this.LabelUserCreated.Visible = true;
+                this.LabelUserAlreadyCreated.Visible = true;
             }
         }
     }

@@ -36,9 +36,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -178,6 +178,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Pages\CreateUser.aspx" />
+    <Content Include="Pages\RegisterWorkshop.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +200,13 @@
     <Compile Include="Pages\CreateUser.aspx.designer.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RegisterWorkshop.aspx.cs">
+      <DependentUpon>RegisterWorkshop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\RegisterWorkshop.aspx.designer.cs">
+      <DependentUpon>RegisterWorkshop.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{08E3AB09-C213-4DC2-A718-9217D3D63414}</Project>
+      <Project>{08e3ab09-c213-4dc2-a718-9217d3d63414}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
     {
         [Inject]
         IUsuarioDaoEF UsuarioDao { get; set; }
+
+        [Inject]
+        IWorkshopDaoEF WorkshopDao { get; set; }
 
         //-------------------------------------------------------------------
         // ----------------------Registro de usuario-------------------------
@@ -38,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             UserProfileDetails userProfileDetails);
 
         [Transactional]
-        void RegisterWorkshop(long workshopId, int postalCode, String location, String workshopName);
+        long RegisterWorkshop(int postalCode, String location, String workshopName);
 
         [Transactional]
         string GetUserName(long usrId);

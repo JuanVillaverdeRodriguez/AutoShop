@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
         [Inject]
         public IUsuarioDaoEF UsuarioDao { get; set; }
+
+        [Inject]
+        public IWorkshopDaoEF WorkshopDao { get; set; }
 
 
         [Transactional]
@@ -74,9 +78,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         {
             throw new NotImplementedException();
         }
-        public void RegisterWorkshop(long workshopId, int postalCode, string location, string workshopName)
+        [Transactional]
+        public long RegisterWorkshop(int postalCode, string location, string workshopName)
         {
-            throw new NotImplementedException();
+            // 1) Comprobar si el taller ya existe
+                // 1.1) Si el taller ya existe lanzar excepcion
+                // 1.2) Si el taller no existe seguir
+            // 2) Añadir el taller a la base de datos
+
+            try {
+                //Si no existe, lanzará una excepcion
+                Workshop wshop = WorkshopDao.findWorkshopByName(workshopName);
+
+                //Cambiar por una excepcion más precisa
+                throw new DuplicateInstanceException(wshop, "El taller {wshop} ya existe");
+
+            }
+            catch (ModelUtil.Exceptions.InstanceNotFoundException) {
+
+                Workshop newWshop = new Workshop();
+
+                newWshop.Country = location;
+                newWshop.postal_code = postalCode;
+                newWshop.workshop_name = workshopName;
+
+                WorkshopDao.Create(newWshop);
+
+                return newWshop.workshopId;
+            }
         }
 
         public void UpdateCard(long cardNumber, long userProfileId, string type, int csv, DateTime endDate)
