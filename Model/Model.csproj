@@ -168,8 +168,10 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DAOs\CardDao\CardDaoEF.cs" />
     <Compile Include="DAOs\CardDao\ICardDaoEF.cs" />
+    <Compile Include="DAOs\CategoryDao\CategoryDaoEF.cs" />
+    <Compile Include="DAOs\CategoryDao\ICategoryDaoEF.cs" />
     <Compile Include="DAOs\ProductDao\IProductDaoEF.cs" />
-    <Compile Include="DAOs\ProductDao\ProductDao.cs" />
+    <Compile Include="DAOs\ProductDao\ProductDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\IUsuarioDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\UsuarioDaoEF.cs" />
     <Compile Include="DAOs\WorkshopDao\IWorkshopDaoEF.cs" />
@@ -198,6 +200,9 @@
     </Compile>
     <Compile Include="Services\Exceptions\MistakenCredentialsException.cs" />
     <Compile Include="Services\Exceptions\MistakenPasswordException.cs" />
+    <Compile Include="Services\ProductService\IProductService.cs" />
+    <Compile Include="Services\ProductService\ProductResult.cs" />
+    <Compile Include="Services\ProductService\ProductService.cs" />
     <Compile Include="Services\UsuarioService\IUsuarioService.cs" />
     <Compile Include="Services\UsuarioService\SignInResult.cs" />
     <Compile Include="Services\UsuarioService\UserProfileDetails.cs" />
@@ -236,7 +241,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\ProductService\" />
     <Folder Include="Services\ShoppingService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

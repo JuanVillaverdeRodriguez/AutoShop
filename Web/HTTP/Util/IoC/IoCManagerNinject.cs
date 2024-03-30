@@ -1,7 +1,9 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
+using Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService;
 using Ninject;
 using System.Configuration;
@@ -29,9 +31,15 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<IWorkshopDaoEF>().
                 To<WorkshopDaoEF>();
 
+            kernel.Bind<IProductDao>().
+                To<ProductDaoEF>();
+
             /* UserService */
             kernel.Bind<IUsuarioService>().
                 To<UsuarioService>();
+
+            kernel.Bind<IProductService>().
+                To<ProductService>();
 
             /* DbContext */
             string connectionString =

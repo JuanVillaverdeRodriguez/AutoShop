@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao
 {
-    public interface IProductDao : IGenericDao<Product, Int64>
+    public interface IProductDaoEF : IGenericDao<Product, Int64>
     {
         Product findProductByName(String productName);
 
