@@ -1,5 +1,7 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
+
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
         [Inject]
         IWorkshopDaoEF WorkshopDao { get; set; }
+
+        [Inject]
+        ICardDaoEF CardDao { get; set;  }
 
         //-------------------------------------------------------------------
         // ----------------------Registro de usuario-------------------------
@@ -47,7 +52,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         string GetUserName(long usrId);
 
         [Transactional]
-        void UpdateCard(long cardNumber, long userProfileId, String type, int csv, DateTime endDate);
+        void CreateCard(long cardNumber, long userProfileId, String type, int csv, DateTime expirationDate);
+
+        [Transactional]
+        void DeleteCard(long cardNumber, long userId);
+
+        [Transactional]
+        List<Card> GetAllCards();
 
         void ChangePassword(long userProfileId, String oldClearPassword,
             String newClearPassword);

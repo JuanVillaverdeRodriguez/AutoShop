@@ -177,8 +177,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Pages\Card.aspx" />
     <Content Include="Pages\CreateUser.aspx" />
     <Content Include="Pages\RegisterWorkshop.aspx" />
+    <Content Include="Pages\SignIn.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +195,13 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Card.aspx.cs">
+      <DependentUpon>Card.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Card.aspx.designer.cs">
+      <DependentUpon>Card.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -206,6 +215,13 @@
     </Compile>
     <Compile Include="Pages\RegisterWorkshop.aspx.designer.cs">
       <DependentUpon>RegisterWorkshop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SignIn.aspx.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SignIn.aspx.designer.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

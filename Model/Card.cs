@@ -20,6 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public string type { get; set; }
         public int csv { get; set; }
         public System.DateTime expiration_date { get; set; }
+        public bool defaultCard { get; set; }
     
         
         /// <summary>
@@ -47,6 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     			hash = hash * multiplier + (type == null ? 0 : type.GetHashCode());
     			hash = hash * multiplier + csv.GetHashCode();
     			hash = hash * multiplier + expiration_date.GetHashCode();
+    			hash = hash * multiplier + defaultCard.GetHashCode();
     
     			return hash;
     	    }
@@ -72,6 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
                &&  (this.type == target.type )       
                &&  (this.csv == target.csv )       
                &&  (this.expiration_date == target.expiration_date )       
+               &&  (this.defaultCard == target.defaultCard )       
                ;
     
         }
@@ -111,6 +114,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
            strCard.Append(" type = " + type + " | " );       
            strCard.Append(" csv = " + csv + " | " );       
            strCard.Append(" expiration_date = " + expiration_date + " | " );       
+           strCard.Append(" defaultCard = " + defaultCard + " | " );       
             strCard.Append("] ");    
     
     		return strCard.ToString();

@@ -4,11 +4,12 @@
     <Key>
       <PropertyRef Name="card_number" />
     </Key>
-    <Property Name="card_number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="card_number" Type="bigint" Nullable="false" />
     <Property Name="userId" Type="bigint" Nullable="false" />
     <Property Name="type" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="csv" Type="int" Nullable="false" />
     <Property Name="expiration_date" Type="datetime" Nullable="false" />
+    <Property Name="defaultCard" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -46,7 +47,7 @@
     <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_name" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="user_surname" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="alias" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="language" Type="varchar" MaxLength="2" />

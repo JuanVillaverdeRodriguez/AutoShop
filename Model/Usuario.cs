@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     {
         public Usuario()
         {
-            this.Cards = new HashSet<Card>();
+            this.Card = new HashSet<Card>();
         }
     
         public long userId { get; set; }
@@ -33,7 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <summary>
         /// Relationship Name (Foreign Key in ER-Model): FK_Card_Usuario
         /// </summary>
-        public virtual ICollection<Card> Cards { get; set; }
+        public virtual ICollection<Card> Card { get; set; }
         
         /// <summary>
         /// Relationship Name (Foreign Key in ER-Model): FK_Usuario_Workshop

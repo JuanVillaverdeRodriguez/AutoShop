@@ -10,6 +10,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using System.Management.Instrumentation;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
@@ -22,6 +23,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
         [Inject]
         public IWorkshopDaoEF WorkshopDao { get; set; }
+
+        [Inject]
+        public ICardDaoEF CardDao { get; set; }
 
 
         [Transactional]
@@ -85,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             {
                 Usuario user = UsuarioDao.findUsuarioByAlias(loginName);
 
-                if (password.Equals(password))
+                if (!password.Equals(user.password))
                 {
                     throw new MistakenPasswordException(loginName);
                 }
@@ -132,11 +136,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             }
         }
 
-        public void UpdateCard(long cardNumber, long userProfileId, string type, int csv, DateTime endDate)
-        {
-            throw new NotImplementedException();
-        }
-
         public void UpdateUserProfileDetails(long userProfileId, UserProfileDetails userProfileDetails)
         {
             throw new NotImplementedException();
@@ -146,5 +145,84 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         {
             throw new NotImplementedException();
         }
-    }   
+
+        public void CreateCard(long cardNumber, long userId, string type, int csv, DateTime expirationDate)
+        {
+            bool flagDefault = true;
+
+            try
+            {
+                //Si no existe, lanzará una excepcion
+                List<Card> cards = CardDao.findCardsByUsuarioId(userId);
+
+                try
+                {
+                    Card card = CardDao.Find(cardNumber);
+
+                } catch (Exception)
+                {
+                    flagDefault = false;
+                    throw new DuplicateInstanceException(cards, "La tarjeta ya existe");
+
+                }
+                
+
+                //throw new DuplicateInstanceException(user, "El usuario {user} ya existe");
+
+            }
+            catch (Exception)
+            {
+                Card newCard = new Card();
+                newCard.card_number = cardNumber;
+                newCard.csv = csv;
+                newCard.expiration_date = expirationDate;
+                newCard.type = type;
+                newCard.userId = userId;
+
+                newCard.defaultCard = flagDefault;
+
+                CardDao.Create(newCard);
+
+            }
+        }
+
+        public void DeleteCard(long cardNumber, long userId)
+        {
+            try
+            {
+                Card card = CardDao.Find(cardNumber);
+
+                if (card.userId == userId)
+                {
+                    CardDao.Remove(cardNumber);
+
+                    if (card.defaultCard)
+                    {
+                        try
+                        {
+                            List<Card> cards = CardDao.findCardsByUsuarioId(userId);
+                            Card firstCard = cards.First();
+                            firstCard.defaultCard = true;
+                            CardDao.Update(firstCard);
+                        }
+                        catch (Exception e)
+                        {
+                            throw new Exception("No hay mas tarjetas");
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                throw new Exception("La tarjeta no existe");
+            }
+        }
+        public List<Card> GetAllCards()
+        {
+            return CardDao.GetAllElements();
+    }
+    }
+
+    
+
 }

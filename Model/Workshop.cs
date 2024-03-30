@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     {
         public Workshop()
         {
-            this.Usuarios = new HashSet<Usuario>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public long workshopId { get; set; }
@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <summary>
         /// Relationship Name (Foreign Key in ER-Model): FK_Usuario_Workshop
         /// </summary>
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     
     	/// <summary>
     	/// A hash code for this instance, suitable for use in hashing algorithms and data structures 

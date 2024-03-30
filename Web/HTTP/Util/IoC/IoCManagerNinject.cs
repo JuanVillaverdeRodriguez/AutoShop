@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService;
@@ -21,6 +22,9 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* UserProfileDao */
             kernel.Bind<IUsuarioDaoEF>().
                 To<UsuarioDaoEF>();
+
+            kernel.Bind<ICardDaoEF>().
+                To<CardDaoEF>();
 
             kernel.Bind<IWorkshopDaoEF>().
                 To<WorkshopDaoEF>();

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="EsUdcDotNetPracticaMaDModelStoreContainer" CdmEntityContainer="practicamadEntities">
-    <EntitySetMapping Name="Cards">
+    <EntitySetMapping Name="Card">
       <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Card">
         <MappingFragment StoreEntitySet="Card">
           <ScalarProperty Name="card_number" ColumnName="card_number" />
@@ -9,10 +9,11 @@
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="csv" ColumnName="csv" />
           <ScalarProperty Name="expiration_date" ColumnName="expiration_date" />
+          <ScalarProperty Name="defaultCard" ColumnName="defaultCard" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Categories">
+    <EntitySetMapping Name="Category">
       <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="categoryId" ColumnName="categoryId" />
@@ -21,7 +22,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Products">
+    <EntitySetMapping Name="Product">
       <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="productId" ColumnName="productId" />
@@ -33,7 +34,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Properties">
+    <EntitySetMapping Name="Property">
       <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Property">
         <MappingFragment StoreEntitySet="Property">
           <ScalarProperty Name="productId" ColumnName="productId" />
@@ -43,7 +44,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuarios">
+    <EntitySetMapping Name="Usuario">
       <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
           <ScalarProperty Name="userId" ColumnName="userId" />
@@ -57,7 +58,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Workshops">
+    <EntitySetMapping Name="Workshop">
       <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Workshop">
         <MappingFragment StoreEntitySet="Workshop">
           <ScalarProperty Name="workshopId" ColumnName="workshopId" />

@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dfe30c9b12354c4f8b57cf6fe7df6215" Name="Diagram1">
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Card" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+      <Diagram DiagramId="b49ec166fea5457da7540024be2c68b0" Name="Diagram1">
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Card" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Property" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />

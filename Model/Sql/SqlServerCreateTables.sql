@@ -167,11 +167,12 @@ GO
 /* Card aqui creo que el card number tampoco esta bien?? */
 
 CREATE TABLE Card (
-	card_number bigint IDENTITY(1, 1) NOT NULL,
+	card_number BIGINT NOT NULL,
 	userId BIGINT NOT NULL,
 	type varchar(20) NOT NULL,
 	csv int NOT NULL,
 	expiration_date DATETIME NOT NULL,
+	defaultCard BIT NOT NULL,
 
 	CONSTRAINT [PK_Card] PRIMARY KEY (card_number),
 	CONSTRAINT [FK_Card_Usuario] FOREIGN KEY (userId) REFERENCES Usuario (userId)
@@ -199,12 +200,11 @@ INSERT INTO Category(categoryName) VALUES ('Neumaticos');
 INSERT INTO Category(categoryName, fatherId) VALUES ('Neumaticos de invierno', 1);
 
 
-INSERT INTO Card(userId, type, csv, expiration_date) VALUES (1, 'visa', 777, CONVERT(DATETIME, '30/10/2023 14:30:00', 103));
-INSERT INTO Card(userId, type, csv, expiration_date) VALUES (2, 'mastercard', 888, CONVERT(DATETIME, '30/10/2023 14:30:00', 103));
-INSERT INTO Card(userId, type, csv, expiration_date) VALUES (3, 'visa', 999, CONVERT(DATETIME, '30/10/2023 14:30:00', 103));
-INSERT INTO Card(userId, type, csv, expiration_date) VALUES (4, 'visa', 111, CONVERT(DATETIME, '30/10/2023 14:30:00', 103));
-INSERT INTO Card(userId, type, csv, expiration_date) VALUES (5, 'mastercardd', 222, CONVERT(DATETIME, '30/10/2023 14:30:00', 103));
-
+INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234234, 1, 'visa', 777, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
+INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234235, 2, 'mastercard', 888, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
+INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234232, 3, 'visa', 999, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
+INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234239, 4, 'visa', 111, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
+INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234231, 5, 'mastercardd', 222, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
 
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Pirelli 289', 125, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 2, 2);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Firetruck 881', 150, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 12, 2);

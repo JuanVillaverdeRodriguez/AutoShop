@@ -25,11 +25,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Card> Cards { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Property> Properties { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<Workshop> Workshops { get; set; }
+        public virtual DbSet<Card> Card { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<Property> Property { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Workshop> Workshop { get; set; }
     }
 }
