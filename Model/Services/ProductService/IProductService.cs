@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         List<ProductResult> findProduct(string productName, string category);
 
         [Transactional]
-        ProductDetailsResult getProductDetails(long productId);
+        List<ProductDetailsResult> getProductDetails(long productId);
 
 
         // En teoria todo esto no se pide
