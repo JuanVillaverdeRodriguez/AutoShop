@@ -36,13 +36,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         //-------------------------------------------------------------------
 
         [Transactional]
-        SignInResult SignIn(String loginName, String password);
+        UserProfileDetails SignIn(String loginName, String password);
 
         [Transactional]
-        UserProfileDetails FindUserProfileDetails(long userProfileId);
+        UserProfileDetails FindUsuarioDetails(long userId);
 
         [Transactional]
-        void UpdateUserProfileDetails(long userProfileId,
+        void UpdateUsuarioDetails(long userProfileId,
             UserProfileDetails userProfileDetails);
 
         [Transactional]
@@ -62,8 +62,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
         void ChangePassword(long userProfileId, String oldClearPassword,
             String newClearPassword);
-
-        bool UserExists(string loginName);
 
         
 

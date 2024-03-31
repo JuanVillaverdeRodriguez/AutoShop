@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             else
                 details = new UserProfileDetails(user_name, user_apellido, email, idioma, 0);
 
-            usuarioService.UpdateUserProfileDetails(userId, details);
+            usuarioService.UpdateUsuarioDetails(userId, details);
             this.LabelChangesApplied.Visible = true;
         }
     }

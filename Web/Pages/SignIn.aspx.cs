@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             try
             {
-                SignInResult result = usuarioService.SignIn(loginName, password);
+                UserProfileDetails result = usuarioService.SignIn(loginName, password);
                 this.LabelUsuarioLogueado.Visible = true;
             }
             catch

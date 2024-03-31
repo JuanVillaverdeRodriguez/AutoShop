@@ -39,3 +39,9 @@
 /Test/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 /Test/obj/Debug/DesignTimeResolveAssemblyReferences.cache
 /Test/obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+/packages/MSTest.TestFramework.2.1.1
+/packages/MSTest.TestAdapter.2.1.1
+/ModelTests/obj
+/ModelTests
+/Model.Tests
+/.vs/PracticaMaD/v16/TestStore/0
