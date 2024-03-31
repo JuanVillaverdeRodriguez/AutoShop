@@ -11,9 +11,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 {
     public interface IPurchaseService
     {
-        [Inject]
-        IProductDaoEF ProductDao { get; set; }
-
         CardInfo GetDefaultCardInfo();
 
         CardInfo GetCardInfo(Card card);

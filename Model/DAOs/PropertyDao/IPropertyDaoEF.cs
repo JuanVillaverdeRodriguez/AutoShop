@@ -9,6 +9,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.PropertyDao
 {
     public interface IPropertyDaoEF : IGenericDao<Property, Int64>
     {
-        List<Property> getProductDetails(long productId;
+        List<Property> getProductDetails(long productId);
     }
 }
