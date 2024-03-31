@@ -9,7 +9,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao
 {
     public interface IProductDaoEF : IGenericDao<Product, Int64>
     {
-        Product findProductByName(String productName);
+        List<Product> findProductsByName(String productName);
+
+        String getDetailedProductUrl(long productId);
 
     }
 }

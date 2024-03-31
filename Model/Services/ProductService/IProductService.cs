@@ -19,10 +19,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         ICategoryDaoEF CategoryDao { get; set; }
 
         [Transactional]
-        ProductResult findProduct(string productName);
+        List<ProductResult> findProduct(string productName);
 
         [Transactional]
-        ProductResult findProduct(string productName, string category);
+        List<ProductResult> findProduct(string productName, string category);
 
 
         // En teoria todo esto no se pide

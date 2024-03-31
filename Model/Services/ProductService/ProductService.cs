@@ -20,35 +20,49 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         [Inject]
         public ICategoryDaoEF CategoryDao { get; set; }
 
-        public ProductResult findProduct(string productName)
+        public List<ProductResult> findProduct(string productName)
         {
-            Product product = ProductDao.findProductByName(productName);
+            List<Product> productList = ProductDao.findProductsByName(productName);
 
-            Category category = CategoryDao.findCategoryById(product.categoryId);
+            List<ProductResult> productResultList = new List<ProductResult>();
 
-            ProductResult productResult = new ProductResult(productName, category.categoryName,  product.prize, product.date, "urlCart", "urlDetails");
+            foreach (Product product in productList)
+            {
+                Category category = CategoryDao.findCategoryById(product.categoryId);
 
-            return productResult;
+                //Falta manejar la excepcion del details
+                String detailsUrl = ProductDao.getDetailedProductUrl(product.productId);
+
+                ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
+
+                productResultList.Append(productResult);
+
+            }
+
+            return productResultList;
 
         }
 
-        public ProductResult findProduct(string productName, string selectedCategory)
+        public List<ProductResult> findProduct(string productName, string selectedCategory)
         {
-            Product product = ProductDao.findProductByName(productName);
+            List<Product> productList = ProductDao.findProductsByName(productName);
 
-            Category category = CategoryDao.findCategoryById(product.categoryId);
+            List<ProductResult> productResultList = new List<ProductResult>();
 
-            if (category.Equals(selectedCategory))
+            foreach (Product product in productList)
             {
-                ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", "urlDetails");
+                Category category = CategoryDao.findCategoryById(product.categoryId);
+                if (category.Equals(selectedCategory))
+                {
+                    //Falta manejar la excepcion del details
+                    String detailsUrl = ProductDao.getDetailedProductUrl(product.productId);
+                    ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 
-                return productResult;
+                    productResultList.Append(productResult);
+                }
             }
-            else
-            {
-                throw new ModelUtil.Exceptions.InstanceNotFoundException(product, "No existen productos para dicha categoria {product}");
 
-            }
+            return productResultList;
 
         }
     }
