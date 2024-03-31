@@ -181,6 +181,7 @@
     <Content Include="Pages\CreateUser.aspx" />
     <Content Include="Pages\RegisterWorkshop.aspx" />
     <Content Include="Pages\SignIn.aspx" />
+    <Content Include="Pages\UpdateUserDetails.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +223,13 @@
     </Compile>
     <Compile Include="Pages\SignIn.aspx.designer.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UpdateUserDetails.aspx.cs">
+      <DependentUpon>UpdateUserDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UpdateUserDetails.aspx.designer.cs">
+      <DependentUpon>UpdateUserDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
