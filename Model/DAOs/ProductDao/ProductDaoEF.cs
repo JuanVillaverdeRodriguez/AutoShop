@@ -27,20 +27,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao
 
         }
 
-        public string getDetailedProductUrl(long productId)
-        {
-
-            DbSet<Product> product = Context.Set<Product>();
-
-            var result = from prod in product where prod.productId == productId select prod;
-
-            prod = result.FirstOrDefault();
-            if (prod == null)
-                throw new ModelUtil.Exceptions.InstanceNotFoundException(prod, "No existe el producto con id: " + productId);
-
-
-            return "/productDetails?id=" + prod.productId;
-
-        }
     }
 }

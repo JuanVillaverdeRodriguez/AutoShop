@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PropertyDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         [Inject]
         ICategoryDaoEF CategoryDao { get; set; }
 
+        [Inject]
+        IPropertyDaoEF PropertyDao { get; set; }
+
         [Transactional]
         List<ProductResult> findProduct(string productName);
 
         [Transactional]
         List<ProductResult> findProduct(string productName, string category);
+
+        [Transactional]
+        ProductDetailsResult getProductDetails(long productId);
 
 
         // En teoria todo esto no se pide

@@ -1,5 +1,7 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PropertyDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         [Inject]
         public ICategoryDaoEF CategoryDao { get; set; }
 
+        [Inject]
+        public IPropertyDaoEF PropertyDao { get; set; }
+
         public List<ProductResult> findProduct(string productName)
         {
             List<Product> productList = ProductDao.findProductsByName(productName);
@@ -30,8 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
             {
                 Category category = CategoryDao.findCategoryById(product.categoryId);
 
-                //Falta manejar la excepcion del details
-                String detailsUrl = ProductDao.getDetailedProductUrl(product.productId);
+                string detailsUrl = "/productDetails?id=" + product.productId;
 
                 ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 
@@ -54,8 +58,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
                 Category category = CategoryDao.findCategoryById(product.categoryId);
                 if (category.Equals(selectedCategory))
                 {
-                    //Falta manejar la excepcion del details
-                    String detailsUrl = ProductDao.getDetailedProductUrl(product.productId);
+                    string detailsUrl = "/productDetails?id=" + product.productId;
+
                     ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 
                     productResultList.Append(productResult);
@@ -63,6 +67,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
             }
 
             return productResultList;
+
+        }
+
+        public List<ProductDetailsResult> getProductDetails(long productId)
+        {
+            List<ProductDetailsResult> productDetailsResultList = new List<ProductDetailsResult>();
+
+            List<Property> productDetails = PropertyDao.getProductDetails(productId);
+
+            foreach (Property property in productDetails)
+            {
+                ProductDetailsResult productDetailsResult = new ProductDetailsResult(property.property_name, property.property_value, property.categoryId);
+                productDetailsResultList.Append(productDetailsResult);
+            }
+
+            return productDetailsResultList;
 
         }
     }
