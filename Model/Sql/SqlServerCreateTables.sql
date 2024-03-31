@@ -175,7 +175,8 @@ CREATE TABLE Card (
 	defaultCard BIT NOT NULL,
 
 	CONSTRAINT [PK_Card] PRIMARY KEY (card_number),
-	CONSTRAINT [FK_Card_Usuario] FOREIGN KEY (userId) REFERENCES Usuario (userId)
+	CONSTRAINT [FK_Card_Usuario] FOREIGN KEY (userId) REFERENCES Usuario (userId),
+	CONSTRAINT [UK_card_number] UNIQUE (card_number)
 )
 
 PRINT N'Table Card created'

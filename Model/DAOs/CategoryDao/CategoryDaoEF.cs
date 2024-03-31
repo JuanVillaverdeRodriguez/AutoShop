@@ -11,7 +11,7 @@ using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao
 {
-    class CategoryDaoEF : GenericDaoEntityFramework<Category, Int64>, ICategoryDaoEF
+    public class CategoryDaoEF : GenericDaoEntityFramework<Category, Int64>, ICategoryDaoEF
     {
 
         public CategoryDaoEF() { }

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions
 {
-    class MistakenCredentialsException : Exception
+    [Serializable]
+    public class MistakenCredentialsException : Exception
     {
         // Excepcion con mensaje por defecto
         public MistakenCredentialsException() : base("Password is not correct. Try again.")

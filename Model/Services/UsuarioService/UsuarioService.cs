@@ -69,9 +69,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             throw new NotImplementedException();
         }
 
-        public UserProfileDetails FindUserProfileDetails(long userProfileId)
+        public UserProfileDetails FindUsuarioDetails(long userId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario user =
+                UsuarioDao.Find(userId);
+
+                UserProfileDetails details = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.workshopId);
+                return details;
+
+            }
+            catch (Exception)
+            {
+                throw new ModelUtil.Exceptions.InstanceNotFoundException(userId, "no existe el usuario");
+            }
         }
 
         public string GetUserName(long usrId)
@@ -79,7 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             throw new NotImplementedException();
         }
 
-        public SignInResult SignIn(string loginName, string password)
+        public UserProfileDetails SignIn(string loginName, string password)
         {
                 
             // Si el usuario existe, se hace el login
@@ -94,7 +106,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                     throw new MistakenPasswordException(loginName);
                 }
 
-                SignInResult signInResult = new SignInResult(user.user_name, user.user_surname, user.email, user.workshopId, user.language);
+                UserProfileDetails signInResult = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.workshopId);
 
                 return signInResult;
             }
@@ -106,6 +118,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             }
 
         }
+
         [Transactional]
         public long RegisterWorkshop(int postalCode, string location, string workshopName)
         {
@@ -136,7 +149,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             }
         }
 
-        public void UpdateUserProfileDetails(long userId, UserProfileDetails userProfileDetails)
+        public void UpdateUsuarioDetails(long userId, UserProfileDetails userProfileDetails)
         {
             try
             {
@@ -154,12 +167,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             {
                 throw new ModelUtil.Exceptions.InstanceNotFoundException(userId, "no existe el usuario");
             }
-        }
-
-        //Probablemente no hace falta implementarla
-        public bool UserExists(string loginName)
-        {
-            throw new NotImplementedException();
         }
 
         public void CreateCard(long cardNumber, long userId, string type, int csv, DateTime expirationDate)

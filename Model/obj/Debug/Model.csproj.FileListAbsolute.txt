@@ -75,8 +75,8 @@ C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\bin\Debug\S
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\bin\Debug\System.ValueTuple.xml
-C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\obj\Debug\Model.csproj.AssemblyReference.cache
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\obj\Debug\Model.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\obj\Debug\Model.pdb
+C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Model\obj\Debug\Model.csproj.AssemblyReference.cache

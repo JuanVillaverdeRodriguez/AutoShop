@@ -24,6 +24,7 @@ C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Mi
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Model.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\ModelUtil.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Ninject.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Ninject.Extensions.Interception.dll
@@ -42,6 +43,8 @@ C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Sy
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\System.ValueTuple.dll
+C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Model.pdb
+C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Model.dll.config
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\Castle.Core.xml
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\EntityFramework.xml
 C:\Users\danie\Source\Repos\practica-mad-2-cuatrimestre-mad205\Test\bin\Debug\EntityFramework.SqlServer.xml

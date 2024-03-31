@@ -27,3 +27,9 @@
 /Web/obj/Debug/Web.csproj.CoreCompileInputs.cache
 /Web/obj/Debug/Web.csproj.CopyComplete
 /Web/obj/Debug/Web.csproj.AssemblyReference.cache
+/packages/MSTest.TestFramework.2.1.1
+/packages/MSTest.TestAdapter.2.1.1
+/ModelTests/obj
+/ModelTests
+/Model.Tests
+/.vs/PracticaMaD/v16/TestStore/0
