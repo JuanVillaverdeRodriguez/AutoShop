@@ -136,11 +136,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             }
         }
 
-        public void UpdateUserProfileDetails(long userProfileId, UserProfileDetails userProfileDetails)
+        public void UpdateUserProfileDetails(long userId, UserProfileDetails userProfileDetails)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario user =
+                UsuarioDao.Find(userId);
+
+                user.user_name = userProfileDetails.user_name;
+                user.user_surname = userProfileDetails.user_surname;
+                user.email = userProfileDetails.email;
+                user.language = userProfileDetails.language;
+
+                UsuarioDao.Update(user);
+
+            }catch (Exception)
+            {
+                throw new ModelUtil.Exceptions.InstanceNotFoundException(userId, "no existe el usuario");
+            }
         }
 
+        //Probablemente no hace falta implementarla
         public bool UserExists(string loginName)
         {
             throw new NotImplementedException();
@@ -205,7 +221,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                             firstCard.defaultCard = true;
                             CardDao.Update(firstCard);
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             throw new Exception("No hay mas tarjetas");
                         }

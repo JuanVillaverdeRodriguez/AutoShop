@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<IWorkshopDaoEF>().
                 To<WorkshopDaoEF>();
 
-            kernel.Bind<IProductDao>().
+            kernel.Bind<IProductDaoEF>().
                 To<ProductDaoEF>();
 
             /* UserService */
