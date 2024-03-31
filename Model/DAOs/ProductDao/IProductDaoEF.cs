@@ -11,7 +11,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao
     {
         List<Product> findProductsByName(String productName);
 
-        String getDetailedProductUrl(long productId);
 
     }
 }

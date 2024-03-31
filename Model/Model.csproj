@@ -172,6 +172,8 @@
     <Compile Include="DAOs\CategoryDao\ICategoryDaoEF.cs" />
     <Compile Include="DAOs\ProductDao\IProductDaoEF.cs" />
     <Compile Include="DAOs\ProductDao\ProductDaoEF.cs" />
+    <Compile Include="DAOs\PropertyDao\IPropertyDaoEF.cs" />
+    <Compile Include="DAOs\PropertyDao\PropertyDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\IUsuarioDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\UsuarioDaoEF.cs" />
     <Compile Include="DAOs\WorkshopDao\IWorkshopDaoEF.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="Services\Exceptions\MistakenCredentialsException.cs" />
     <Compile Include="Services\Exceptions\MistakenPasswordException.cs" />
     <Compile Include="Services\ProductService\IProductService.cs" />
+    <Compile Include="Services\ProductService\ProductDetailsResult.cs" />
     <Compile Include="Services\ProductService\ProductResult.cs" />
     <Compile Include="Services\ProductService\ProductService.cs" />
     <Compile Include="Services\UsuarioService\IUsuarioService.cs" />
