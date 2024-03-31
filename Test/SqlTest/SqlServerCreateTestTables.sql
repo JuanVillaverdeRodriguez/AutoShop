@@ -1,4 +1,4 @@
-USE [practicamad_test]
+ï»¿USE [practicamad_test]
 
 
 /* ********** Drop Table Property if already exists *********** */
@@ -83,7 +83,7 @@ PRINT N'Table Product created.'
 GO
 
 /* Property */
-/*la primera linea no estoy muy seguro, la PK serían productId y name, igual no hace falta el categoryId aqui la verdad*/
+/*la primera linea no estoy muy seguro, la PK serÃ­an productId y name, igual no hace falta el categoryId aqui la verdad*/
 
 CREATE TABLE Property (
 	productId  bIGINT NOT NULL,
@@ -159,7 +159,7 @@ GO
 
 /*Todas las filas de la tabla correspondientes a una misma compra deben tener el mismo purchaseId (una forma de conseguir esto puede ser a la hora de generar un nuevo pedido,
 	buscar primero en la tabla el mayor purchaseId que hay, i.e 15 y porner al 16 al nuevo pedido,
-	en caso de no haber ningún pedido poner 1 como primer id,
+	en caso de no haber ningÃºn pedido poner 1 como primer id,
 	esto se controla desde el servicio)*/
 
 /*prize y quantity no se corresponden con el precio y stock de la tabla Product
