@@ -179,3 +179,10 @@ INSERT INTO Category(categoryName, fatherId) VALUES ('Neumaticos de invierno', 1
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Pirelli 289', 125, CONVERT(DATETIME, '30/12/2023 19:34:33', 103), 2, 2);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Firetruck 881', 150, CONVERT(DATETIME, '5/10/2023 11:32:35', 103), 12, 2);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('michelin gcv12', 200, CONVERT(DATETIME, '26/7/2023 17:22:48', 103), 1, 1);
+
+INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (1, 'diametro', '25 cm', 2);
+INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (1, 'grosor', '4 cm', 2);
+INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (2, 'diametro', '30 cm', 2);
+INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (2, 'grosor', '4.5 cm', 2);
+INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'diametro', '35 cm', 1);
+INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'grosor', '3.2 cm', 1);

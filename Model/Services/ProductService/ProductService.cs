@@ -37,9 +37,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
 
                 string detailsUrl = "/productDetails?id=" + product.productId;
 
-                ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
+                ProductResult productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 
-                productResultList.Append(productResult);
+                productResultList.Add(productResult);
 
             }
 
@@ -56,13 +56,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
             foreach (Product product in productList)
             {
                 Category category = CategoryDao.findCategoryById(product.categoryId);
-                if (category.Equals(selectedCategory))
+
+                String fatherCatName = CategoryDao.findFatherCategoryByCategoryName(category.categoryName);
+                
+                if (category.categoryName.Equals(selectedCategory) || selectedCategory.Equals(fatherCatName))
                 {
                     string detailsUrl = "/productDetails?id=" + product.productId;
 
                     ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 
-                    productResultList.Append(productResult);
+                    productResultList.Add(productResult);
                 }
             }
 
@@ -79,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
             foreach (Property property in productDetails)
             {
                 ProductDetailsResult productDetailsResult = new ProductDetailsResult(property.property_name, property.property_value, property.categoryId);
-                productDetailsResultList.Append(productDetailsResult);
+                productDetailsResultList.Add(productDetailsResult);
             }
 
             return productDetailsResultList;

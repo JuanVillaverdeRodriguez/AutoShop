@@ -22,9 +22,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         [Inject]
         IPropertyDaoEF PropertyDao { get; set; }
 
+        //Devuelve una lista con los ProductResults correspondientes a productname
+        //Devuelve una lista vacía si no
         [Transactional]
         List<ProductResult> findProduct(string productName);
 
+        //Devuelve una lista con los ProductResults correspondientes a productname y category
+        //Devuelve una lista vacía si no
         [Transactional]
         List<ProductResult> findProduct(string productName, string category);
 

@@ -45,8 +45,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 To<UsuarioService>();
             kernel.Bind<IProductService>().
                   To<ProductService>();
-            kernel.Bind<IProductService>().
-                To<ProductService>();
+            kernel.Bind<IPurchaseService>().
+                To<PurchaseService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["practicamadEntities"].ConnectionString;

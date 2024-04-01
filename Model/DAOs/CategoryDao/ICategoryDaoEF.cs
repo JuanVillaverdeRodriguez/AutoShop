@@ -13,5 +13,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao
         //devuelve InstanceNotFoundException si no encuentra la categoría
         Category findCategoryById(long categoryId);
 
+        //devuelve el nombre de la categoría padre si la categoría tiene
+        //devuelve nulo si no
+        String findFatherCategoryByCategoryName(string categoryName);
+
     }
 }

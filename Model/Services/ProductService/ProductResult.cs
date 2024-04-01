@@ -8,12 +8,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
 {
     public class ProductResult
     {
-        private String name { get; set; }
-        private String category { get; set; }
-        private double price { get; set; }
-        private DateTime addedDate { get; set; }
-        private String cartUrl { get; set; }
-        private String detailsUrl { get; set; }
+        public String name { get; private set; }
+        public String category { get; private set; }
+        public double price { get; private set; }
+        public DateTime addedDate { get; private set; }
+        public String cartUrl { get; private set; }
+        public String detailsUrl { get; private set; }
 
 
 

@@ -25,9 +25,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao
 
             cat = result.FirstOrDefault();
             if (cat == null)
-                throw new ModelUtil.Exceptions.InstanceNotFoundException(cat, "No existe una tarjeta asociada {usuarioId}");
+                throw new ModelUtil.Exceptions.InstanceNotFoundException(cat, "No existe una categoría asociada {categoryId}");
 
             return cat;
+        }
+
+        public String findFatherCategoryByCategoryName(string categoryName)
+        {
+            DbSet<Category> category = Context.Set<Category>();
+
+            var result = (from cat in category where cat.fatherId != null select cat);
+
+            cat = result.FirstOrDefault();
+            if (cat == null)
+                return "";
+
+            long fatherid = (long) cat.fatherId;
+            return this.Find(fatherid).categoryName;
         }
     }
 }
