@@ -176,6 +176,7 @@
     <Content Include="SqlTest\SqlServerCreateTestDatabase.sql" />
     <Compile Include="NinjectXMLTest.cs" />
     <Compile Include="ServiceTest\IProductServiceTest.cs" />
+    <Compile Include="ServiceTest\IPurchaseServiceTest.cs" />
     <Compile Include="ServiceTest\IUserServiceTest.cs" />
     <Compile Include="TestManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

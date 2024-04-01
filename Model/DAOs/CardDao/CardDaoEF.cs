@@ -20,9 +20,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao
         {
             DbSet<Card> card = Context.Set<Card>();
 
-            List<Card> result = (from crd in card where crd.userId == usuarioId select crd).ToList();
+            try
+            {
+                List<Card> result = (from crd in card where crd.userId == usuarioId select crd).ToList();
+                return result;
 
-            return result;
+            }
+            catch
+            {
+                List<Card> emptyList = new List<Card>();
+                return emptyList;
+            }
+
         }
     }
 }

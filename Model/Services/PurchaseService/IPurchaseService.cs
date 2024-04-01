@@ -22,17 +22,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
         [Inject]
         IPurchaseDaoEF PurchaseDao { get; set; }
         CardInfoResult GetDefaultCardInfo(long usuarioId);
-
-        CardInfoResult GetCardInfo(Card card);
-
         List<Purchase> Purchase(Card card, Cart.Cart cart, int direction, string purchaseDescription);
         List<PurchaseInfoResult> GetPurchases(long usuarioId);
 
-        void AddProductToCart(Product product, Cart.Cart cart);
-        void RemoveProductFromCart(Product product, Cart.Cart cart);
-        List<Product> GetProductsList(Cart.Cart cart);
-
-        List<(Product product, int count)> GetProductsTupleList(Cart.Cart cart);
 
     }
 }

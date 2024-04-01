@@ -19,12 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
         [Inject]
         public IPurchaseDaoEF PurchaseDao { get; set; }
-        public CardInfoResult GetCardInfo(Card card)
-        {
-            CardInfoResult cardInfoResult = new CardInfoResult(card.card_number, card.type, card.csv, card.expiration_date, card.defaultCard);
-            return cardInfoResult;
-        }
-
+ 
         public CardInfoResult GetDefaultCardInfo(long usuarioId)
         {
 
@@ -47,7 +42,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
         public List<Purchase> Purchase(Card card, Cart.Cart cart, int direction, string purchaseDescription)
         {
-            List<(Product product, int count)> productList = GetProductsTupleList(cart);
+            // Deberia comprobar que el usuario realmente tenga esa tarjeta
+
+            try
+            {
+                CardDao.Find(card.card_number);
+            }
+            catch
+            {
+                throw new NoCardsException("No existe esta tarjeta.");
+            }
+            List<(Product product, int count)> productList = cart.GetProductsTupleList();
             if (!productList.Any())
             {
                 throw new EmptyCartException();
@@ -68,7 +73,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
                 newPurchase.quantity = count;
                 newPurchase.date = currentDate;
                 newPurchase.purchaseId = newPurchaseId;
+                newPurchase.productId = product.productId;
                 newPurchase.descriptiveName = purchaseDescription;
+                PurchaseDao.Create(newPurchase);
                 purchasesList.Add(newPurchase);
             }
             return purchasesList;
@@ -87,27 +94,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
             }
             return purchasesInfoResultList;
 
-        }
-        public void AddProductToCart(Product product, Cart.Cart cart)
-        {
-            cart.AddProduct(product);
-        }
-
-        public void RemoveProductFromCart(Product productId, Cart.Cart cart)
-        {
-            cart.RemoveProduct(productId);
-        }
-
-        //No tenemos claro que es lo mas conveniente que devuelva este metodo
-        //Tupla (Producto, count)?
-        public List<Product> GetProductsList(Cart.Cart cart)
-        {
-            return cart.GetProductsList();
-        }
-
-        public List<(Product product, int count)> GetProductsTupleList(Cart.Cart cart)
-        {
-            return cart.GetProductsTupleList();
         }
     }
 }

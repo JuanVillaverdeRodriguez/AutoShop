@@ -13,6 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao
 
         public PurchaseDaoEF() { }
 
+        Purchase purch = null;
         public List<Purchase> GetPurchases(long usuarioId)
         {
             DbSet<Purchase> purchase = Context.Set<Purchase>();
@@ -26,9 +27,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao
         {
             DbSet<Purchase> purchase = Context.Set<Purchase>();
 
-            var result = purchase.Max(p => p.purchaseId);
+            if (purchase.Any())
+            {
+                long result = purchase.Max(p => p.purchaseId);
+                return result;
+            }
+                return 0;
+        }
 
-            return result;
+        public Purchase GetPurchaseByPK(long purchaseId, long productId)
+        {
+            DbSet<Purchase> purchase = Context.Set<Purchase>();
+
+            var result = (from purch in purchase where purch.purchaseId == purchaseId && purch.productId == productId select purch);
+
+            purch = result.FirstOrDefault();
+            if (purch == null)
+                throw new ModelUtil.Exceptions.InstanceNotFoundException(purch, "No existe el pedido {user}");
+
+            return purch;
+
         }
     }
 }

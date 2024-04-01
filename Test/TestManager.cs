@@ -43,8 +43,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             kernel.Bind<IUsuarioService>().
                 To<UsuarioService>();
+
             kernel.Bind<IProductService>().
                   To<ProductService>();
+
             kernel.Bind<IPurchaseService>().
                 To<PurchaseService>();
 
