@@ -49,7 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                 this.LabelTarjetaCreada.Visible = true;
 
             }
-            catch
+            catch (Exception)
             {
                 this.LabelTarjetaNoCreada.Visible = true;
 

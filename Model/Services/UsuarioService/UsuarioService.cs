@@ -69,6 +69,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             throw new NotImplementedException();
         }
 
+        [Transactional]
         public UserProfileDetails FindUsuarioDetails(long userId)
         {
             try
@@ -76,7 +77,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 Usuario user =
                 UsuarioDao.Find(userId);
 
-                UserProfileDetails details = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.workshopId);
+                UserProfileDetails details = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.workshopId);
                 return details;
 
             }
@@ -91,6 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             throw new NotImplementedException();
         }
 
+        [Transactional]
         public UserProfileDetails SignIn(string loginName, string password)
         {
                 
@@ -149,12 +151,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             }
         }
 
+        [Transactional]
         public void UpdateUsuarioDetails(long userId, UserProfileDetails userProfileDetails)
         {
             try
             {
-                Usuario user =
-                UsuarioDao.Find(userId);
+                Usuario user = UsuarioDao.Find(userId);
 
                 user.user_name = userProfileDetails.user_name;
                 user.user_surname = userProfileDetails.user_surname;
@@ -169,32 +171,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             }
         }
 
+        [Transactional]
         public void CreateCard(long cardNumber, long userId, string type, int csv, DateTime expirationDate)
         {
-            bool flagDefault = true;
-
+            bool flagDefault = false;
             try
             {
-                //Si no existe, lanzará una excepcion
+                Card card = CardDao.Find(cardNumber);
+                throw new DuplicateInstanceException(card, "La tarjeta ya existe");
+            }
+            catch (ModelUtil.Exceptions.InstanceNotFoundException)
+            {
                 List<Card> cards = CardDao.findCardsByUsuarioId(userId);
 
-                try
-                {
-                    Card card = CardDao.Find(cardNumber);
+                if (!cards.Any())
+                    flagDefault = true;
 
-                } catch (Exception)
-                {
-                    flagDefault = false;
-                    throw new DuplicateInstanceException(cards, "La tarjeta ya existe");
-
-                }
-                
-
-                //throw new DuplicateInstanceException(user, "El usuario {user} ya existe");
-
-            }
-            catch (Exception)
-            {
                 Card newCard = new Card();
                 newCard.card_number = cardNumber;
                 newCard.csv = csv;
@@ -205,15 +197,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 newCard.defaultCard = flagDefault;
 
                 CardDao.Create(newCard);
-
             }
         }
 
+        [Transactional]
         public void DeleteCard(long cardNumber, long userId)
         {
+            Card card = new Card();
             try
             {
-                Card card = CardDao.Find(cardNumber);
+                card = CardDao.Find(cardNumber);
 
                 if (card.userId == userId)
                 {
@@ -230,14 +223,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                         }
                         catch (Exception)
                         {
-                            throw new Exception("No hay mas tarjetas");
+                            throw new ModelUtil.Exceptions.InstanceNotFoundException(card, "No hay mas tarjetas");
                         }
                     }
                 }
             }
             catch
             {
-                throw new Exception("La tarjeta no existe");
+                throw new ModelUtil.Exceptions.InstanceNotFoundException(card, "La tarjeta no existe");
             }
         }
         public List<Card> GetAllCards()
