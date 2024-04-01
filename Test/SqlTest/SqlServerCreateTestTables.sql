@@ -1,46 +1,31 @@
 ﻿USE [practicamad_test]
 
 
-/* ********** Drop Table Property if already exists *********** */
+/* ********** Drop Tables if existing *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Property]') AND type in ('U'))
 DROP TABLE [Property]
 GO
 
-/* ********** Drop Table Purchase if already exists *********** */
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Purchase]') AND type in ('U')) 
 DROP TABLE [Purchase]
 GO
-
-
-/* ********** Drop Table Product if already exists *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Product]') AND type in ('U'))
 DROP TABLE [Product]
 GO
 
-/* ********** Drop Table Category if already exists *********** */
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') AND type in ('U'))
 DROP TABLE [Category]
 GO
-
-/* ********** Drop Table Cardd if already exists *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Card]') AND type in ('U')) 
 DROP TABLE [Card]
 GO
 
-/* ********** Drop Table User if already exists *********** */
-
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Usuario]') AND type in ('U'))
 DROP TABLE [Usuario]
 GO
-
-
-/* ********** Drop Table Workshop if already exists *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Workshop]') AND type in ('U')) 
 DROP TABLE [Workshop]
@@ -51,7 +36,7 @@ GO
 
 
 
-
+/* Create tables */
 
 /*  Category */
 
@@ -88,7 +73,7 @@ PRINT N'Table Product created.'
 GO
 
 /* Property */
-/*la primera linea no estoy muy seguro, la PK serían productId y name, igual no hace falta el categoryId aqui la verdad*/
+/* igual no hace falta el categoryId */
 
 CREATE TABLE Property (
 	productId  bIGINT NOT NULL,
@@ -145,7 +130,7 @@ ON [Usuario] ([alias] ASC)
 PRINT N'Table User created.'
 GO
 
-/* Card aqui creo que el card number tampoco esta bien?? */
+/* Card */
 
 CREATE TABLE Card (
 	card_number BIGINT NOT NULL,
@@ -161,6 +146,8 @@ CREATE TABLE Card (
 
 PRINT N'Table Card created'
 GO
+
+/* Purchase */
 
 CREATE TABLE Purchase (
 	purchaseId BIGINT NOT NULL,
@@ -180,6 +167,7 @@ CREATE TABLE Purchase (
 PRINT N'Table Purchase created'
 GO
 
+/* Inicializamos la tabla de tests con algunas entradas que se utilizarán al ejecutar las pruebas */
 
 INSERT INTO Workshop(workshop_name, postal_code, country) VALUES ('UDC', 11111, 'ES');
 

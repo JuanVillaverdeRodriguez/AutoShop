@@ -2,12 +2,12 @@
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
-//using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PropertyDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PropertyDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
-//using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService;
-//using Es.Udc.DotNet.PracticaMaD.Model.Services.CartService;
+using Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
@@ -36,17 +36,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 To<CategoryDaoEF>();
             kernel.Bind<IProductDaoEF>().
                 To<ProductDaoEF>();
-            /*kernel.Bind<IPurchaseDaoEF>().
+            kernel.Bind<IPurchaseDaoEF>().
                 To<PurchaseDaoEF>();
             kernel.Bind<IPropertyDaoEF>().
-                To<PropertyDaoEF>();*/
+                To<PropertyDaoEF>();
 
             kernel.Bind<IUsuarioService>().
                 To<UsuarioService>();
             kernel.Bind<IProductService>().
                   To<ProductService>();
-            /*kernel.Bind<ICartService>().
-                To<CartService>();*/
+            kernel.Bind<IProductService>().
+                To<ProductService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["practicamadEntities"].ConnectionString;

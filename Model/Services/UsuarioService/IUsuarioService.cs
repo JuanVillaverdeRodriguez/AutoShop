@@ -23,45 +23,56 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         [Inject]
         ICardDaoEF CardDao { get; set;  }
 
-        //-------------------------------------------------------------------
-        // ----------------------Registro de usuario-------------------------
-        //-------------------------------------------------------------------
 
 
+
+        //Registra un nuevo usuario
+        //Lanza DuplicateInstanceException si el usuario ya existe
         [Transactional]
-        long RegisterUsuario(String loginName, String clearPassword, UserProfileDetails userProfileDetails);
+        long RegisterUsuario(String alias, String password, UserProfileDetails userProfileDetails);
 
-        //-------------------------------------------------------------------
-        // ----------------------Autenticacion y salida ---------------------
-        //-------------------------------------------------------------------
-
+        //Logea al usuario
+        //Si los campos fallan (error de contraseña) Lanza un MistakenCredentialsException
         [Transactional]
-        UserProfileDetails SignIn(String loginName, String password);
+        UserProfileDetails SignIn(String alias, String password);
 
+        //Busca los detalles de usuario dado su userId
+        //Devuelve InstanceNotFoundException si no existe el usuario
         [Transactional]
         UserProfileDetails FindUsuarioDetails(long userId);
 
+        //Modifica los la información basica de un usuario
+        //Lanza InstanceNotFoundException si no existe el usuario
         [Transactional]
-        void UpdateUsuarioDetails(long userProfileId,
-            UserProfileDetails userProfileDetails);
+        void UpdateUsuarioDetails(long userProfileId, UserProfileDetails userProfileDetails);
 
+        //Registra un nuevo taller
+        //Lanza DuplicateInstanceException si el taller ya existía
         [Transactional]
         long RegisterWorkshop(int postalCode, String location, String workshopName);
 
+        //Crea una nueva tarjeta para un usuario
+        //Si el usuario ya tiene tarjetas y alguna de ellas por defecto, crea una tarjeta que no esté por defecto
+        //Si el usuario no tiene más tarjetas antes de crear la nueva, crea una tarjeta por defecto
+        //Lanza DuplicateInstanceException si la tarjeta ya existe
         [Transactional]
-        string GetUserName(long usrId);
+        void CreateCard(long cardNumber, long userId, String type, int csv, DateTime expirationDate);
 
-        [Transactional]
-        void CreateCard(long cardNumber, long userProfileId, String type, int csv, DateTime expirationDate);
-
+        //Elimina una tarjeta y, en caso de que el usuario tuviese más tarjetas pone la primera por defecto
+        //Lanza InstanceNotFoundException si la tarjeta no existe
+        //Lanza InstanceNotFoundException si el usuario no tiene ninguna tarjeta
         [Transactional]
         void DeleteCard(long cardNumber, long userId);
-
+        
+        //Devuelve una lista con todas las tarjetas
         [Transactional]
         List<Card> GetAllCards();
 
-        void ChangePassword(long userProfileId, String oldClearPassword,
-            String newClearPassword);
+        /*No implementadas, lanzan NotImplementedException*/
+        [Transactional]
+        string GetUserName(long usrId);
+
+        void ChangePassword(long userProfileId, String oldClearPassword, String newClearPassword);
 
         
 

@@ -1,70 +1,31 @@
-/* 
- * SQL Server Script
- * 
- * This script can be directly executed to configure the test database from
- * PCs located at CECAFI Lab. The database and the corresponding users are 
- * already created in the sql server, so it will create the tables needed 
- * in the samples. 
- * 
- * In a local environment (for example, with the SQLServerExpress instance 
- * included in the VStudio installation) it will be necessary to create the 
- * database and the user required by the connection string. So, the following
- * steps are needed:
- *
- *      Configure within the CREATE DATABASE sql-sentence the path where 
- *      database and log files will be created  
- *
- * This script can be executed from MS Sql Server Management Studio Express,
- * but also it is possible to use a command Line syntax:
- *
- *    > sqlcmd.exe -U [user] -P [password] -I -i SqlServerCreateTables.sql
- *
- */
-
- 
 USE [practicamad]
 
 
-/* ********** Drop Table Property if already exists *********** */
+/* ********** Drops Tables if already existing *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Property]') AND type in ('U'))
 DROP TABLE [Property]
 GO
 
-/* ********** Drop Table Purchase if already exists *********** */
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Purchase]') AND type in ('U')) 
 DROP TABLE [Purchase]
 GO
-
-/* ********** Drop Table Product if already exists *********** */
-
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Product]') AND type in ('U'))
 DROP TABLE [Product]
 GO
 
-/* ********** Drop Table Category if already exists *********** */
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') AND type in ('U'))
 DROP TABLE [Category]
 GO
-
-/* ********** Drop Table Cardd if already exists *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Card]') AND type in ('U')) 
 DROP TABLE [Card]
 GO
 
-/* ********** Drop Table User if already exists *********** */
-
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Usuario]') AND type in ('U'))
 DROP TABLE [Usuario]
 GO
-
-
-/* ********** Drop Table Workshop if already exists *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Workshop]') AND type in ('U')) 
 DROP TABLE [Workshop]
@@ -74,10 +35,7 @@ GO
 
 
 
-
-
-
-
+/*Creates tables*/
 
 /*  Category */
 
@@ -114,7 +72,7 @@ PRINT N'Table Product created.'
 GO
 
 /* Property */
-/*la primera linea no estoy muy seguro, la PK serían productId y name, igual no hace falta el categoryId aqui la verdad*/
+/*igual no hace falta el categoryId aqui la verdad*/
 
 CREATE TABLE Property (
 	productId  bIGINT NOT NULL,
@@ -168,10 +126,10 @@ CREATE TABLE Usuario (
 CREATE NONCLUSTERED INDEX [IX_UserByAlias]
 ON [Usuario] ([alias] ASC)
 
-PRINT N'Table User created.'
+PRINT N'Table Usuario created.'
 GO
 
-/* Card aqui creo que el card number tampoco esta bien?? */
+/* Card */
 
 CREATE TABLE Card (
 	card_number BIGINT NOT NULL,
@@ -199,6 +157,7 @@ GO
 	asi mismo quantity tampoco se corresponde con el stock de la tabla product, aunque al producirse una compra si que se debe reducir el stock del producto comprado en la misma medida que la quantity
 	del purchase realizado */
 
+/* Purchase */
 
 CREATE TABLE Purchase (
 	purchaseId BIGINT NOT NULL,
@@ -222,7 +181,7 @@ GO
 
 
 
-/* ************ Insert data into tables ************ */
+/* ************ Insert data ************ */
 
 INSERT INTO Workshop(workshop_name, postal_code, country) VALUES ('La Fabrica de Chocolate', 27001, 'ES');
 INSERT INTO Workshop(workshop_name, postal_code, country) VALUES ('UDC', 15005, 'ES');
@@ -260,5 +219,4 @@ INSERT INTO Property(productId, property_name, property_value, categoryId) VALUE
 INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 1, 2349234234, 36121, 28, 2, CONVERT(DATETIME, '7/10/2023 14:30:00', 103), 'default description1');
 INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 2, 2349234234, 36121, 12, 2, CONVERT(DATETIME, '3/12/2023 14:30:00', 103), 'default description2');
 INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 3, 2349234234, 36121, 76, 2, CONVERT(DATETIME, '4/10/2023 14:30:00', 103), 'default description4');
-
 INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (2, 1, 2349234239, 36121, 28, 2, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 'default description');

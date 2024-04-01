@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using System.Management.Instrumentation;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
@@ -29,35 +29,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
 
         [Transactional]
-        public long RegisterUsuario(string loginName, string clearPassword, UserProfileDetails userProfileDetails)
+        public long RegisterUsuario(string alias, string password, UserProfileDetails userProfileDetails)
         {
-            // 1) Comprobar si el usuario ya existe
-                // 1.1) Si el usuario ya existe lanzar excepcion
-                // 1.2) Si el usuario no existe seguir
-            // 2) Añadir al usuario a la base de datos
+            //Comprobar si el usuario ya existe
+                //Si el usuario ya existe lanzar excepcion
+                //Si el usuario no existe seguir
+            //Añadir al usuario a la base de datos
 
             try {
                 //Si no existe, lanzará una excepcion
-                Usuario user = UsuarioDao.findUsuarioByAlias(loginName);
+                Usuario user = UsuarioDao.findUsuarioByAlias(alias);
 
-                //Cambiar por una excepcion más precisa
+                //Si existe lanza DuplicateInstanceException
                 throw new DuplicateInstanceException(user, "El usuario {user} ya existe");
 
             }
             catch (ModelUtil.Exceptions.InstanceNotFoundException) {
-                // Deberiamos poner la contraseña encriptada
-                //String passwordEncrypted = PasswordEncrypter.Crypt(clearPassword);
 
                 Usuario newUser = new Usuario();
 
-                newUser.alias = loginName;
-                newUser.password = clearPassword; // Poner contraseña encriptada
+                newUser.alias = alias;
+                newUser.password = password;
                 newUser.user_name = userProfileDetails.user_name;
                 newUser.user_surname = userProfileDetails.user_surname;
                 newUser.email = userProfileDetails.email;
                 newUser.workshopId = userProfileDetails.workshopId;
                 newUser.language = userProfileDetails.language;
 
+                //Se Crea el nuevo usuario en la BD
                 UsuarioDao.Create(newUser);
 
                 return newUser.userId;
@@ -93,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         }
 
         [Transactional]
-        public UserProfileDetails SignIn(string loginName, string password)
+        public UserProfileDetails SignIn(string alias, string password)
         {
                 
             // Si el usuario existe, se hace el login
@@ -101,11 +100,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
             try
             {
-                Usuario user = UsuarioDao.findUsuarioByAlias(loginName);
+                Usuario user = UsuarioDao.findUsuarioByAlias(alias);
 
                 if (!password.Equals(user.password))
                 {
-                    throw new MistakenPasswordException(loginName);
+                    throw new MistakenPasswordException(alias);
                 }
 
                 UserProfileDetails signInResult = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.workshopId);
@@ -114,9 +113,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             }
             catch (Exception e)
             {
-                // Cambiar por excepcion general, obtener la excepcion interior para saber el error:
-                // Posibles fallos : De red, de acceso a bd, de contraseña o usuario incorrecto (MistakenCredentialsException)
-                throw new MistakenCredentialsException(loginName, e);
+                throw new MistakenCredentialsException(alias, e);
             }
 
         }
@@ -124,16 +121,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         [Transactional]
         public long RegisterWorkshop(int postalCode, string location, string workshopName)
         {
-            // 1) Comprobar si el taller ya existe
-                // 1.1) Si el taller ya existe lanzar excepcion
-                // 1.2) Si el taller no existe seguir
-            // 2) Añadir el taller a la base de datos
+            //Comprobar si el taller ya existe
+                //Si el taller ya existe lanzar excepcion
+                //Si el taller no existe seguir
+            //Añadir el taller a la base de datos
 
             try {
                 //Si no existe, lanzará una excepcion
                 Workshop wshop = WorkshopDao.findWorkshopByName(workshopName);
 
-                //Cambiar por una excepcion más precisa
+                //Si el taller ya existe lanza DuplicateInstanceException
                 throw new DuplicateInstanceException(wshop, "El taller {wshop} ya existe");
 
             }
@@ -147,6 +144,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
                 WorkshopDao.Create(newWshop);
 
+                //Se crea el nuevo taller en la BD
                 return newWshop.workshopId;
             }
         }
@@ -156,6 +154,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         {
             try
             {
+                //lanza una excepcion si el usuario no existe
                 Usuario user = UsuarioDao.Find(userId);
 
                 user.user_name = userProfileDetails.user_name;
@@ -177,6 +176,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             bool flagDefault = false;
             try
             {
+                //Lanza excepción si no se encuentra tarjeta
                 Card card = CardDao.Find(cardNumber);
                 throw new DuplicateInstanceException(card, "La tarjeta ya existe");
             }
@@ -196,6 +196,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
                 newCard.defaultCard = flagDefault;
 
+                //se crea la nueva tarjeta
                 CardDao.Create(newCard);
             }
         }

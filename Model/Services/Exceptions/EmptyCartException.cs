@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions
     public class EmptyCartException : Exception
     {
         // Excepcion con mensaje por defecto
-        public EmptyCartException() : base("Cart doesn't have any product.")
+        public EmptyCartException() : base("El carrito no tiene productos.")
         {
         }
         // Excepcion con mensaje personalizado

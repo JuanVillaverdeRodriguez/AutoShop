@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions
     public class NoDefaultCardException : Exception
     {
         // Excepcion con mensaje por defecto
-        public NoDefaultCardException() : base("User doesn't have a default card.")
+        public NoDefaultCardException() : base("El usuario no tiene una tarjeta por defecto.")
         {
         }
         // Excepcion con mensaje personalizado

@@ -14,6 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
         public long workshopId { get; private set; }
 
+        //Constructor con language
         public UserProfileDetails(String user_name, String user_surname, String email, String language, long workshopId) {
             this.user_name = user_name;
             this.user_surname = user_surname;
@@ -21,6 +22,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
             this.language = language;
             this.workshopId = workshopId;
         }
+
+        //Constructor sin language, pone por defecto el idioma a "es" español
         public UserProfileDetails(String user_name, String user_surname, String email, long workshopId)
         {
             this.user_name = user_name;
