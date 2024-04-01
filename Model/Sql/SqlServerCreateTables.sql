@@ -34,7 +34,7 @@ GO
 /* ********** Drop Table Purchase if already exists *********** */
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Purchase]') AND type in ('U')) 
-DROP TABLE Purchase
+DROP TABLE [Purchase]
 GO
 
 /* ********** Drop Table Product if already exists *********** */
@@ -244,9 +244,9 @@ INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) V
 INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234239, 4, 'visa', 111, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
 INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234231, 5, 'mastercardd', 222, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
 
-INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Pirelli 289', 125, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 2, 2);
-INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Firetruck 881', 150, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 12, 2);
-INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('michelin gcv12', 200, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1, 1);
+INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Pirelli 289', 125, CONVERT(DATETIME, '30/12/2023 19:34:33', 103), 2, 2);
+INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Firetruck 881', 150, CONVERT(DATETIME, '5/10/2023 11:32:35', 103), 12, 2);
+INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('michelin gcv12', 200, CONVERT(DATETIME, '26/7/2023 17:22:48', 103), 1, 1);
 
 
 INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (1, 'diametro', '25 cm', 2);
@@ -256,4 +256,9 @@ INSERT INTO Property(productId, property_name, property_value, categoryId) VALUE
 INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'diametro', '35 cm', 1);
 INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'grosor', 'finito', 1);
 
-INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 1, 2349234234, 36121, 28, 2, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 'default description');
+
+INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 1, 2349234234, 36121, 28, 2, CONVERT(DATETIME, '7/10/2023 14:30:00', 103), 'default description1');
+INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 2, 2349234234, 36121, 12, 2, CONVERT(DATETIME, '3/12/2023 14:30:00', 103), 'default description2');
+INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 3, 2349234234, 36121, 76, 2, CONVERT(DATETIME, '4/10/2023 14:30:00', 103), 'default description4');
+
+INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (2, 1, 2349234239, 36121, 28, 2, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 'default description');
