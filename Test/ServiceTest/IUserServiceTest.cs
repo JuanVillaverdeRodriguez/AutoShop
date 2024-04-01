@@ -183,7 +183,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 // Register user and update profile details
                 var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
 
-                var expected = new UserProfileDetails(name + "updated", surname + "updated", email + "updated", "fr", 1);
+                var expected = new UserProfileDetails(name + "updated", surname + "updated", email + "updated", "fr", workshopId);
 
                 UsuarioService.UpdateUsuarioDetails(userId, expected);
 
@@ -221,7 +221,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 // Register user and find profile
                 var wshopId = UsuarioService.RegisterWorkshop(postalcode, country, workshopname);
 
-                var wshop = WorkshopDao.Find(workshopId);
+                var wshop = WorkshopDao.Find(wshopId);
 
                 // Check data
                 Assert.AreEqual(wshopId, wshop.workshopId);
@@ -281,10 +281,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 // Creamos una tarjeta
-                UsuarioService.CreateCard(cardnumber, usrId, type, csv, expirationdate);
+                UsuarioService.CreateCard(222233334444, usrId, type, csv, expirationdate);
 
                 // La volvemos a crear
-                UsuarioService.CreateCard(cardnumber, usrId, type, csv, expirationdate);
+                UsuarioService.CreateCard(222233334444, usrId, type, csv, expirationdate);
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -297,13 +297,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 //Creamos una tarjeta
-                UsuarioService.CreateCard(cardnumber, usrId, type, csv, expirationdate);
+                UsuarioService.CreateCard(333344445555, usrId, type, csv, expirationdate);
 
                 //La borramos
-                UsuarioService.DeleteCard(cardnumber, usrId);
+                UsuarioService.DeleteCard(333344445555, usrId);
 
                 //la buscamos en la BD (devuelve InstanceNotFound)
-                CardDao.Find(cardnumber);
+                CardDao.Find(333344445555);
             }
         }
 

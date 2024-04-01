@@ -16,18 +16,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao
 
         public CardDaoEF() { }
 
-        Card crd = null;
-
         List<Card> ICardDaoEF.findCardsByUsuarioId(long usuarioId)
         {
             DbSet<Card> card = Context.Set<Card>();
 
             List<Card> result = (from crd in card where crd.userId == usuarioId select crd).ToList();
 
-            if (!result.Any())
-                throw new ModelUtil.Exceptions.InstanceNotFoundException(crd, "No existe una tarjeta asociada {usuarioId}");
-
-            return result;  
+            return result;
         }
     }
 }
