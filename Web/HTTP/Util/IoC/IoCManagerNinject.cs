@@ -54,8 +54,6 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             kernel.Bind<IPurchaseService>().
                 To<PurchaseService>();
 
-            kernel.Bind<ICartService>().
-                To<CartService>();
 
             /* DbContext */
             string connectionString =

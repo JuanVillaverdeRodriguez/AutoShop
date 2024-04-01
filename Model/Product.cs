@@ -18,6 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public Product()
         {
             this.Property = new HashSet<Property>();
+            this.Purchase = new HashSet<Purchase>();
         }
     
         public long productId { get; set; }
@@ -37,6 +38,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// Relationship Name (Foreign Key in ER-Model): FK_Property_Product
         /// </summary>
         public virtual ICollection<Property> Property { get; set; }
+        
+        /// <summary>
+        /// Relationship Name (Foreign Key in ER-Model): FK_Purchase_Product
+        /// </summary>
+        public virtual ICollection<Purchase> Purchase { get; set; }
     
     	/// <summary>
     	/// A hash code for this instance, suitable for use in hashing algorithms and data structures 

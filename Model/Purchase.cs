@@ -13,30 +13,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System.Text;
     using System.Collections.Generic;
     
-    public partial class Card
+    public partial class Purchase
     {
-        public Card()
-        {
-            this.Purchase = new HashSet<Purchase>();
-        }
-    
+        public long purchaseId { get; set; }
+        public long productId { get; set; }
         public long card_number { get; set; }
-        public long userId { get; set; }
-        public string type { get; set; }
-        public int csv { get; set; }
-        public System.DateTime expiration_date { get; set; }
-        public bool defaultCard { get; set; }
+        public int targetPostalCode { get; set; }
+        public double prize { get; set; }
+        public int quantity { get; set; }
+        public System.DateTime date { get; set; }
+        public string descriptiveName { get; set; }
     
-        
-        /// <summary>
-        /// Relationship Name (Foreign Key in ER-Model): FK_Card_Usuario
-        /// </summary>
-        public virtual Usuario Usuario { get; set; }
         
         /// <summary>
         /// Relationship Name (Foreign Key in ER-Model): FK_Purchase_Card
         /// </summary>
-        public virtual ICollection<Purchase> Purchase { get; set; }
+        public virtual Card Card { get; set; }
+        
+        /// <summary>
+        /// Relationship Name (Foreign Key in ER-Model): FK_Purchase_Product
+        /// </summary>
+        public virtual Product Product { get; set; }
     
     	/// <summary>
     	/// A hash code for this instance, suitable for use in hashing algorithms and data structures 
@@ -54,11 +51,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     			int multiplier = 31;
     			int hash = GetType().GetHashCode();
     
-    			hash = hash * multiplier + userId.GetHashCode();
-    			hash = hash * multiplier + (type == null ? 0 : type.GetHashCode());
-    			hash = hash * multiplier + csv.GetHashCode();
-    			hash = hash * multiplier + expiration_date.GetHashCode();
-    			hash = hash * multiplier + defaultCard.GetHashCode();
+    			hash = hash * multiplier + card_number.GetHashCode();
+    			hash = hash * multiplier + targetPostalCode.GetHashCode();
+    			hash = hash * multiplier + prize.GetHashCode();
+    			hash = hash * multiplier + quantity.GetHashCode();
+    			hash = hash * multiplier + date.GetHashCode();
+    			hash = hash * multiplier + (descriptiveName == null ? 0 : descriptiveName.GetHashCode());
     
     			return hash;
     	    }
@@ -76,23 +74,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             if (ReferenceEquals(this, obj)) return true;         // Is same object?
             if (obj.GetType() != this.GetType()) return false;   // Is same type? 
     
-            Card target = obj as Card;
+            Purchase target = obj as Purchase;
     
     		return true
+               &&  (this.purchaseId == target.purchaseId )       
+               &&  (this.productId == target.productId )       
                &&  (this.card_number == target.card_number )       
-               &&  (this.userId == target.userId )       
-               &&  (this.type == target.type )       
-               &&  (this.csv == target.csv )       
-               &&  (this.expiration_date == target.expiration_date )       
-               &&  (this.defaultCard == target.defaultCard )       
+               &&  (this.targetPostalCode == target.targetPostalCode )       
+               &&  (this.prize == target.prize )       
+               &&  (this.quantity == target.quantity )       
+               &&  (this.date == target.date )       
+               &&  (this.descriptiveName == target.descriptiveName )       
                ;
     
         }
     
     
-    	public static bool operator ==(Card  objA, Card  objB)
+    	public static bool operator ==(Purchase  objA, Purchase  objB)
         {
-            // Check if the objets are the same Card entity
+            // Check if the objets are the same Purchase entity
             if(Object.ReferenceEquals(objA, objB))
                 return true;
       
@@ -100,7 +100,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     }
     
     
-    	public static bool operator !=(Card  objA, Card  objB)
+    	public static bool operator !=(Purchase  objA, Purchase  objB)
         {
             return !(objA == objB);
         }
@@ -116,18 +116,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// </returns>
     	public override String ToString()
     	{
-    	    StringBuilder strCard = new StringBuilder();
+    	    StringBuilder strPurchase = new StringBuilder();
     
-    		strCard.Append("[ ");
-           strCard.Append(" card_number = " + card_number + " | " );       
-           strCard.Append(" userId = " + userId + " | " );       
-           strCard.Append(" type = " + type + " | " );       
-           strCard.Append(" csv = " + csv + " | " );       
-           strCard.Append(" expiration_date = " + expiration_date + " | " );       
-           strCard.Append(" defaultCard = " + defaultCard + " | " );       
-            strCard.Append("] ");    
+    		strPurchase.Append("[ ");
+           strPurchase.Append(" purchaseId = " + purchaseId + " | " );       
+           strPurchase.Append(" productId = " + productId + " | " );       
+           strPurchase.Append(" card_number = " + card_number + " | " );       
+           strPurchase.Append(" targetPostalCode = " + targetPostalCode + " | " );       
+           strPurchase.Append(" prize = " + prize + " | " );       
+           strPurchase.Append(" quantity = " + quantity + " | " );       
+           strPurchase.Append(" date = " + date + " | " );       
+           strPurchase.Append(" descriptiveName = " + descriptiveName + " | " );       
+            strPurchase.Append("] ");    
     
-    		return strCard.ToString();
+    		return strPurchase.ToString();
         }
     
     

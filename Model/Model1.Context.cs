@@ -29,6 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Property> Property { get; set; }
+        public virtual DbSet<Purchase> Purchase { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Workshop> Workshop { get; set; }
     }

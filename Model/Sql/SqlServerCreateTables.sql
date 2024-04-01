@@ -31,9 +31,14 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Property]') 
 DROP TABLE [Property]
 GO
 
+/* ********** Drop Table Purchase if already exists *********** */
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Purchase]') AND type in ('U')) 
+DROP TABLE Purchase
+GO
 
 /* ********** Drop Table Product if already exists *********** */
+
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Product]') AND type in ('U'))
 DROP TABLE [Product]
@@ -64,6 +69,8 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Workshop]') AND type in ('U')) 
 DROP TABLE [Workshop]
 GO
+
+
 
 
 
@@ -182,6 +189,36 @@ CREATE TABLE Card (
 PRINT N'Table Card created'
 GO
 
+/*Todas las filas de la tabla correspondientes a una misma compra deben tener el mismo purchaseId (una forma de conseguir esto puede ser a la hora de generar un nuevo pedido,
+	buscar primero en la tabla el mayor purchaseId que hay, i.e 15 y porner al 16 al nuevo pedido,
+	en caso de no haber ningún pedido poner 1 como primer id,
+	esto se controla desde el servicio)*/
+
+/*prize y quantity no se corresponden con el precio y stock de la tabla Product
+	el prize de la tabla purchase se corresponde con el precio en el momento de la compra, este pudo cambiar con el tiempo
+	asi mismo quantity tampoco se corresponde con el stock de la tabla product, aunque al producirse una compra si que se debe reducir el stock del producto comprado en la misma medida que la quantity
+	del purchase realizado */
+
+
+CREATE TABLE Purchase (
+	purchaseId BIGINT NOT NULL,
+	productId BIGINT NOT NULL,
+	card_number BIGINT NOT NULL,
+	targetPostalCode int NOT NULL,
+	prize float NOT NULL,
+	quantity int NOT NULL,
+	date DATETIME NOT NULL,
+	descriptiveName varchar(200) NOT NULL,
+
+	CONSTRAINT [PK_Purchase] PRIMARY KEY (purchaseId, productId),
+	CONSTRAINT [FK_Purchase_Product] FOREIGN KEY (productId) REFERENCES Product (productId),
+	CONSTRAINT [FK_Purchase_Card] FOREIGN KEY (card_number) REFERENCES Card (card_number)
+)
+
+PRINT N'Table Purchase created'
+GO
+
+
 
 
 
@@ -218,3 +255,5 @@ INSERT INTO Property(productId, property_name, property_value, categoryId) VALUE
 INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (2, 'grosor', 'no tan gordo', 2);
 INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'diametro', '35 cm', 1);
 INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'grosor', 'finito', 1);
+
+INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 1, 2349234234, 36121, 28, 2, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 'default description');

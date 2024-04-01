@@ -27,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao
             if (!result.Any())
                 throw new ModelUtil.Exceptions.InstanceNotFoundException(crd, "No existe una tarjeta asociada {usuarioId}");
 
-            return result;
+            return result;  
         }
     }
 }

@@ -173,6 +173,8 @@
     <Compile Include="DAOs\ProductDao\ProductDaoEF.cs" />
     <Compile Include="DAOs\PropertyDao\IPropertyDaoEF.cs" />
     <Compile Include="DAOs\PropertyDao\PropertyDaoEF.cs" />
+    <Compile Include="DAOs\PurchaseDao\IPurchaseDaoEF.cs" />
+    <Compile Include="DAOs\PurchaseDao\PurchaseDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\IUsuarioDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\UsuarioDaoEF.cs" />
     <Compile Include="DAOs\WorkshopDao\IWorkshopDaoEF.cs" />
@@ -199,17 +201,22 @@
     <Compile Include="Property.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\Cart\Cart.cs" />
-    <Compile Include="Services\Cart\CartService.cs" />
-    <Compile Include="Services\Cart\ICartService.cs" />
+    <Compile Include="Purchase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Exceptions\EmptyCartException.cs" />
+    <Compile Include="Services\Exceptions\NoDefaultCardException.cs" />
+    <Compile Include="Services\PurchaseService\Cart.cs" />
     <Compile Include="Services\Exceptions\MistakenCredentialsException.cs" />
     <Compile Include="Services\Exceptions\MistakenPasswordException.cs" />
+    <Compile Include="Services\Exceptions\NoCardsException.cs" />
     <Compile Include="Services\ProductService\IProductService.cs" />
     <Compile Include="Services\ProductService\ProductDetailsResult.cs" />
     <Compile Include="Services\ProductService\ProductResult.cs" />
     <Compile Include="Services\ProductService\ProductService.cs" />
-    <Compile Include="Services\PurchaseService\CardInfo.cs" />
+    <Compile Include="Services\PurchaseService\CardInfoResult.cs" />
     <Compile Include="Services\PurchaseService\IPurchaseService.cs" />
+    <Compile Include="Services\PurchaseService\PurchaseInfoResult.cs" />
     <Compile Include="Services\PurchaseService\PurchaseService.cs" />
     <Compile Include="Services\UsuarioService\IUsuarioService.cs" />
     <Compile Include="Services\UsuarioService\UserProfileDetails.cs" />

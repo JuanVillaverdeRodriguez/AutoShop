@@ -243,7 +243,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         public List<Card> GetAllCards()
         {
             return CardDao.GetAllElements();
-    }
+        }
     }
 
     
