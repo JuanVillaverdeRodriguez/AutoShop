@@ -183,7 +183,15 @@ GO
 
 INSERT INTO Workshop(workshop_name, postal_code, country) VALUES ('UDC', 11111, 'ES');
 
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('initialized', 'init', 'user', 'password', 'admin@admin.com', 'en', 1);
+INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234234, 1, 'visa', 777, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 0);
+INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234234, 3, 'visa', 777, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
+
+
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('initialized1', 'init', 'user1', 'password', 'admin@admin.com', 'en', 1);
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('initialized2', 'init', 'user2', 'password', 'admin@admin.com', 'en', 1);
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('initialized3', 'init', 'user3', 'password', 'admin@admin.com', 'en', 1);
+
+
 
 INSERT INTO Category(categoryName) VALUES ('Neumaticos');
 INSERT INTO Category(categoryName, fatherId) VALUES ('Neumaticos de invierno', 1);
