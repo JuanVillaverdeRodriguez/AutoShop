@@ -16,5 +16,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao
         //Devuelve el id de purchase más alto encontrado en la tabla
         long GetMaxPurchaseId();
 
+        Purchase GetPurchaseByPK(long purchaseId, long productId);
     }
 }

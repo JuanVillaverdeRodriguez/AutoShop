@@ -8,7 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions
 {
     [Serializable]
 
-    class NoCardsException : Exception
+    public class NoCardsException : Exception
     {
         // Excepcion con mensaje por defecto
         public NoCardsException() : base("El usuario no tiene tarjetas.")
