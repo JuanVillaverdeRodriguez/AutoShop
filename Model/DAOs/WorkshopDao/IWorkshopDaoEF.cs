@@ -9,6 +9,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao
 {
     public interface IWorkshopDaoEF : IGenericDao<Workshop, Int64>
     {
+        //Devuelve un taller encontrado por nombre
+        //Lanza InstanceNotFoundException cuando no se encuentra
         Workshop findWorkshopByName(string WorkshopName);
     }
 }

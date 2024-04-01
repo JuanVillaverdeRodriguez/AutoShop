@@ -12,17 +12,13 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
-    /// <summary>
-    /// This is a test class for IUserServiceTest and is intended to contain all IUserServiceTest
-    /// Unit Tests
-    /// </summary>
+
     [TestClass]
     public class IUserServiceTest
     {
         
-        // Variables used in several tests are initialized here
+        // Variables a utilizar en los tests siguientes
         private const string alias = "alias";
-
         private const string password = "password";
         private const string name = "name";
         private const string surname = "lastName";
@@ -37,8 +33,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private const long cardnumber = 111122223333;
         private const long NON_EXISTENT_USER_ID = -1;
         private const long NON_EXISTENT_WORKSHOP_ID = -1;
-        //Estos ids ya existen en la BD de test creados mediante sentencias INSERT INTO,
-        //esto es para facilitar los tests y no tener que crear un workshop cada vez que queramos registrar un usuario...
+        // Estos ids ya existen en la BD de test creados mediante sentencias INSERT INTO,
+        // esto es para facilitar los tests y no tener que crear un workshop cada vez que queramos registrar un usuario...
         private const long usrId = 1;
         private const long workshopId = 1;
         private static IKernel kernel;
@@ -49,28 +45,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
         private TransactionScope transaction;
 
-        //IGUAL HAY QUE CREAR UNA WORKSHOP PRIMERO EN LA TABLA PARA QUE FUNCIONE ALGUNO DE LOS TESTS
 
-        /// <summary>
-        /// Gets or sets the test context which provides information about and functionality for the
-        /// current test run.
-        /// </summary>
         public TestContext TestContext { get; set; }
 
-        /// <summary>
-        /// test del correcto funcionamiento del RegisterUsuario
-        /// </summary>
+        // test del correcto funcionamiento del RegisterUsuario
+
         [TestMethod]
         public void RegisterUserTest()
         {
             using (var scope = new TransactionScope())
             {
-                // Register user and find profile
+                // Registramos el usuario
                 var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
 
+                // Lo buscamos
                 var user = UsuarioDao.Find(userId);
 
-                // Check data
+                // Comprobamos
                 Assert.AreEqual(userId, user.userId);
                 Assert.AreEqual(alias, user.alias);
                 Assert.AreEqual(password, user.password);
@@ -80,13 +71,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 Assert.AreEqual(language, user.language);
                 Assert.AreEqual(workshopId, user.workshopId);
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        /// <summary>
-        /// testeamos intentar registrar un usuario ya existente
-        /// </summary>
+        // testeamos intentar registrar un usuario ya existente
+
         [TestMethod]
         [ExpectedException(typeof(DuplicateInstanceException))]
         public void RegisterDuplicatedUserTest()
@@ -99,13 +89,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 // Lo registramos de nuevo
                 UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        ///// <summary>
-        /////A test for Login with clear password
-        /////</summary>
+        // Testeamos loggear un usuario
+
         [TestMethod]
         public void SignInTest()
         {
@@ -119,32 +108,31 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
                 Assert.AreEqual(expected, actual);
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        ///// <summary>
-        /////A test for Login with incorrect password
-        /////</summary>
+        // Testeamos loggear con una constraseña errónea
+
         [TestMethod]
         [ExpectedException(typeof(MistakenCredentialsException))]
         public void SigInMistakenCredentialsTest()
         {
             using (var scope = new TransactionScope())
             {
-                // Register user
+                // Registramos usuario
                 var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
 
-                // Login with incorrect (clear) password
+                // Loggeamos con contraseña incorrecta
                 var actual = UsuarioService.SignIn(alias, password + "wrong");
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        /// <summary>
-        /// A test for FindUserProfileDetails
-        /// </summary>
+
+        // test del correcto funcionamiento de FindUsuarioDetails
+
         [TestMethod]
         public void FindUsuarioDetailsTest()
         {
@@ -158,13 +146,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
                 Assert.AreEqual(expected, obtained);
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        /// <summary>
-        /// A test for FindUserProfileDetails when the user does not exist
-        /// </summary>
+        // testea FindUsuarioDetails cuando el usuario no existe
+
         [TestMethod]
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindUserProfileDetailsForNonExistingUserTest()
@@ -172,15 +159,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             UsuarioService.FindUsuarioDetails(NON_EXISTENT_USER_ID);
         }
 
-        /// <summary>
-        /// A test for UpdateUserProfileDetails
-        /// </summary>
+        // test del correcto funcionamiento de UpdateUserProfileDetails
+
         [TestMethod]
-        public void UpdateUserProfileDetailsTest()
+        public void UpdateUsuarioDetailsTest()
         {
             using (var scope = new TransactionScope())
             {
-                // Register user and update profile details
+                // Registramos el usuario
                 var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
 
                 var expected = new UserProfileDetails(name + "updated", surname + "updated", email + "updated", "fr", workshopId);
@@ -191,88 +177,91 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
                 Assert.AreEqual(expected, obtained);
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        /// <summary>
-        /// A test for UpdateUserProfileDetails when the user does not exist
-        /// </summary>
+        // test del UpdateUsuarioDetails cuando el usuario no existe
+
         [TestMethod]
         [ExpectedException(typeof(InstanceNotFoundException))]
-        public void UpdateUserProfileDetailsForNonExistingUserTest()
+        public void UpdateUsuarioDetailsForNonExistingUserTest()
         {
             using (var scope = new TransactionScope())
             {
                 UsuarioService.UpdateUsuarioDetails(NON_EXISTENT_USER_ID, new UserProfileDetails(name, surname, email, language, workshopId));
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        /// <summary>
-        /// test del correcto funcionamiento del RegisterUsuario
-        /// </summary>
+        // test del correcto funcionamiento del RegisterWorkshop
+
         [TestMethod]
         public void RegisterWorkshopTest()
         {
             using (var scope = new TransactionScope())
             {
-                // Register user and find profile
+                // Registramos el taller
                 var wshopId = UsuarioService.RegisterWorkshop(postalcode, country, workshopname);
 
+                // Lo buscamos
                 var wshop = WorkshopDao.Find(wshopId);
 
-                // Check data
+                // Comprobamos
                 Assert.AreEqual(wshopId, wshop.workshopId);
                 Assert.AreEqual(postalcode, wshop.postal_code);
                 Assert.AreEqual(country, wshop.Country);
                 Assert.AreEqual(workshopname, wshop.workshop_name);
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
 
-        /// <summary>
-        /// testeamos intentar registrar un usuario ya existente
-        /// </summary>
+        // testeamos intentar registrar un taller ya existente
+
         [TestMethod]
         [ExpectedException(typeof(DuplicateInstanceException))]
         public void RegisterDuplicatedWorkshopTest()
         {
             using (var scope = new TransactionScope())
             {
-                // Registramos un usuario
+                // Registramos un taller
                 UsuarioService.RegisterWorkshop(postalcode, country, workshopname);
 
                 // Lo registramos de nuevo
                 UsuarioService.RegisterWorkshop(postalcode, country, workshopname);
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
+
+        // test del correcto funcionamiento del CreateCard
 
         [TestMethod]
         public void TestCreateCard()
         {
             using (var scope = new TransactionScope())
             {
-                // Register user and find profile
-                UsuarioService.CreateCard(cardnumber, usrId, type, csv, expirationdate);
+                // Creamos una tarjeta
+                UsuarioService.CreateCard(555566667777, usrId, type, csv, expirationdate);
 
-                var card = CardDao.Find(cardnumber);
+                // La buscamos
+                var card = CardDao.Find(555566667777);
 
-                // Check data
-                Assert.AreEqual(cardnumber, card.card_number);
+                // Comprobamos
+                Assert.AreEqual(555566667777, card.card_number);
                 Assert.AreEqual(usrId, card.userId);
                 Assert.AreEqual(type, card.type);
                 Assert.AreEqual(csv, card.csv);
                 Assert.AreEqual(expirationdate, card.expiration_date);
 
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
+
+        // testeamos intentar registrar una tarjeta ya existente
 
         [TestMethod]
         [ExpectedException(typeof(DuplicateInstanceException))]
@@ -286,9 +275,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 // La volvemos a crear
                 UsuarioService.CreateCard(222233334444, usrId, type, csv, expirationdate);
 
-                // transaction.Complete() is not called, so Rollback is executed.
+                // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }
         }
+
+        // testeamos borrar una tarjeta inexistente
 
         [TestMethod]
         [ExpectedException(typeof(InstanceNotFoundException))]

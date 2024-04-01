@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions
     public class MistakenCredentialsException : Exception
     {
         // Excepcion con mensaje por defecto
-        public MistakenCredentialsException() : base("Password is not correct. Try again.")
+        public MistakenCredentialsException() : base("Contraseña incorrecta, inténtelo de nuevo.")
         {
         }
         // Excepcion con mensaje personalizado

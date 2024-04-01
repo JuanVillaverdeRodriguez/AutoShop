@@ -14,9 +14,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
     [TestClass]
     public class NinjectTest
     {
-        // Variables used in several tests are initialized here
+        // Variables a utilizar en los tests siguientes
         private const string alias = "alias";
-
         private const string password = "password";
         private const string name = "name";
         private const string surname = "lastName";

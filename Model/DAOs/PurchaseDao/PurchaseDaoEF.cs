@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao
 {
-    class PurchaseDaoEF : GenericDaoEntityFramework<Purchase, Int64>, IPurchaseDaoEF
+    public class PurchaseDaoEF : GenericDaoEntityFramework<Purchase, Int64>, IPurchaseDaoEF
     {
 
         public PurchaseDaoEF() { }
