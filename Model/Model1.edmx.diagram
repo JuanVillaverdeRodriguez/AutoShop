@@ -4,21 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="972327ed16a84ee0bdea63e8c80eec44" Name="Diagram1">
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Card" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Product" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Property" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Purchase" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Usuario" Width="1.5" PointX="3.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Workshop" Width="1.5" PointX="1.5" PointY="9.25" IsExpanded="true" />
+      <Diagram DiagramId="acf3cb5abe9a46248e08d957c486d096" Name="Diagram1">
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Card" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Product" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Property" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Purchase" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.PurchaseLine" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Usuario" Width="1.5" PointX="1.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Workshop" Width="1.5" PointX="1.5" PointY="15.875" IsExpanded="true" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Card_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Purchase_Card" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Category" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Product_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Property_Category" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Property_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Purchase_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_PurchaseLine_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_PurchaseLine_Purchase" ManuallyRouted="false" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Usuario_Workshop" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

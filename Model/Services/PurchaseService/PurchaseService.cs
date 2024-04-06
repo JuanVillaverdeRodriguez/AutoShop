@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions;
 using Ninject;
 using System;
@@ -19,6 +20,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
         [Inject]
         public IPurchaseDaoEF PurchaseDao { get; set; }
+
+        [Inject]
+        public IPurchaseLineDaoEF PurchaseLineDao { get; set; }
  
         public CardInfoResult GetDefaultCardInfo(long usuarioId)
         {
@@ -40,7 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
         }
 
-        public List<Purchase> Purchase(Card card, Cart.Cart cart, int direction, string purchaseDescription)
+        public Purchase Purchase(Card card, Cart.Cart cart, int direction, string purchaseDescription, bool urgent)
         {
             // Deberia comprobar que el usuario realmente tenga esa tarjeta
 
@@ -59,26 +63,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
             }
 
             DateTime currentDate = DateTime.Now;
-            long newPurchaseId = PurchaseDao.GetMaxPurchaseId()+1;
 
-            List<Purchase> purchasesList = new List<Purchase>();
+            Purchase newPurchase = new Purchase();
+            newPurchase.card_number = card.card_number;
+            newPurchase.targetPostalCode = direction;
+            newPurchase.date = currentDate;
+            newPurchase.descriptiveName = purchaseDescription;
+            newPurchase.urgent = urgent;
+
+            //PurchaseDao.Create(newPurchase);
+            long purchaseId = PurchaseDao.CreateAndReturn(newPurchase);
+
+
             foreach ((Product product, int count) in productList)
             {
-                double purchasePrize = (product.prize * count);
+                PurchaseLine newPurchaseLine = new PurchaseLine();
 
-                Purchase newPurchase = new Purchase();
-                newPurchase.card_number = card.card_number;
-                newPurchase.targetPostalCode = direction;
-                newPurchase.prize = purchasePrize;
-                newPurchase.quantity = count;
-                newPurchase.date = currentDate;
-                newPurchase.purchaseId = newPurchaseId;
-                newPurchase.productId = product.productId;
-                newPurchase.descriptiveName = purchaseDescription;
-                PurchaseDao.Create(newPurchase);
-                purchasesList.Add(newPurchase);
+                newPurchaseLine.prize = product.prize;
+                newPurchaseLine.quantity = count;
+                newPurchaseLine.purchaseId = purchaseId;
+                newPurchaseLine.productId = product.productId;
+
+                PurchaseLineDao.Create(newPurchaseLine);
+
+                product.stock -= count;
+                ProductDao.Update(product);
             }
-            return purchasesList;
+            return newPurchase;
         }
 
         public List<PurchaseInfoResult> GetPurchases(long usuarioId)
@@ -88,12 +99,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
             List<PurchaseInfoResult> purchasesInfoResultList = new List<PurchaseInfoResult>();
             foreach (Purchase purchase in purchasesList)
             {
-                PurchaseInfoResult purchaseInfoResult = new PurchaseInfoResult(purchase.card_number, purchase.descriptiveName, purchase.prize, purchase.date);
+                PurchaseInfoResult purchaseInfoResult = new PurchaseInfoResult(purchase.card_number, purchase.descriptiveName, purchase.date);
                 purchasesInfoResultList.Add(purchaseInfoResult);
 
             }
             return purchasesInfoResultList;
 
+        }
+
+        //TODO: Hacer DTO: PurchaseLinesInfoResult
+        public List<PurchaseLine> GetPurchasesLines(long purchaseId)
+        {
+            return PurchaseLineDao.GetPurchasesLines(purchaseId);
         }
     }
 }

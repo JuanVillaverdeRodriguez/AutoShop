@@ -12,10 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao
         //Devuelve la lista de pedidos realizados por un usuario
         //Devuelve lista vacía si no ha realizado ningún pedido
         List<Purchase> GetPurchases(long usuarioId);
+        long CreateAndReturn(Purchase purchase);
 
-        //Devuelve el id de purchase más alto encontrado en la tabla
-        long GetMaxPurchaseId();
-
-        Purchase GetPurchaseByPK(long purchaseId, long productId);
     }
 }

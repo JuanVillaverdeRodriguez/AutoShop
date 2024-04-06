@@ -36,6 +36,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             String user_apellido = TextBoxApellidos.Text;
             String email = TextBoxEmail.Text;
             String idioma = TextBoxLanguage.Text;
+            String country = TextBoxLanguage.Text; // TODO: arreglar
+
             long workshopId = long.Parse(TextBoxWorkshopId.Text);
 
             
@@ -43,9 +45,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             {
                 UserProfileDetails details;
                 if (idioma == "")
-                    details = new UserProfileDetails(user_name, user_apellido, email, workshopId);
+                    details = new UserProfileDetails(user_name, user_apellido, email, country, workshopId);
                 else
-                    details = new UserProfileDetails(user_name, user_apellido, email, idioma, workshopId);
+                    details = new UserProfileDetails(user_name, user_apellido, email, idioma, country, workshopId);
 
                 usuarioService.RegisterUsuario(loginName, password, details);
                 this.LabelUserCreated.Visible = true;

@@ -27,6 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public string alias { get; set; }
         public string password { get; set; }
         public string language { get; set; }
+        public string country { get; set; }
         public long workshopId { get; set; }
     
         
@@ -62,6 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     			hash = hash * multiplier + (alias == null ? 0 : alias.GetHashCode());
     			hash = hash * multiplier + (password == null ? 0 : password.GetHashCode());
     			hash = hash * multiplier + (language == null ? 0 : language.GetHashCode());
+    			hash = hash * multiplier + (country == null ? 0 : country.GetHashCode());
     			hash = hash * multiplier + workshopId.GetHashCode();
     
     			return hash;
@@ -90,6 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
                &&  (this.alias == target.alias )       
                &&  (this.password == target.password )       
                &&  (this.language == target.language )       
+               &&  (this.country == target.country )       
                &&  (this.workshopId == target.workshopId )       
                ;
     
@@ -132,6 +135,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
            strUsuario.Append(" alias = " + alias + " | " );       
            strUsuario.Append(" password = " + password + " | " );       
            strUsuario.Append(" language = " + language + " | " );       
+           strUsuario.Append(" country = " + country + " | " );       
            strUsuario.Append(" workshopId = " + workshopId + " | " );       
             strUsuario.Append("] ");    
     

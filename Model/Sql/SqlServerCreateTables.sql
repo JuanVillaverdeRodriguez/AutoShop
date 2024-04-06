@@ -7,6 +7,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Property]') 
 DROP TABLE [Property]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[PurchaseLine]') AND type in ('U')) 
+DROP TABLE [PurchaseLine]
+GO
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Purchase]') AND type in ('U')) 
 DROP TABLE [Purchase]
 GO
@@ -30,6 +34,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Workshop]') AND type in ('U')) 
 DROP TABLE [Workshop]
 GO
+
 
 
 
@@ -78,12 +83,9 @@ CREATE TABLE Property (
 	productId  bIGINT NOT NULL,
 	property_name VARCHAR(80) NOT NULL,
 	property_value VARCHAR(80) NOT NULL,
-	categoryId BIGINT NOT NULL,
 
 	CONSTRAINT [PK_Property] PRIMARY KEY (productId, property_name),
 	CONSTRAINT [FK_Property_Product] FOREIGN KEY (productId) REFERENCES Product (productId),
-	CONSTRAINT [FK_Property_Category] FOREIGN KEY (categoryId) REFERENCES Category (categoryId) 
-
 )
 
 PRINT N'Table Property created.'
@@ -95,7 +97,7 @@ CREATE TABLE Workshop (
 	workshopId bigint IDENTITY(1, 1) NOT NULL,
 	workshop_name varchar(30) NOT NULL,
 	postal_code int NOT NULL,
-	Country varchar(2) NOT NULL,
+	/*Country varchar(2) NOT NULL,*/
 
 	CONSTRAINT [PK_Workshop] PRIMARY KEY (workshopId)
 )
@@ -116,6 +118,7 @@ CREATE TABLE Usuario (
 	alias varchar(30) NOT NULL,
 	password varchar(50) NOT NULL,
 	language varchar(2),
+	country varchar(2) NOT NULL,
 	workshopId BIGINT NOT NULL,
 
 	CONSTRAINT [PK_Usuario] PRIMARY KEY (userId),
@@ -160,63 +163,33 @@ GO
 /* Purchase */
 
 CREATE TABLE Purchase (
-	purchaseId BIGINT NOT NULL,
-	productId BIGINT NOT NULL,
+	purchaseId bigint IDENTITY(1,1) NOT NULL,
 	card_number BIGINT NOT NULL,
 	targetPostalCode int NOT NULL,
-	prize float NOT NULL,
-	quantity int NOT NULL,
 	date DATETIME NOT NULL,
 	descriptiveName varchar(200) NOT NULL,
+	urgent BIT NOT NULL,
 
-	CONSTRAINT [PK_Purchase] PRIMARY KEY (purchaseId, productId),
-	CONSTRAINT [FK_Purchase_Product] FOREIGN KEY (productId) REFERENCES Product (productId),
+	CONSTRAINT [PK_Purchase] PRIMARY KEY (purchaseId),
 	CONSTRAINT [FK_Purchase_Card] FOREIGN KEY (card_number) REFERENCES Card (card_number)
 )
 
 PRINT N'Table Purchase created'
 GO
 
+CREATE TABLE PurchaseLine (
+	purchaseId BIGINT NOT NULL,
+	productId BIGINT NOT NULL,
+	prize float NOT NULL,
+	quantity int NOT NULL,
+
+	CONSTRAINT [PK_PurchaseLine] PRIMARY KEY (purchaseId, productId),
+	CONSTRAINT [FK_PurchaseLine_Product] FOREIGN KEY (productId) REFERENCES Product (productId),
+	CONSTRAINT [FK_PurchaseLine_Purchase] FOREIGN KEY (purchaseId) REFERENCES Purchase (purchaseId),
+)
+
+PRINT N'Table PurchaseLine created'
+GO
 
 
 
-
-/* ************ Insert data ************ */
-
-INSERT INTO Workshop(workshop_name, postal_code, country) VALUES ('La Fabrica de Chocolate', 27001, 'ES');
-INSERT INTO Workshop(workshop_name, postal_code, country) VALUES ('UDC', 15005, 'ES');
-
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('pelotudo01', 'User1', 'lastName1', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'en', 1);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('huevudo02', 'User2', 'lastName2', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'test@test.com', 'es', 1);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('melocotonero03', 'User3', 'lastName3', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'en', 1);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('pelusillo04', 'User4', 'lastName4', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'fr', 2);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, workshopId) VALUES ('fritanga05', 'User5', 'lastName5', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'en', 2);
-
-
-INSERT INTO Category(categoryName) VALUES ('Neumaticos');
-INSERT INTO Category(categoryName, fatherId) VALUES ('Neumaticos de invierno', 1);
-
-
-INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234234, 1, 'visa', 777, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
-INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234235, 2, 'mastercard', 888, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
-INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234232, 3, 'visa', 999, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
-INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234239, 4, 'visa', 111, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
-INSERT INTO Card(card_number, userId, type, csv, expiration_date, defaultCard) VALUES (2349234231, 5, 'mastercardd', 222, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 1);
-
-INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Pirelli 289', 125, CONVERT(DATETIME, '30/12/2023 19:34:33', 103), 2, 2);
-INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Firetruck 881', 150, CONVERT(DATETIME, '5/10/2023 11:32:35', 103), 12, 2);
-INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('michelin gcv12', 200, CONVERT(DATETIME, '26/7/2023 17:22:48', 103), 1, 1);
-
-
-INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (1, 'diametro', '25 cm', 2);
-INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (1, 'grosor', 'bien gordo', 2);
-INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (2, 'diametro', '30 cm', 2);
-INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (2, 'grosor', 'no tan gordo', 2);
-INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'diametro', '35 cm', 1);
-INSERT INTO Property(productId, property_name, property_value, categoryId) VALUES (3, 'grosor', 'finito', 1);
-
-
-INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 1, 2349234234, 36121, 28, 2, CONVERT(DATETIME, '7/10/2023 14:30:00', 103), 'default description1');
-INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 2, 2349234234, 36121, 12, 2, CONVERT(DATETIME, '3/12/2023 14:30:00', 103), 'default description2');
-INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (1, 3, 2349234234, 36121, 76, 2, CONVERT(DATETIME, '4/10/2023 14:30:00', 103), 'default description4');
-INSERT INTO Purchase(purchaseId, productId, card_number, targetPostalCode, prize, quantity, date, descriptiveName) VALUES (2, 1, 2349234239, 36121, 28, 2, CONVERT(DATETIME, '30/10/2023 14:30:00', 103), 'default description');

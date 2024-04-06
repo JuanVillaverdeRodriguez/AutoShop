@@ -55,6 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 newUser.email = userProfileDetails.email;
                 newUser.workshopId = userProfileDetails.workshopId;
                 newUser.language = userProfileDetails.language;
+                newUser.country = userProfileDetails.country;
 
                 //Se Crea el nuevo usuario en la BD
                 UsuarioDao.Create(newUser);
@@ -76,7 +77,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 Usuario user =
                 UsuarioDao.Find(userId);
 
-                UserProfileDetails details = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.workshopId);
+                UserProfileDetails details = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.country, user.workshopId);
                 return details;
 
             }
@@ -107,7 +108,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                     throw new MistakenPasswordException(alias);
                 }
 
-                UserProfileDetails signInResult = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.workshopId);
+                UserProfileDetails signInResult = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.country, user.workshopId);
 
                 return signInResult;
             }
@@ -119,7 +120,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         }
 
         [Transactional]
-        public long RegisterWorkshop(int postalCode, string location, string workshopName)
+        public long RegisterWorkshop(int postalCode, string workshopName)
         {
             //Comprobar si el taller ya existe
                 //Si el taller ya existe lanzar excepcion
@@ -138,7 +139,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 
                 Workshop newWshop = new Workshop();
 
-                newWshop.Country = location;
                 newWshop.postal_code = postalCode;
                 newWshop.workshop_name = workshopName;
 
@@ -161,6 +161,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 user.user_surname = userProfileDetails.user_surname;
                 user.email = userProfileDetails.email;
                 user.language = userProfileDetails.language;
+                user.country = userProfileDetails.country;
 
                 UsuarioDao.Update(user);
 

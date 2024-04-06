@@ -173,7 +173,9 @@
     <Compile Include="DAOs\ProductDao\ProductDaoEF.cs" />
     <Compile Include="DAOs\PropertyDao\IPropertyDaoEF.cs" />
     <Compile Include="DAOs\PropertyDao\PropertyDaoEF.cs" />
+    <Compile Include="DAOs\PurchaseLineDao\IPurchaseLineDaoEF.cs" />
     <Compile Include="DAOs\PurchaseDao\IPurchaseDaoEF.cs" />
+    <Compile Include="DAOs\PurchaseLineDao\PurchaseLineDaoEF.cs" />
     <Compile Include="DAOs\PurchaseDao\PurchaseDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\IUsuarioDaoEF.cs" />
     <Compile Include="DAOs\UsuarioDao\UsuarioDaoEF.cs" />
@@ -204,6 +206,9 @@
     <Compile Include="Purchase.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseLine.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Services\Exceptions\EmptyCartException.cs" />
     <Compile Include="Services\Exceptions\NoDefaultCardException.cs" />
     <Compile Include="Services\PurchaseService\Cart.cs" />
@@ -211,15 +216,15 @@
     <Compile Include="Services\Exceptions\MistakenPasswordException.cs" />
     <Compile Include="Services\Exceptions\NoCardsException.cs" />
     <Compile Include="Services\ProductService\IProductService.cs" />
-    <Compile Include="Services\ProductService\ProductDetailsResult.cs" />
-    <Compile Include="Services\ProductService\ProductResult.cs" />
+    <Compile Include="Services\DTOs\ProductDetailsResult.cs" />
+    <Compile Include="Services\DTOs\ProductResult.cs" />
     <Compile Include="Services\ProductService\ProductService.cs" />
-    <Compile Include="Services\PurchaseService\CardInfoResult.cs" />
+    <Compile Include="Services\DTOs\CardInfoResult.cs" />
     <Compile Include="Services\PurchaseService\IPurchaseService.cs" />
-    <Compile Include="Services\PurchaseService\PurchaseInfoResult.cs" />
+    <Compile Include="Services\DTOs\PurchaseInfoResult.cs" />
     <Compile Include="Services\PurchaseService\PurchaseService.cs" />
     <Compile Include="Services\UsuarioService\IUsuarioService.cs" />
-    <Compile Include="Services\UsuarioService\UserProfileDetails.cs" />
+    <Compile Include="Services\DTOs\UserProfileDetails.cs" />
     <Compile Include="Services\UsuarioService\UsuarioService.cs" />
     <Compile Include="Usuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -249,6 +254,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Sql\SqlServerCreateDatabase.sql" />
+    <Content Include="Sql\SqlServerInsertIntoTables.sql" />
     <Content Include="Sql\SqlServerCreateTables.sql" />
   </ItemGroup>
   <ItemGroup>

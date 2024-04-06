@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseLineDao;
 using Ninject;
 
 
@@ -21,9 +22,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
         [Inject]
         IPurchaseDaoEF PurchaseDao { get; set; }
+
+        [Inject]
+        IPurchaseLineDaoEF PurchaseLineDao { get; set; }
+
         CardInfoResult GetDefaultCardInfo(long usuarioId);
-        List<Purchase> Purchase(Card card, Cart.Cart cart, int direction, string purchaseDescription);
+        Purchase Purchase(Card card, Cart.Cart cart, int direction, string purchaseDescription, bool urgent);
         List<PurchaseInfoResult> GetPurchases(long usuarioId);
+
+        List<PurchaseLine> GetPurchasesLines(long purchaseId);
+
 
 
     }

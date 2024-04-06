@@ -15,14 +15,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
     public partial class Purchase
     {
+        public Purchase()
+        {
+            this.PurchaseLine = new HashSet<PurchaseLine>();
+        }
+    
         public long purchaseId { get; set; }
-        public long productId { get; set; }
         public long card_number { get; set; }
         public int targetPostalCode { get; set; }
-        public double prize { get; set; }
-        public int quantity { get; set; }
         public System.DateTime date { get; set; }
         public string descriptiveName { get; set; }
+        public bool urgent { get; set; }
     
         
         /// <summary>
@@ -31,9 +34,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual Card Card { get; set; }
         
         /// <summary>
-        /// Relationship Name (Foreign Key in ER-Model): FK_Purchase_Product
+        /// Relationship Name (Foreign Key in ER-Model): FK_PurchaseLine_Purchase
         /// </summary>
-        public virtual Product Product { get; set; }
+        public virtual ICollection<PurchaseLine> PurchaseLine { get; set; }
     
     	/// <summary>
     	/// A hash code for this instance, suitable for use in hashing algorithms and data structures 
@@ -53,10 +56,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
     			hash = hash * multiplier + card_number.GetHashCode();
     			hash = hash * multiplier + targetPostalCode.GetHashCode();
-    			hash = hash * multiplier + prize.GetHashCode();
-    			hash = hash * multiplier + quantity.GetHashCode();
     			hash = hash * multiplier + date.GetHashCode();
     			hash = hash * multiplier + (descriptiveName == null ? 0 : descriptiveName.GetHashCode());
+    			hash = hash * multiplier + urgent.GetHashCode();
     
     			return hash;
     	    }
@@ -78,13 +80,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
     		return true
                &&  (this.purchaseId == target.purchaseId )       
-               &&  (this.productId == target.productId )       
                &&  (this.card_number == target.card_number )       
                &&  (this.targetPostalCode == target.targetPostalCode )       
-               &&  (this.prize == target.prize )       
-               &&  (this.quantity == target.quantity )       
                &&  (this.date == target.date )       
                &&  (this.descriptiveName == target.descriptiveName )       
+               &&  (this.urgent == target.urgent )       
                ;
     
         }
@@ -120,13 +120,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
     		strPurchase.Append("[ ");
            strPurchase.Append(" purchaseId = " + purchaseId + " | " );       
-           strPurchase.Append(" productId = " + productId + " | " );       
            strPurchase.Append(" card_number = " + card_number + " | " );       
            strPurchase.Append(" targetPostalCode = " + targetPostalCode + " | " );       
-           strPurchase.Append(" prize = " + prize + " | " );       
-           strPurchase.Append(" quantity = " + quantity + " | " );       
            strPurchase.Append(" date = " + date + " | " );       
            strPurchase.Append(" descriptiveName = " + descriptiveName + " | " );       
+           strPurchase.Append(" urgent = " + urgent + " | " );       
             strPurchase.Append("] ");    
     
     		return strPurchase.ToString();

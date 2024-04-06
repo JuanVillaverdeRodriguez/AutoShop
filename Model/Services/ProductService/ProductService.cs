@@ -81,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
 
             foreach (Property property in productDetails)
             {
-                ProductDetailsResult productDetailsResult = new ProductDetailsResult(property.property_name, property.property_value, property.categoryId);
+                ProductDetailsResult productDetailsResult = new ProductDetailsResult(property.property_name, property.property_value);
                 productDetailsResultList.Add(productDetailsResult);
             }
 

@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public Product()
         {
             this.Property = new HashSet<Property>();
-            this.Purchase = new HashSet<Purchase>();
+            this.PurchaseLine = new HashSet<PurchaseLine>();
         }
     
         public long productId { get; set; }
@@ -40,9 +40,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Property> Property { get; set; }
         
         /// <summary>
-        /// Relationship Name (Foreign Key in ER-Model): FK_Purchase_Product
+        /// Relationship Name (Foreign Key in ER-Model): FK_PurchaseLine_Product
         /// </summary>
-        public virtual ICollection<Purchase> Purchase { get; set; }
+        public virtual ICollection<PurchaseLine> PurchaseLine { get; set; }
     
     	/// <summary>
     	/// A hash code for this instance, suitable for use in hashing algorithms and data structures 

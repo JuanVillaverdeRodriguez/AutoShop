@@ -43,21 +43,27 @@
           <Property Name="productId" Type="bigint" Nullable="false" />
           <Property Name="property_name" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="property_value" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="categoryId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchaseId" />
+          </Key>
+          <Property Name="purchaseId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="card_number" Type="bigint" Nullable="false" />
+          <Property Name="targetPostalCode" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="descriptiveName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="urgent" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseLine">
           <Key>
             <PropertyRef Name="purchaseId" />
             <PropertyRef Name="productId" />
           </Key>
           <Property Name="purchaseId" Type="bigint" Nullable="false" />
           <Property Name="productId" Type="bigint" Nullable="false" />
-          <Property Name="card_number" Type="bigint" Nullable="false" />
-          <Property Name="targetPostalCode" Type="int" Nullable="false" />
           <Property Name="prize" Type="float" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
-          <Property Name="date" Type="datetime" Nullable="false" />
-          <Property Name="descriptiveName" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -70,6 +76,7 @@
           <Property Name="alias" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="language" Type="varchar" MaxLength="2" />
+          <Property Name="country" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="workshopId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Workshop">
@@ -79,7 +86,6 @@
           <Property Name="workshopId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="workshop_name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="postal_code" Type="int" Nullable="false" />
-          <Property Name="Country" Type="varchar" MaxLength="2" Nullable="false" />
         </EntityType>
         <Association Name="FK_Card_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
@@ -117,18 +123,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Property_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Property" Type="Self.Property" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="categoryId" />
-            </Principal>
-            <Dependent Role="Property">
-              <PropertyRef Name="categoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Property_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Property" Type="Self.Property" Multiplicity="*" />
@@ -153,15 +147,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Purchase_Product">
+        <Association Name="FK_PurchaseLine_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <End Role="PurchaseLine" Type="Self.PurchaseLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="productId" />
             </Principal>
-            <Dependent Role="Purchase">
+            <Dependent Role="PurchaseLine">
               <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseLine_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="PurchaseLine" Type="Self.PurchaseLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseId" />
+            </Principal>
+            <Dependent Role="PurchaseLine">
+              <PropertyRef Name="purchaseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -183,6 +189,7 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseLine" EntityType="Self.PurchaseLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workshop" EntityType="Self.Workshop" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Card_Usuario" Association="Self.FK_Card_Usuario">
@@ -197,10 +204,6 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_Property_Category" Association="Self.FK_Property_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Property" EntitySet="Property" />
-          </AssociationSet>
           <AssociationSet Name="FK_Property_Product" Association="Self.FK_Property_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="Property" EntitySet="Property" />
@@ -209,9 +212,13 @@
             <End Role="Card" EntitySet="Card" />
             <End Role="Purchase" EntitySet="Purchase" />
           </AssociationSet>
-          <AssociationSet Name="FK_Purchase_Product" Association="Self.FK_Purchase_Product">
+          <AssociationSet Name="FK_PurchaseLine_Product" Association="Self.FK_PurchaseLine_Product">
             <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseLine" EntitySet="PurchaseLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseLine_Purchase" Association="Self.FK_PurchaseLine_Purchase">
             <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseLine" EntitySet="PurchaseLine" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Workshop" Association="Self.FK_Usuario_Workshop">
             <End Role="Workshop" EntitySet="Workshop" />
@@ -246,7 +253,6 @@
           <NavigationProperty Name="Category1" Relationship="Self.FK_Category_Category" FromRole="Category" ToRole="Category1" />
           <NavigationProperty Name="Category2" Relationship="Self.FK_Category_Category" FromRole="Category1" ToRole="Category" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
-          <NavigationProperty Name="Property" Relationship="Self.FK_Property_Category" FromRole="Category" ToRole="Property" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -260,7 +266,7 @@
           <Property Name="categoryId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Property" Relationship="Self.FK_Property_Product" FromRole="Product" ToRole="Property" />
-          <NavigationProperty Name="Purchase" Relationship="Self.FK_Purchase_Product" FromRole="Product" ToRole="Purchase" />
+          <NavigationProperty Name="PurchaseLine" Relationship="Self.FK_PurchaseLine_Product" FromRole="Product" ToRole="PurchaseLine" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
@@ -270,25 +276,32 @@
           <Property Name="productId" Type="Int64" Nullable="false" />
           <Property Name="property_name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="property_value" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="categoryId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Property_Category" FromRole="Property" ToRole="Category" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Property_Product" FromRole="Property" ToRole="Product" />
         </EntityType>
         <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchaseId" />
+          </Key>
+          <Property Name="purchaseId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="card_number" Type="Int64" Nullable="false" />
+          <Property Name="targetPostalCode" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="descriptiveName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="urgent" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Card" Relationship="Self.FK_Purchase_Card" FromRole="Purchase" ToRole="Card" />
+          <NavigationProperty Name="PurchaseLine" Relationship="Self.FK_PurchaseLine_Purchase" FromRole="Purchase" ToRole="PurchaseLine" />
+        </EntityType>
+        <EntityType Name="PurchaseLine">
           <Key>
             <PropertyRef Name="purchaseId" />
             <PropertyRef Name="productId" />
           </Key>
           <Property Name="purchaseId" Type="Int64" Nullable="false" />
           <Property Name="productId" Type="Int64" Nullable="false" />
-          <Property Name="card_number" Type="Int64" Nullable="false" />
-          <Property Name="targetPostalCode" Type="Int32" Nullable="false" />
           <Property Name="prize" Type="Double" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <Property Name="date" Type="DateTime" Nullable="false" />
-          <Property Name="descriptiveName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Card" Relationship="Self.FK_Purchase_Card" FromRole="Purchase" ToRole="Card" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Purchase_Product" FromRole="Purchase" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_PurchaseLine_Product" FromRole="PurchaseLine" ToRole="Product" />
+          <NavigationProperty Name="Purchase" Relationship="Self.FK_PurchaseLine_Purchase" FromRole="PurchaseLine" ToRole="Purchase" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -301,6 +314,7 @@
           <Property Name="alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="language" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="workshopId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Card" Relationship="Self.FK_Card_Usuario" FromRole="Usuario" ToRole="Card" />
           <NavigationProperty Name="Workshop" Relationship="Self.FK_Usuario_Workshop" FromRole="Usuario" ToRole="Workshop" />
@@ -312,7 +326,6 @@
           <Property Name="workshopId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="workshop_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="postal_code" Type="Int32" Nullable="false" />
-          <Property Name="Country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Workshop" FromRole="Workshop" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK_Card_Usuario">
@@ -363,18 +376,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Property_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Property" Type="Self.Property" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="categoryId" />
-            </Principal>
-            <Dependent Role="Property">
-              <PropertyRef Name="categoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Property_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="Property" Type="Self.Property" Multiplicity="*" />
@@ -387,15 +388,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Purchase_Product">
+        <Association Name="FK_PurchaseLine_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <End Role="PurchaseLine" Type="Self.PurchaseLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="productId" />
             </Principal>
-            <Dependent Role="Purchase">
+            <Dependent Role="PurchaseLine">
               <PropertyRef Name="productId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseLine_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="PurchaseLine" Type="Self.PurchaseLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseId" />
+            </Principal>
+            <Dependent Role="PurchaseLine">
+              <PropertyRef Name="purchaseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -417,6 +430,7 @@
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="Property" EntityType="Self.Property" />
           <EntitySet Name="Purchase" EntityType="Self.Purchase" />
+          <EntitySet Name="PurchaseLine" EntityType="Self.PurchaseLine" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="Workshop" EntityType="Self.Workshop" />
           <AssociationSet Name="FK_Card_Usuario" Association="Self.FK_Card_Usuario">
@@ -435,17 +449,17 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_Property_Category" Association="Self.FK_Property_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Property" EntitySet="Property" />
-          </AssociationSet>
           <AssociationSet Name="FK_Property_Product" Association="Self.FK_Property_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="Property" EntitySet="Property" />
           </AssociationSet>
-          <AssociationSet Name="FK_Purchase_Product" Association="Self.FK_Purchase_Product">
+          <AssociationSet Name="FK_PurchaseLine_Product" Association="Self.FK_PurchaseLine_Product">
             <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseLine" EntitySet="PurchaseLine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseLine_Purchase" Association="Self.FK_PurchaseLine_Purchase">
             <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseLine" EntitySet="PurchaseLine" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Workshop" Association="Self.FK_Usuario_Workshop">
             <End Role="Workshop" EntitySet="Workshop" />
@@ -497,7 +511,6 @@
                 <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="property_name" ColumnName="property_name" />
                 <ScalarProperty Name="property_value" ColumnName="property_value" />
-                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -505,13 +518,21 @@
             <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Purchase">
               <MappingFragment StoreEntitySet="Purchase">
                 <ScalarProperty Name="purchaseId" ColumnName="purchaseId" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
                 <ScalarProperty Name="card_number" ColumnName="card_number" />
                 <ScalarProperty Name="targetPostalCode" ColumnName="targetPostalCode" />
-                <ScalarProperty Name="prize" ColumnName="prize" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="descriptiveName" ColumnName="descriptiveName" />
+                <ScalarProperty Name="urgent" ColumnName="urgent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseLine">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.PurchaseLine">
+              <MappingFragment StoreEntitySet="PurchaseLine">
+                <ScalarProperty Name="purchaseId" ColumnName="purchaseId" />
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="prize" ColumnName="prize" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -525,6 +546,7 @@
                 <ScalarProperty Name="alias" ColumnName="alias" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="workshopId" ColumnName="workshopId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -535,7 +557,6 @@
                 <ScalarProperty Name="workshopId" ColumnName="workshopId" />
                 <ScalarProperty Name="workshop_name" ColumnName="workshop_name" />
                 <ScalarProperty Name="postal_code" ColumnName="postal_code" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -556,7 +577,6 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

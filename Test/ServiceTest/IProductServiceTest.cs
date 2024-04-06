@@ -113,8 +113,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                  diametro = 25 cm
                  grosor = 4 cm*/
 
-                var expectedProp1 = new ProductDetailsResult("diametro", "25 cm", 2);
-                var expectedProp2 = new ProductDetailsResult("grosor", "4 cm", 2);
+                var expectedProp1 = new ProductDetailsResult("diametro", "25 cm");
+                var expectedProp2 = new ProductDetailsResult("grosor", "4 cm");
 
                 var actual = ProductService.getProductDetails(productId);
                 

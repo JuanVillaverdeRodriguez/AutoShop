@@ -27,15 +27,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             String user_apellido = TextBoxApellidos.Text;
             String email = TextBoxEmail.Text;
             String idioma = TextBoxLanguage.Text;
+            String country = TextBoxLanguage.Text;
+
 
 
             //Haría falta un userId sobre el que ejecutar los cambios (debería cojerlo la propia página del usuario autenticado) pondré por defecto el userId = 1
             long userId = 1;
             UserProfileDetails details;
             if (idioma == "")
-                details = new UserProfileDetails(user_name, user_apellido, email, 0);
+                details = new UserProfileDetails(user_name, user_apellido, email, country, 0);
             else
-                details = new UserProfileDetails(user_name, user_apellido, email, idioma, 0);
+                details = new UserProfileDetails(user_name, user_apellido, email, idioma, country, 0);
 
             usuarioService.UpdateUsuarioDetails(userId, details);
             this.LabelChangesApplied.Visible = true;

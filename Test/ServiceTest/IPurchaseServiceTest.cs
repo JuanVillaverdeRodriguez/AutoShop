@@ -14,6 +14,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.Cart;
 using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseLineDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
 {
@@ -37,6 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
         private static IPurchaseDaoEF PurchaseDao;
         private static ICardDaoEF CardDao;
         private static IProductDaoEF ProductDao;
+        private static IPurchaseLineDaoEF PurchaseLineDao;
 
         private TransactionScope transaction;
 
@@ -82,6 +84,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
             }
 
         }
+
         [TestMethod]
         public void PurchaseTest()
         {
@@ -93,20 +96,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
 
                 cart.AddProduct(product1);
 
-                List<Purchase> pedido = PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar");
+                Purchase pedido = PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar", true);
+                Assert.AreEqual(card.card_number, pedido.card_number);
+                Assert.AreEqual(36121, pedido.targetPostalCode);
+                Assert.AreEqual("Estoy comprando unicamente para probar", pedido.descriptiveName);
 
-                foreach(Purchase purchase in pedido)
+                List<PurchaseLine> purchaseLinesList = PurchaseLineDao.GetPurchasesLines(pedido.purchaseId);
+
+                foreach (PurchaseLine purchaseLine in purchaseLinesList)
                 {
-                    Purchase purchaseBD = PurchaseDao.GetPurchaseByPK(purchase.purchaseId, product1.productId);
-
-                    Assert.AreEqual(1, purchaseBD.purchaseId);
-                    Assert.AreEqual(product1.productId, purchaseBD.productId);
-                    Assert.AreEqual(1, purchaseBD.quantity);
-                    Assert.AreEqual(card.card_number, purchaseBD.card_number);
-                    Assert.AreEqual(36121, purchaseBD.targetPostalCode);
-                    Assert.AreEqual(product1.prize, purchaseBD.prize);
-                    Assert.AreEqual("Estoy comprando unicamente para probar", purchaseBD.descriptiveName);
-
+                    Assert.AreEqual(1, purchaseLine.purchaseId);
+                    Assert.AreEqual(product1.productId, purchaseLine.productId);
+                    Assert.AreEqual(1, purchaseLine.quantity);
+                    Assert.AreEqual(product1.prize, purchaseLine.prize);
                 }
 
             }
@@ -122,7 +124,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
                 Card card = CardDao.Find(cardId1);
                 Cart cart = new Cart();
 
-                PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar");
+                PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar", true);
             }
 
         }
@@ -140,7 +142,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
                 cart.AddProduct(product1);
                 cart.AddProduct(product2);
 
-                PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar");
+                PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar", true);
             }
 
         }

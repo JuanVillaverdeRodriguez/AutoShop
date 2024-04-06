@@ -23,9 +23,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         [Inject]
         ICardDaoEF CardDao { get; set;  }
 
-
-
-
         //Registra un nuevo usuario
         //Lanza DuplicateInstanceException si el usuario ya existe
         [Transactional]
@@ -49,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         //Registra un nuevo taller
         //Lanza DuplicateInstanceException si el taller ya existía
         [Transactional]
-        long RegisterWorkshop(int postalCode, String location, String workshopName);
+        long RegisterWorkshop(int postalCode, String workshopName);
 
         //Crea una nueva tarjeta para un usuario
         //Si el usuario ya tiene tarjetas y alguna de ellas por defecto, crea una tarjeta que no esté por defecto

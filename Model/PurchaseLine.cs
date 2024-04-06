@@ -13,22 +13,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System.Text;
     using System.Collections.Generic;
     
-    public partial class Workshop
+    public partial class PurchaseLine
     {
-        public Workshop()
-        {
-            this.Usuario = new HashSet<Usuario>();
-        }
-    
-        public long workshopId { get; set; }
-        public string workshop_name { get; set; }
-        public int postal_code { get; set; }
+        public long purchaseId { get; set; }
+        public long productId { get; set; }
+        public double prize { get; set; }
+        public int quantity { get; set; }
     
         
         /// <summary>
-        /// Relationship Name (Foreign Key in ER-Model): FK_Usuario_Workshop
+        /// Relationship Name (Foreign Key in ER-Model): FK_PurchaseLine_Product
         /// </summary>
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual Product Product { get; set; }
+        
+        /// <summary>
+        /// Relationship Name (Foreign Key in ER-Model): FK_PurchaseLine_Purchase
+        /// </summary>
+        public virtual Purchase Purchase { get; set; }
     
     	/// <summary>
     	/// A hash code for this instance, suitable for use in hashing algorithms and data structures 
@@ -46,8 +47,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     			int multiplier = 31;
     			int hash = GetType().GetHashCode();
     
-    			hash = hash * multiplier + (workshop_name == null ? 0 : workshop_name.GetHashCode());
-    			hash = hash * multiplier + postal_code.GetHashCode();
+    			hash = hash * multiplier + prize.GetHashCode();
+    			hash = hash * multiplier + quantity.GetHashCode();
     
     			return hash;
     	    }
@@ -65,20 +66,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             if (ReferenceEquals(this, obj)) return true;         // Is same object?
             if (obj.GetType() != this.GetType()) return false;   // Is same type? 
     
-            Workshop target = obj as Workshop;
+            PurchaseLine target = obj as PurchaseLine;
     
     		return true
-               &&  (this.workshopId == target.workshopId )       
-               &&  (this.workshop_name == target.workshop_name )       
-               &&  (this.postal_code == target.postal_code )       
+               &&  (this.purchaseId == target.purchaseId )       
+               &&  (this.productId == target.productId )       
+               &&  (this.prize == target.prize )       
+               &&  (this.quantity == target.quantity )       
                ;
     
         }
     
     
-    	public static bool operator ==(Workshop  objA, Workshop  objB)
+    	public static bool operator ==(PurchaseLine  objA, PurchaseLine  objB)
         {
-            // Check if the objets are the same Workshop entity
+            // Check if the objets are the same PurchaseLine entity
             if(Object.ReferenceEquals(objA, objB))
                 return true;
       
@@ -86,7 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     }
     
     
-    	public static bool operator !=(Workshop  objA, Workshop  objB)
+    	public static bool operator !=(PurchaseLine  objA, PurchaseLine  objB)
         {
             return !(objA == objB);
         }
@@ -102,15 +104,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// </returns>
     	public override String ToString()
     	{
-    	    StringBuilder strWorkshop = new StringBuilder();
+    	    StringBuilder strPurchaseLine = new StringBuilder();
     
-    		strWorkshop.Append("[ ");
-           strWorkshop.Append(" workshopId = " + workshopId + " | " );       
-           strWorkshop.Append(" workshop_name = " + workshop_name + " | " );       
-           strWorkshop.Append(" postal_code = " + postal_code + " | " );       
-            strWorkshop.Append("] ");    
+    		strPurchaseLine.Append("[ ");
+           strPurchaseLine.Append(" purchaseId = " + purchaseId + " | " );       
+           strPurchaseLine.Append(" productId = " + productId + " | " );       
+           strPurchaseLine.Append(" prize = " + prize + " | " );       
+           strPurchaseLine.Append(" quantity = " + quantity + " | " );       
+            strPurchaseLine.Append("] ");    
     
-    		return strWorkshop.ToString();
+    		return strPurchaseLine.ToString();
         }
     
     

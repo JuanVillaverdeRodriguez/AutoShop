@@ -11,6 +11,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseLineDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -40,6 +41,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 To<PurchaseDaoEF>();
             kernel.Bind<IPropertyDaoEF>().
                 To<PropertyDaoEF>();
+
+            kernel.Bind<IPurchaseLineDaoEF>().
+                To<PurchaseLineDaoEF>();
 
             kernel.Bind<IUsuarioService>().
                 To<UsuarioService>();

@@ -37,7 +37,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             {
                 usuarioService.RegisterWorkshop(
                                                 PostalCode,
-                                                Country,
                                                 WorkshopName);
                 this.LabelUserCreated.Visible = true;
 

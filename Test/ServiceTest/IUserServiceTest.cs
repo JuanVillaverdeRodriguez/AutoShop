@@ -56,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 // Registramos el usuario
-                var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
+                var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, country, workshopId));
 
                 // Lo buscamos
                 var user = UsuarioDao.Find(userId);
@@ -69,6 +69,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 Assert.AreEqual(surname, user.user_surname);
                 Assert.AreEqual(email, user.email);
                 Assert.AreEqual(language, user.language);
+                Assert.AreEqual(country, user.country);
                 Assert.AreEqual(workshopId, user.workshopId);
 
                 // transaction.Complete() no se llama, para que se ejecute el Rollback.
@@ -100,9 +101,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
+                var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, country, workshopId));
 
-                var expected = new UserProfileDetails(name, surname, email, language, workshopId);
+
+                var expected = new UserProfileDetails(name, surname, email, language, country, workshopId);
 
                 var actual = UsuarioService.SignIn(alias, password);
 
@@ -138,7 +140,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             using (var scope = new TransactionScope())
             {
-                var expected = new UserProfileDetails(name, surname, email, language, workshopId);
+                var expected = new UserProfileDetails(name, surname, email, language, country, workshopId);
 
                 var userId = UsuarioService.RegisterUsuario(alias, password, expected);
 
@@ -167,9 +169,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 // Registramos el usuario
-                var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, workshopId));
+                var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, country, workshopId));
 
-                var expected = new UserProfileDetails(name + "updated", surname + "updated", email + "updated", "fr", workshopId);
+                var expected = new UserProfileDetails(name + "updated", surname + "updated", email + "updated", "fr", "FR", workshopId);
 
                 UsuarioService.UpdateUsuarioDetails(userId, expected);
 
@@ -203,7 +205,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 // Registramos el taller
-                var wshopId = UsuarioService.RegisterWorkshop(postalcode, country, workshopname);
+                var wshopId = UsuarioService.RegisterWorkshop(postalcode, workshopname);
 
                 // Lo buscamos
                 var wshop = WorkshopDao.Find(wshopId);
@@ -211,7 +213,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 // Comprobamos
                 Assert.AreEqual(wshopId, wshop.workshopId);
                 Assert.AreEqual(postalcode, wshop.postal_code);
-                Assert.AreEqual(country, wshop.Country);
                 Assert.AreEqual(workshopname, wshop.workshop_name);
 
                 // transaction.Complete() no se llama, para que se ejecute el Rollback.
@@ -227,10 +228,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             using (var scope = new TransactionScope())
             {
                 // Registramos un taller
-                UsuarioService.RegisterWorkshop(postalcode, country, workshopname);
+                UsuarioService.RegisterWorkshop(postalcode, workshopname);
 
                 // Lo registramos de nuevo
-                UsuarioService.RegisterWorkshop(postalcode, country, workshopname);
+                UsuarioService.RegisterWorkshop(postalcode, workshopname);
 
                 // transaction.Complete() no se llama, para que se ejecute el Rollback.
             }

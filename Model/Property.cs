@@ -18,13 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long productId { get; set; }
         public string property_name { get; set; }
         public string property_value { get; set; }
-        public long categoryId { get; set; }
     
-        
-        /// <summary>
-        /// Relationship Name (Foreign Key in ER-Model): FK_Property_Category
-        /// </summary>
-        public virtual Category Category { get; set; }
         
         /// <summary>
         /// Relationship Name (Foreign Key in ER-Model): FK_Property_Product
@@ -48,7 +42,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     			int hash = GetType().GetHashCode();
     
     			hash = hash * multiplier + (property_value == null ? 0 : property_value.GetHashCode());
-    			hash = hash * multiplier + categoryId.GetHashCode();
     
     			return hash;
     	    }
@@ -72,7 +65,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
                &&  (this.productId == target.productId )       
                &&  (this.property_name == target.property_name )       
                &&  (this.property_value == target.property_value )       
-               &&  (this.categoryId == target.categoryId )       
                ;
     
         }
@@ -110,7 +102,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
            strProperty.Append(" productId = " + productId + " | " );       
            strProperty.Append(" property_name = " + property_name + " | " );       
            strProperty.Append(" property_value = " + property_value + " | " );       
-           strProperty.Append(" categoryId = " + categoryId + " | " );       
             strProperty.Append("] ");    
     
     		return strProperty.ToString();
