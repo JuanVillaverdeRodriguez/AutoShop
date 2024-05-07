@@ -93,7 +93,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         }
 
         [Transactional]
-        public UserProfileDetails SignIn(string alias, string password)
+        public SignInResult SignIn(string alias, string password)
         {
                 
             // Si el usuario existe, se hace el login
@@ -108,7 +108,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                     throw new MistakenPasswordException(alias);
                 }
 
-                UserProfileDetails signInResult = new UserProfileDetails(user.user_name, user.user_surname, user.email, user.language, user.country, user.workshopId);
+                SignInResult signInResult = new SignInResult(user.userId, user.user_name, user.user_surname, user.email, user.language, user.country, user.workshopId);
 
                 return signInResult;
             }

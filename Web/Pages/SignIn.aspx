@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SignIn.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.SignIn" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id ="form1" runat="server">
@@ -23,6 +24,7 @@
 
         <asp:Button ID="Button1" runat="server" Text="Log in" OnClick="Button1_Click" />
 
+        <a href="CreateUser.aspx">Registrate aqui</a>
     </form>
 
 </asp:Content>

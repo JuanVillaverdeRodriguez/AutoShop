@@ -28,13 +28,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao
         }
         public long CreateAndReturn(Purchase purchase)
         {
-            //DbSet<Purchase> purchaseContext = Context.Set<Purchase>();
+            this.Create(purchase);
 
-            dbCommonContext.Set<Purchase>().Add(purchase);
-            dbCommonContext.SaveChanges();
+            DbSet<Purchase> purchase2 = Context.Set<Purchase>();
+            if (purchase2.Any())
+            {
+                long result = purchase2.Max(p => p.purchaseId);
+                return result;
+            }
+            return 0;
 
-            return purchase.purchaseId;
+
+
         }
-
     }
 }
+

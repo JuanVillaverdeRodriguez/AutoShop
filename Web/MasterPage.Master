@@ -3,16 +3,44 @@
 <!DOCTYPE html>
 
 <html>
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-</head>
-<body>
-  <div>
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-    </asp:ContentPlaceHolder>
-   </div>
-</body>
+    <head runat="server">
+        <link rel="stylesheet" href="/Content/bootstrap.css"/>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+            <title></title>
+            <asp:ContentPlaceHolder ID="head" runat="server">
+            </asp:ContentPlaceHolder>
+
+    </head>
+    <body>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Navbar w/ text</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../Pages/MainPage.aspx">Home <span class="sr-only">(current)</span></a>
+                            <!--<p><asp:HyperLink ID="createUserHL" runat="server" NavigateUrl="~/Pages/User/CreateUser.aspx" meta:resourcekey="createUserHL" /></p>-->
+
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../Pages/SignIn.aspx">Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">Navbar text with an inline element
+                    </span>
+                </div>
+            </nav>
+        </div>
+    </body>
 </html>

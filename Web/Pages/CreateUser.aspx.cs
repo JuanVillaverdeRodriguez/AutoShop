@@ -45,12 +45,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             {
                 UserProfileDetails details;
                 if (idioma == "")
+                {
                     details = new UserProfileDetails(user_name, user_apellido, email, country, workshopId);
+                }
+                    
                 else
                     details = new UserProfileDetails(user_name, user_apellido, email, idioma, country, workshopId);
 
                 usuarioService.RegisterUsuario(loginName, password, details);
                 this.LabelUserCreated.Visible = true;
+
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
 
 
             }

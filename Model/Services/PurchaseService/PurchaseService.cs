@@ -72,8 +72,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
             newPurchase.urgent = urgent;
 
             //PurchaseDao.Create(newPurchase);
+            //Esto no furrula
+            //Solucion tota para coger ID: Buscar el id mas alto guardado en la bd justo despues del Create
             long purchaseId = PurchaseDao.CreateAndReturn(newPurchase);
-
+            newPurchase.purchaseId = purchaseId;
 
             foreach ((Product product, int count) in productList)
             {
