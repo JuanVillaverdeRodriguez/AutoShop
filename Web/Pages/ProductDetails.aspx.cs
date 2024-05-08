@@ -58,8 +58,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             UsuarioSession usuarioSession = SessionManager.GetUsuarioSession(Context);
 
             long productId = long.Parse(Request.Params.Get("id"));
-
             usuarioSession.UserCart.AddProduct(productId);
+            
         }
     }
 }

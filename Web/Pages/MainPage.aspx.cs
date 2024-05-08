@@ -24,13 +24,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
                 List<ProductResult> products = productService.findProduct("");
 
-                //labelList.Capacity = products.Count;
-
-                foreach (ProductResult productResult in products)
-                {
-
-                }
-
                 ListView1.DataSource = products;
                 ListView1.DataBind();
             }

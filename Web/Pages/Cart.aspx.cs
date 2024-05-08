@@ -27,11 +27,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
                 List<ProductResult> productResults = new List<ProductResult>();
 
-                foreach((long productId, int count) in cartProducts)
+
+                //List<ProductResult> productResults = productService.findProduct("");
+
+
+                foreach ((long productId, int count) in cartProducts)
                 {
                     // Esto esta muy mal hecho, demasiadas llamadas a la BBDD
                     // Hacer otro DTO para los productos en el carrito??
-                    productResults.Append(productService.findProductById(productId));
+                    productResults.Add(productService.findProductById(productId));
                 }
 
                 ListView1.DataSource = productResults;

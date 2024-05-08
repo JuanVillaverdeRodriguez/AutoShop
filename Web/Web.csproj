@@ -213,6 +213,7 @@
     <Content Include="Pages\Errores\Error404.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\ProductDetails.aspx" />
+    <Content Include="Pages\Purchase.aspx" />
     <Content Include="Pages\RegisterWorkshop.aspx" />
     <Content Include="Pages\SignIn.aspx" />
     <Content Include="Pages\UpdateUserDetails.aspx" />
@@ -285,6 +286,13 @@
     </Compile>
     <Compile Include="Pages\ProductDetails.aspx.designer.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Purchase.aspx.cs">
+      <DependentUpon>Purchase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Purchase.aspx.designer.cs">
+      <DependentUpon>Purchase.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\RegisterWorkshop.aspx.cs">
       <DependentUpon>RegisterWorkshop.aspx</DependentUpon>
