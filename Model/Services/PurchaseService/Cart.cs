@@ -8,39 +8,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Cart
 {
     public class Cart
     {
-        private List<Product> productList;
+        private List<long> productIdList;
         public Cart() {
-            productList = new List<Product>();
+            productIdList = new List<long>();
         }
-        public void AddProduct(Product product)
+        public void AddProduct(long productId)
         {
-            productList.Add(product);
+            productIdList.Add(productId);
         }
-        public void RemoveProduct(Product product)
+        public void RemoveProduct(long productId)
         {
-            productList.RemoveAll(p => p.productId == product.productId);
-        }
-
-        public List<Product> GetProductsList()
-        {
-            return productList;
+            productIdList.RemoveAll(p => p == productId);
         }
 
-        public List<(Product product, int count)> GetProductsTupleList()
+        public List<long> GetProductsList()
         {
-            List<(Product product, int count)> groupedProducts = new List<(Product product, int count)>();
-            foreach (Product product in productList)
+            return productIdList;
+        }
+
+        public List<(long productId, int count)> GetProductsTupleList()
+        {
+            List<(long productId, int count)> groupedProducts = new List<(long productId, int count)>();
+
+            foreach (long productId in productIdList)
             {
-                long productId = product.productId;
-                int count = productList.Count(p => p.productId == productId);
+                int count = productIdList.Count(p => p == productId);
 
                 // Verificar si ya se ha agregado esta productId a la lista
-                bool alreadyAdded = groupedProducts.Any(t => t.product.productId == productId);
+                bool alreadyAdded = groupedProducts.Any(t => t.productId == productId);
 
                 // Si el productId aún no está en la lista, lo agregamos
                 if (!alreadyAdded)
                 {
-                    groupedProducts.Add((product, count));
+                    groupedProducts.Add((productId, count));
                 }
             }
 

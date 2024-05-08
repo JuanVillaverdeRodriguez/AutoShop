@@ -94,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
                 Cart cart = new Cart();
                 Product product1 = ProductDao.Find(productId1);
 
-                cart.AddProduct(product1);
+                cart.AddProduct(product1.productId);
 
                 Purchase pedido = PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar", true);
                 Assert.AreEqual(card.card_number, pedido.card_number);
@@ -139,8 +139,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
                 Product product1 = ProductDao.Find(productId1);
                 Product product2 = ProductDao.Find(productId2);
 
-                cart.AddProduct(product1);
-                cart.AddProduct(product2);
+                cart.AddProduct(product1.productId);
+                cart.AddProduct(product2.productId);
 
                 PurchaseService.Purchase(card, cart, 36121, "Estoy comprando unicamente para probar", true);
             }

@@ -56,7 +56,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
             {
                 throw new NoCardsException("No existe esta tarjeta.");
             }
-            List<(Product product, int count)> productList = cart.GetProductsTupleList();
+            List<(long product, int count)> productList = cart.GetProductsTupleList();
             if (!productList.Any())
             {
                 throw new EmptyCartException();
@@ -77,8 +77,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
             long purchaseId = PurchaseDao.CreateAndReturn(newPurchase);
             newPurchase.purchaseId = purchaseId;
 
-            foreach ((Product product, int count) in productList)
+            foreach ((long productId, int count) in productList)
             {
+                Product product = ProductDao.Find(productId);
+
                 PurchaseLine newPurchaseLine = new PurchaseLine();
 
                 newPurchaseLine.prize = product.prize;
@@ -89,6 +91,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
                 PurchaseLineDao.Create(newPurchaseLine);
 
                 product.stock -= count;
+
+                
+
                 ProductDao.Update(product);
             }
             return newPurchase;

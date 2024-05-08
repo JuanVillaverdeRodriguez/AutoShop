@@ -1,5 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,9 +50,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                     }
                 }
             }
-            
-            
 
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            UsuarioSession usuarioSession = SessionManager.GetUsuarioSession(Context);
+
+            long productId = long.Parse(Request.Params.Get("id"));
+
+            usuarioSession.UserCart.AddProduct(productId);
         }
     }
 }

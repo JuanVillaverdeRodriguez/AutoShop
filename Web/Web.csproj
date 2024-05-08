@@ -208,7 +208,9 @@
     <Content Include="Imagenes\Taurus 601 MS 3PMSF TL 880073.jpg" />
     <Content Include="Imagenes\Tristar Snowpower HP TU239.jpg" />
     <Content Include="Pages\Card.aspx" />
+    <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\CreateUser.aspx" />
+    <Content Include="Pages\Errores\Error404.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\RegisterWorkshop.aspx" />
@@ -249,12 +251,26 @@
     <Compile Include="Pages\Card.aspx.designer.cs">
       <DependentUpon>Card.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\CreateUser.aspx.designer.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errores\Error404.aspx.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Errores\Error404.aspx.designer.cs">
+      <DependentUpon>Error404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>

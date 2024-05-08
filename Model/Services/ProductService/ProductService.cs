@@ -87,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
                 {
                     string detailsUrl = "" + product.productId;
 
-                    ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
+                    ProductResult productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 
                     productResultList.Add(productResult);
                 }

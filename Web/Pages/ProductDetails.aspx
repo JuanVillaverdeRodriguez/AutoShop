@@ -17,6 +17,7 @@
         </div>
         <div>
             <form id="form1" runat="server">
+            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
         
             <asp:Label ID="ProductName" Text="" runat="server"> </asp:Label>
         </form>
@@ -36,7 +37,7 @@
             <div class="card-body">
                 <h5 class="card-title" ID="cardTitle"> PRODUCT NAME -title" ID="cardTitle"> PRODUCT NAME </h5>
                 <p class="card-text">Esta seria la descripcion del producto chulisimo.</p>
-                <a href="#" class="btn btn-primary"> Añadir al carrito</a>
+
             </div>
         </div>
 

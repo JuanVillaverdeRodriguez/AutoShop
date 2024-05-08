@@ -7,6 +7,7 @@ using System.Web.Security;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService;
+using Es.Udc.DotNet.PracticaMaD.Model.Services.Cart;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 {
@@ -101,6 +102,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 
             UsuarioSession usuarioSession = new UsuarioSession();
             usuarioSession.UserProfileId = loginResult.user_id;
+            usuarioSession.UserCart = new Cart();
 
             Locale locale =
                 new Locale(loginResult.language, loginResult.country);
