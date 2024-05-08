@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         protected void Button1_Click(object sender, EventArgs e)
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-            IUsuarioService usuarioService = iocManager.Resolve<IUsuarioService>();
 
             this.LabelUsuarioLogueado.Visible = false;
             this.LabelCredencialesIncorrectas.Visible = false;
@@ -28,13 +28,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             try
             {
-                UserProfileDetails result = usuarioService.SignIn(loginName, password);
+                SignInResult result = SessionManager.Login(Context, loginName, password);
                 this.LabelUsuarioLogueado.Visible = true;
             }
             catch
             {
                 this.LabelCredencialesIncorrectas.Visible = true;
-
             }
 
 

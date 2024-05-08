@@ -35,16 +35,40 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
             {
                 Category category = CategoryDao.findCategoryById(product.categoryId);
 
-                string detailsUrl = "/productDetails?id=" + product.productId;
+                string detailsUrl = "" + product.productId;
 
                 ProductResult productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 
                 productResultList.Add(productResult);
+                
 
             }
 
             return productResultList;
 
+        }
+
+        public ProductResult findProductById(long productId)
+        {
+            ProductResult productResult = null;
+
+            try
+            {
+                Product product = ProductDao.Find(productId);
+
+                string detailsUrl = "" + product.productId;
+                Category category = CategoryDao.findCategoryById(product.categoryId);
+
+
+                productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
+
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return productResult;
         }
 
         public List<ProductResult> findProduct(string productName, string selectedCategory)
@@ -61,7 +85,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
                 
                 if (category.categoryName.Equals(selectedCategory) || selectedCategory.Equals(fatherCatName))
                 {
-                    string detailsUrl = "/productDetails?id=" + product.productId;
+                    string detailsUrl = "" + product.productId;
 
                     ProductResult productResult = new ProductResult(productName, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
 

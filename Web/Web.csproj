@@ -194,9 +194,23 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\CreateUser.css" />
     <Content Include="Global.asax" />
+    <Content Include="Imagenes\Atlas Polarbear HP AX300.jpg" />
+    <Content Include="Imagenes\MAHLE ORIGINAL OX 188D.jpg" />
+    <Content Include="Imagenes\MANN-FILTER W 712-52.jpg" />
+    <Content Include="Imagenes\MANN-FILTER W 712-95.jpg" />
+    <Content Include="Imagenes\MANN-FILTER W 811-80.jpg" />
+    <Content Include="Imagenes\Nankang SNOW SV-2 JY019.jpg" />
+    <Content Include="Imagenes\Nankang SV-3 Winter JY215.jpg" />
+    <Content Include="Imagenes\Roadstone Eurovis Alpine 15293C.jpg" />
+    <Content Include="Imagenes\Sailun Atrezzo 4Seasons 3220010455.jpg" />
+    <Content Include="Imagenes\Superia Bluewin HP SV102.jpg" />
+    <Content Include="Imagenes\Superia Bluewin HP SV103.jpg" />
+    <Content Include="Imagenes\Taurus 601 MS 3PMSF TL 880073.jpg" />
+    <Content Include="Imagenes\Tristar Snowpower HP TU239.jpg" />
     <Content Include="Pages\Card.aspx" />
     <Content Include="Pages\CreateUser.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\RegisterWorkshop.aspx" />
     <Content Include="Pages\SignIn.aspx" />
     <Content Include="Pages\UpdateUserDetails.aspx" />
@@ -248,6 +262,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\RegisterWorkshop.aspx.cs">
       <DependentUpon>RegisterWorkshop.aspx</DependentUpon>

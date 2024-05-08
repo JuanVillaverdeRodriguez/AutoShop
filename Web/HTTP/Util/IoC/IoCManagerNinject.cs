@@ -3,6 +3,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CardDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PropertyDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao;
+using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseLineDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.UsuarioDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.WorkshopDao;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.Cart;
@@ -43,6 +45,12 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
 
             kernel.Bind<IPropertyDaoEF>().
                 To<PropertyDaoEF>();
+
+            kernel.Bind<IPurchaseDaoEF>().
+                To<PurchaseDaoEF>();
+
+            kernel.Bind<IPurchaseLineDaoEF>().
+                To<PurchaseLineDaoEF>();
 
             /* UserService */
             kernel.Bind<IUsuarioService>().

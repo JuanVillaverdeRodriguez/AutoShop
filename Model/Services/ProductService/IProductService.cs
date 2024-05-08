@@ -27,6 +27,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         [Transactional]
         List<ProductResult> findProduct(string productName);
 
+        //Devuelve el product result correspondiente al productId
+        //Lanza una excepcion en caso de que no exista
+        [Transactional]
+        ProductResult findProductById(long productId);
+
         //Devuelve una lista con los ProductResults correspondientes a productname y category
         //Devuelve una lista vacía si no
         [Transactional]

@@ -48,7 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 {
                     cultureInfo = new CultureInfo(culture);
 
-                    LogManager.RecordMessage("Specific culture created: " + cultureInfo.Name, MessageType.Info);
+                    //LogManager.RecordMessage("Specific culture created: " + cultureInfo.Name, MessageType.Info);
                 }
                 /*
                  * If any error occurs we will create a default culture
@@ -57,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 catch (ArgumentException)
                 {
                     cultureInfo = CultureInfo.CreateSpecificCulture("en-US");
-                    LogManager.RecordMessage("Default Specific culture created: " + cultureInfo.Name, MessageType.Info);
+                    //LogManager.RecordMessage("Default Specific culture created: " + cultureInfo.Name, MessageType.Info);
                 }
 
                 Thread.CurrentThread.CurrentCulture = cultureInfo;

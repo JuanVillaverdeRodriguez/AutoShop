@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         //Logea al usuario
         //Si los campos fallan (error de contraseña) Lanza un MistakenCredentialsException
         [Transactional]
-        UserProfileDetails SignIn(String alias, String password);
+        SignInResult SignIn(String alias, String password);
 
         //Busca los detalles de usuario dado su userId
         //Devuelve InstanceNotFoundException si no existe el usuario
