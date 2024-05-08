@@ -30,6 +30,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
                 //labelList.Capacity = products.Count;
 
+                foreach(ProductResult productResult in products)
+                {
+
+                }
+
                 ListView1.DataSource = products;
                 ListView1.DataBind();
             }

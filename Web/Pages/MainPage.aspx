@@ -14,30 +14,26 @@
             </asp:Panel>
         </div>
 
+        <div class="container">
+            <div class="row">
+                <asp:ListView ID="ListView1" runat="server">
+                    <ItemTemplate>
+                        <div class="col-sm-3 mb-3">
+                            <div class="card" style="width: 60%;">
+                                <img src='<%#FormatName(Eval("name"))%>' class="card-img-top" height="128" width="128" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title" id="cardTitle"></h5>
+                                    <p><%# Eval("price") + "€"%></p>
+                                    <a href="#" class="btn btn-primary">Ver detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:ListView>
+            </div>
+        </div>
 
-        <asp:ListView ID="ListView1" runat="server">
-            <LayoutTemplate>
-                <table cellpadding="2" width="640px" border="1" runat="server" id="tblProducts">
-                    <tr runat="server">
-                        <th runat="server">Action</th>
-                        <th runat="server">First Name</th>
-                        <th runat="server">Last Name</th>
-                    </tr>
-                    <tr runat="server" id="itemPlaceholder" />
-                </table>
-            </LayoutTemplate>
-
-            <ItemTemplate>
-                <div class="card" style="width: 18rem;">
-                    <img src='<%#FormatName(Eval("name"))%>' class="card-img-top" height="128" width="128" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title" id="cardTitle"></h5>
-                        <p><%# Eval("price") + "€"%></p>
-                        <a href="#" class="btn btn-primary">Ver detalles</a>
-                    </div>
-                </div>
-            </ItemTemplate>
-            </asp:ListView>
+        
         <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click"/>
 
     </form>
