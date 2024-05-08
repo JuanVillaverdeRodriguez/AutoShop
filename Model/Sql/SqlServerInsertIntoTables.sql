@@ -30,7 +30,7 @@ INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Taurus 601 MS
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Tristar Snowpower HP TU239', 43, CONVERT(DATETIME, '5/10/2023 11:32:35', 103), 6, 2);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Atlas Polarbear HP AX300', 45.54, CONVERT(DATETIME, '5/10/2023 11:32:35', 103), 16, 2);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Roadstone Eurovis Alpine 15293C', 43.20, CONVERT(DATETIME, '26/7/2023 17:22:48', 103), 2, 1);
-INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Sailun Atrezzo 4Seasons 3220010455', 40, CONVERT(DATETIME, '26/7/2023 17:22:48', 103), 7, 1);
+INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('Sailun Atrezzo 4Seasons', 40, CONVERT(DATETIME, '26/7/2023 17:22:48', 103), 7, 1);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('MANN-FILTER W 712-52', 8, CONVERT(DATETIME, '30/12/2023 19:34:33', 103), 23, 3);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('MANN-FILTER W 811-80', 6.01, CONVERT(DATETIME, '30/12/2023 19:34:33', 103), 2, 3);
 INSERT INTO Product(name, prize, date, stock, categoryId) VALUES ('MAHLE ORIGINAL OX 188D', 6.68, CONVERT(DATETIME, '30/12/2023 19:34:33', 103), 10, 3);

@@ -30,11 +30,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.DAOs.CategoryDao
             return cat;
         }
 
-        public String findFatherCategoryByCategoryName(string categoryName)
+        public String findFatherCategoryByCategoryName(string categoryname)
         {
             DbSet<Category> category = Context.Set<Category>();
 
-            var result = (from cat in category where cat.fatherId != null select cat);
+            var result = (from cat in category where cat.fatherId != null && cat.categoryName == categoryname select cat);
 
             cat = result.FirstOrDefault();
             if (cat == null)

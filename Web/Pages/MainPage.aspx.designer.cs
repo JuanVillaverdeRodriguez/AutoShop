@@ -42,15 +42,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
 
         /// <summary>
-        /// Control ButtonFiltrar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonFiltrar;
-
-        /// <summary>
         /// Control TextBoxBusqueda.
         /// </summary>
         /// <remarks>
@@ -76,5 +67,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView ListView1;
+
+        /// <summary>
+        /// Control DataPager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataPager DataPager1;
     }
 }

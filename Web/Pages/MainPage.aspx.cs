@@ -14,29 +14,43 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
     public partial class MainPage : System.Web.UI.Page
     {
         string SelectedCategory = "";
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) // Si es la primera entrada...
             {
+
                 IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
 
                 IProductService productService = iocManager.Resolve<IProductService>();
 
                 List<ProductResult> products = productService.findProduct("");
 
-                //labelList.Capacity = products.Count;
-
-                foreach (ProductResult productResult in products)
-                {
-
-                }
-
                 ListView1.DataSource = products;
                 ListView1.DataBind();
+
             }
         }
 
+        private void BindListView()
+        {
+            ListView1.DataBind();
+            Buscar();
+        }
+
+        protected void ListView1_PagePropertiesChanging(object sender, PagePropertiesChangingEventArgs e)
+        {
+            DataPager1.SetPageProperties(e.StartRowIndex, e.MaximumRows, false);
+            BindListView();
+        }
+
         protected void Button_Search(object sender, EventArgs e)
+        {
+            Buscar();
+        }
+
+        private void Buscar()
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
 
@@ -45,6 +59,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             String name = TextBoxBusqueda.Text;
 
             List<ProductResult> products;
+
+            ListItem selectedListItem = ddlCategory.SelectedItem;
+
+            SelectedCategory = selectedListItem.Value;
 
             if (SelectedCategory == "")
             {
@@ -59,41 +77,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             ListView1.DataBind();
         }
 
-
-        protected void Button_Filtrar(object sender, EventArgs e)
-        {
-            // Obtener el ListItem seleccionado del DropDownList
-            ListItem selectedListItem = ddlCategory.SelectedItem;
-
-            // Verificar si se seleccionó algún ListItem
-            if (selectedListItem != null)
-            {
-                // Acceder a las propiedades del ListItem seleccionado
-                SelectedCategory = selectedListItem.Value;
-            }
-
-
-            IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-
-            IProductService productService = iocManager.Resolve<IProductService>();
-
-            String name = TextBoxBusqueda.Text;
-
-            List<ProductResult> products;
-
-            if (SelectedCategory == "")
-            {
-                products = productService.findProduct("");
-            }
-            else
-            {
-                products = productService.findProduct("", SelectedCategory);
-            }
-
-            ListView1.DataSource = products;
-            ListView1.DataBind();
-
-        }
         protected string FormatName(object name)
         {
             if (name != null)
