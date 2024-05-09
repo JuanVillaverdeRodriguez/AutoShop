@@ -28,7 +28,7 @@
                             <a class="nav-link" href="../Pages/Cart.aspx" style="border: 1px solid black; margin-left: 15px" >Mi carrito</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" style="border: 1px solid black; margin-left: 15px">Pedidos</a>
+                            <a class="nav-link" href="../Pages/Purchase.aspx" style="border: 1px solid black; margin-left: 15px">Pedidos</a>
                         </li>
                         <asp:Label ID="Labellogged" runat="server" Text="logged" style="margin-left: 15px; font-size: smaller; margin-top: 12px" Visible="false"></asp:Label>
                     </ul>
