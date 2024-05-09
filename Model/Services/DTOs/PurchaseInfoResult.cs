@@ -8,9 +8,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 {
     public class PurchaseInfoResult
     {
-        private long cardNumber;
-        private string descriptiveName;
-        private DateTime purchaseDate;
+        public long cardNumber { get; private set; }
+        public string descriptiveName { get; private set; }
+        public DateTime purchaseDate { get; private set; }
 
         public PurchaseInfoResult(long cardNumber, string descriptiveName, DateTime purchaseDate)
         {
