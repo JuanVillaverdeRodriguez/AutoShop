@@ -78,9 +78,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             var clickedElement = (Button)sender;
 
             string parsedText = Regex.Replace(clickedElement.ID, @"\D", "");
-            Card cardSelected = new Card();
-            usuarioCardsDictionary.TryGetValue(parsedText, out cardSelected);
-            selectedCard = cardSelected;
 
         }
 

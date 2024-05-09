@@ -41,7 +41,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                 {
                     List<ProductDetailsResult> productDetails = productService.getProductDetails(productId);
 
-
                     foreach (ProductDetailsResult productDetailsResult in productDetails)
                     {
                         HtmlGenericControl newLi = new HtmlGenericControl("li");
@@ -59,7 +58,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             long productId = long.Parse(Request.Params.Get("id"));
             usuarioSession.UserCart.AddProduct(productId);
-            
         }
     }
 }
