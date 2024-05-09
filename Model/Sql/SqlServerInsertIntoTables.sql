@@ -5,11 +5,11 @@ USE [practicamad]
 INSERT INTO Workshop(workshop_name, postal_code) VALUES ('USC', 27001);
 INSERT INTO Workshop(workshop_name, postal_code) VALUES ('UDC', 15005);
 
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Raul', 'User1', 'lastName1', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'en', 'ES', 1);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('David', 'User2', 'lastName2', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'test@test.com', 'es',  'UK', 1);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Ana', 'User3', 'lastName3', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'en',  'ES', 1);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Alberto', 'User4', 'lastName4', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'fr', 'US', 2);
-INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Guillermo', 'User5', 'lastName5', 'n4bQgYhMfWWaL+qgxVrQFaO/TxsrC4Is0V1sFbDwCgg=', 'admin@admin.com', 'en',  'UG', 2);
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Raul', 'User1', 'lastName1', '1234', 'juan@admin.com', 'en', 'ES', 1);
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('David', 'User2', 'lastName2', '1234', 'pablo@test.com', 'es',  'UK', 1);
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Ana', 'User3', 'lastName3', '1234', 'pedro@esteno.com', 'en',  'ES', 1);
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Alberto', 'User4', 'lastName4', '1234', 'siadmin@admin.com', 'fr', 'US', 2);
+INSERT INTO Usuario(alias, user_name, user_surname, password, email, language, country, workshopId) VALUES ('Guillermo', 'User5', 'lastName5', '1234', 'noadmin@admin.com', 'en',  'UG', 2);
 
 INSERT INTO Category(categoryName) VALUES ('Neumaticos');
 INSERT INTO Category(categoryName, fatherId) VALUES ('Neumaticos de invierno', 1);
