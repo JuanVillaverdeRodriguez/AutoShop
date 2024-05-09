@@ -11,6 +11,7 @@
 
             
         </head>
+    
         <body>
             <form id ="form1" runat="server">
                 <div class="container">
@@ -98,6 +99,7 @@
                                 <asp:CheckBox ID="CheckBoxIsUrgent" runat="server" />
                                 <br />
                                 <asp:Button ID="Button1" runat="server" Text="Comprar" OnClick="ButtonBuy_Click" />
+                                <asp:Label ID="LabelPurchaseOkId" runat="server" Text="Compra realizada exitosamente!"></asp:Label>
                         </div>
                     </div>
 

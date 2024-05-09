@@ -47,10 +47,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                     // Hacer otro DTO para los productos en el carrito??
 
                     ProductResult productResult = productService.findProductById(productId);
-                    totalPrice += productResult.price;
+                    totalPrice += productResult.price * count;
                     productResults.Add(productResult);
-
                 }
+
 
                 paragraphTotalPrice.InnerText = "Precio total: " + totalPrice.ToString();
                 if (totalPrice == 0)

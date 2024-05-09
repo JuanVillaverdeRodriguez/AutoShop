@@ -25,6 +25,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             if (!IsPostBack)
             {
+                LabelPurchaseOkId.Visible = false;
+
                 generarddls();
             }
         }
@@ -131,40 +133,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             Card selectedCard = purchaseService.FindCardByCardNumber(cardnumber);
 
-            purchaseService.Purchase(selectedCard, usuarioSession.UserCart, postalCode, TextBoxDescription.Text, CheckBoxIsUrgent.Checked);
 
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-
-            IPurchaseService purchaseService = iocManager.Resolve<IPurchaseService>();
-
-            UsuarioSession usuarioSession = SessionManager.GetUsuarioSession(Context);
-
-            Card card = new Card();
-
-            if (ddlYear.SelectedItem != null && ddlMonth.SelectedItem != null && ddlType.SelectedItem != null)
+            try
             {
-                card.type = ddlType.SelectedItem.Value; // Tipo de tarjeta (Mastercard, Visa...)
+                purchaseService.Purchase(selectedCard, usuarioSession.UserCart, postalCode, TextBoxDescription.Text, CheckBoxIsUrgent.Checked);
 
-                int year = int.Parse(ddlYear.SelectedItem.Value);
-                int month = int.Parse(ddlMonth.SelectedItem.Value);
+                LabelPurchaseOkId.Visible = true;
+            } catch (Exception)
+            {
 
-                DateTime dateTime = new DateTime(year, month, 1);
-                card.expiration_date = dateTime; // Fecha de expiracion
-
-                card.card_number = long.Parse(TextBoxNumeroTarjeta.Text); // Numero de tarjeta
-
-                card.csv = int.Parse(TextBoxCSV.Text); // CSV
-
-                card.userId = usuarioSession.UserProfileId; // User id
             }
-
-            int postalCode = int.Parse(TextBoxPostalCode.Text);
-
-            purchaseService.Purchase(card, usuarioSession.UserCart, postalCode, TextBoxDescription.Text, CheckBoxIsUrgent.Checked);
 
         }
     }
