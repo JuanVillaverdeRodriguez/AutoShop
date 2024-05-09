@@ -212,6 +212,7 @@
     <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\CreateUser.aspx" />
     <Content Include="Pages\Errores\Error404.aspx" />
+    <Content Include="Pages\GetPurchases.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\ProductDetails.aspx" />
     <Content Include="Pages\Purchase.aspx" />
@@ -273,6 +274,13 @@
     </Compile>
     <Compile Include="Pages\Errores\Error404.aspx.designer.cs">
       <DependentUpon>Error404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GetPurchases.aspx.cs">
+      <DependentUpon>GetPurchases.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\GetPurchases.aspx.designer.cs">
+      <DependentUpon>GetPurchases.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>

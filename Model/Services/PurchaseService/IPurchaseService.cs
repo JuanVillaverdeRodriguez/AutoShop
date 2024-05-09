@@ -32,6 +32,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
         List<PurchaseLine> GetPurchasesLines(long purchaseId);
 
+        Card FindCardByCardNumber(long cardnumber);
+
 
 
     }
