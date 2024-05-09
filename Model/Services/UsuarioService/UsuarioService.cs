@@ -235,9 +235,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 throw new ModelUtil.Exceptions.InstanceNotFoundException(card, "La tarjeta no existe");
             }
         }
-        public List<Card> GetAllCards()
+        public List<Card> findUsuarioCards(long usuarioId)
         {
-            return CardDao.GetAllElements();
+            return CardDao.findCardsByUsuarioId(usuarioId);
         }
     }
 

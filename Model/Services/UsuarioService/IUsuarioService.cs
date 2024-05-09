@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         
         //Devuelve una lista con todas las tarjetas
         [Transactional]
-        List<Card> GetAllCards();
+        List<Card> findUsuarioCards(long usuarioId);
 
         /*No implementadas, lanzan NotImplementedException*/
         [Transactional]

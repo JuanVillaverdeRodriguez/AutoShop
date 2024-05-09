@@ -33,12 +33,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         protected global::System.Web.UI.WebControls.ListView ListView1;
 
         /// <summary>
-        /// Control CartProductList.
+        /// Control paragraphTotalPrice.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CartProductList;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl paragraphTotalPrice;
+
+        /// <summary>
+        /// Control ButtonTramitarId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonTramitarId;
     }
 }

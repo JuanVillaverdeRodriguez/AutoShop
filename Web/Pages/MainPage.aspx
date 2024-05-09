@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" EnableViewState="true">
 
-    <form id ="form1" runat="server">
+    <form id ="form1" runat="server" style="margin-bottom: 24px">
         <br />
         <div>
             <asp:Panel ID="YourPanel" runat="server">
@@ -57,6 +57,5 @@
                     <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="False" />
                 </Fields>
             </asp:DataPager>
-
     </form>
 </asp:Content>

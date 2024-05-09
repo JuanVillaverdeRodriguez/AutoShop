@@ -17,11 +17,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         {
             if (!IsPostBack)
             {
+                if (!SessionManager.IsUserAuthenticated(Context))
+                {
+                    Response.Redirect(Response.ApplyAppPathModifier("~/Pages/SignIn.aspx"));
+                }
+
                 IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
 
                 IProductService productService = iocManager.Resolve<IProductService>();
 
+                
+
                 UsuarioSession usuarioSession = SessionManager.GetUsuarioSession(Context);
+
+                
 
                 List<(long productId, int count)> cartProducts = usuarioSession.UserCart.GetProductsTupleList();
 
@@ -31,19 +40,36 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                 //List<ProductResult> productResults = productService.findProduct("");
 
 
+                double totalPrice = 0;
                 foreach ((long productId, int count) in cartProducts)
                 {
                     // Esto esta muy mal hecho, demasiadas llamadas a la BBDD
                     // Hacer otro DTO para los productos en el carrito??
-                    productResults.Add(productService.findProductById(productId));
+
+                    ProductResult productResult = productService.findProductById(productId);
+                    totalPrice += productResult.price;
+                    productResults.Add(productResult);
+
+                }
+
+                paragraphTotalPrice.InnerText = "Precio total: " + totalPrice.ToString();
+                if (totalPrice == 0)
+                {
+                    ButtonTramitarId.Enabled = false;
+                }
+                else
+                {
+                    ButtonTramitarId.Enabled = true;
                 }
 
                 ListView1.DataSource = productResults;
                 ListView1.DataBind();
-
-
             }
+        }
 
+        protected void TramitarPedido(object sender, EventArgs e)
+        {
+            Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Purchase.aspx"));
         }
         protected string FormatName(object name)
         {

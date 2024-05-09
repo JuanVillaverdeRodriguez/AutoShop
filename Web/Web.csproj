@@ -193,6 +193,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\CreateUser.css" />
+    <Content Include="CSS\Purchase.css" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\Atlas Polarbear HP AX300.jpg" />
     <Content Include="Imagenes\MAHLE ORIGINAL OX 188D.jpg" />
