@@ -11,6 +11,7 @@ using Es.Udc.DotNet.ModelUtil.Transactions;
 using System.Management.Instrumentation;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
@@ -235,9 +236,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
                 throw new ModelUtil.Exceptions.InstanceNotFoundException(card, "La tarjeta no existe");
             }
         }
-        public List<Card> findUsuarioCards(long usuarioId)
+        public List<CardInfoResult> findUsuarioCards(long usuarioId)
         {
-            return CardDao.findCardsByUsuarioId(usuarioId);
+            List<Card> cardList = CardDao.findCardsByUsuarioId(usuarioId);
+
+            List<CardInfoResult> cardInfoResults = new List<CardInfoResult>();
+
+            foreach (Card card in cardList)
+            {
+                CardInfoResult cardInfoResult = new CardInfoResult(card.card_number, card.type, card.csv, card.expiration_date, card.defaultCard);
+                cardInfoResults.Add(cardInfoResult);
+            }
+
+            return cardInfoResults;
         }
     }
 

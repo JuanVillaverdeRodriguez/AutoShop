@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
 {
@@ -63,7 +64,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         
         //Devuelve una lista con todas las tarjetas
         [Transactional]
-        List<Card> findUsuarioCards(long usuarioId);
+        List<CardInfoResult> findUsuarioCards(long usuarioId);
 
         /*No implementadas, lanzan NotImplementedException*/
         [Transactional]

@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <html xmlns="http://www.w3.org/1999/xhtml">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" EnableViewState="true">
+    <html>
         <head>
             <title> PURCHASE PAGE </title>
             <link href="../CSS/Purchase.css" rel="stylesheet" />
@@ -16,18 +16,28 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <div id="divUserCardsId" runat="server">
-
-                            </div>
-
-                            <asp:Button ID="ButtonAddCardId" runat="server" Text="Añadir nueva tarjeta"  OnClick="ButtonCreateNewCard"/>
-
-                            <div id="divCreateNewCardId" runat="server">
+                            <div>
                                 <asp:Label ID="Label1" runat="server" Text="Introduce codigo postal"></asp:Label>
                                 <br />
 
                                 <asp:TextBox ID="TextBoxPostalCode" runat="server"></asp:TextBox>
                                 <br />
+
+
+                            </div>
+                            <asp:ListView ID="ListView1" runat="server">
+                                <ItemTemplate>
+                                    <div>
+                                        <asp:Label runat="server"> ID="labelCardNumber"Text="Card Number: <%#Eval("cardNumber").ToString()%>"</asp:Label>
+                                        <asp:Button ID="Button1" runat="server" Text="Select card" OnClick="divUserCard_Click"/>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:ListView>
+                            
+
+                            <asp:Button ID="ButtonAddCardId" runat="server" Text="Añadir nueva tarjeta"  OnClick="ButtonCreateNewCard"/>
+                            
+                            <div id="divCreateNewCardId" runat="server">
 
                                 <asp:Label ID="LabelIntroduceNuevaTarjeta" runat="server" Text="Introduce la nueva tarjeta"></asp:Label>
                                 <br />
@@ -43,9 +53,9 @@
 
                                 <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control">
                                     <asp:ListItem Text="" Value="" />
-                                    <asp:ListItem Text="Mastercard" Value="Neumaticos" />
-                                    <asp:ListItem Text="Visa" Value="Neumaticos de invierno" />
-                                    <asp:ListItem Text="American Express" Value="Filtros de aceite" />
+                                    <asp:ListItem Text="Mastercard" Value="Mastercard" />
+                                    <asp:ListItem Text="Visa" Value="Visa" />
+                                    <asp:ListItem Text="American Express" Value="American Express" />
                                 </asp:DropDownList>
 
                                 <asp:Label ID="LabelDATE" runat="server" Text="Introduce la fecha de expiracion"></asp:Label>
@@ -75,16 +85,7 @@
                                 <asp:CheckBox ID="CheckBoxDefaultCard" runat="server" />
                                 <br />
 
-                                <asp:Label ID="Label2" runat="server" Text="¿Pedido urgente?"></asp:Label>
-                                <br />
-
-                                <asp:CheckBox ID="CheckBoxIsUrgent" runat="server" />
-                                <br />
-
-                                <asp:Label ID="Label4" runat="server" Text="Descripcion de la compra"></asp:Label>
-                                <br />
-
-                                <asp:TextBox ID="TextBoxDescription" runat="server"></asp:TextBox>
+                                
 
                                 <asp:Label ID="LabelTarjetaCreada" runat="server" Text="Compra realizada correctamente" Visible="false"></asp:Label>
                                 <br />
@@ -93,10 +94,20 @@
                                 <br />
 
                             </div>
+                            <div>
+                                <asp:Label ID="Label4" runat="server" Text="Descripcion de la compra"></asp:Label>
+                                <br />
+
+                                <asp:TextBox ID="TextBoxDescription" runat="server"></asp:TextBox>
+                            </div>
                         </div>
                         <div class="col">
                             <h1> COMPRAR </h1>
-                                <asp:Button ID="Button1" runat="server" Text="Comprar" OnClick="Button1_Click" />
+                                <asp:Label ID="Label2" runat="server" Text="¿Pedido urgente?"></asp:Label>
+                                <br />
+                                <asp:CheckBox ID="CheckBoxIsUrgent" runat="server" />
+                                <br />
+                                <asp:Button ID="Button1" runat="server" Text="Comprar" OnClick="ButtonBuy_Click" />
                         </div>
                     </div>
 

@@ -57,13 +57,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             long usuarioId = usuarioService.RegisterUsuario(alias, password,
                 userProfileDetails);
 
-            UsuarioSession userSession = new UsuarioSession();
-            userSession.UserProfileId = usuarioId;
+            UsuarioSession usuarioSession = new UsuarioSession();
+            usuarioSession.UserProfileId = usuarioId;
+            usuarioSession.UserCart = new Cart();
+            usuarioSession.Alias = alias;
+
 
             Locale locale = new Locale(userProfileDetails.language,
                 userProfileDetails.country);
 
-            UpdateSessionForAuthenticatedUser(context, userSession, locale);
+            UpdateSessionForAuthenticatedUser(context, usuarioSession, locale);
 
             FormsAuthentication.SetAuthCookie(alias, false);
         }
