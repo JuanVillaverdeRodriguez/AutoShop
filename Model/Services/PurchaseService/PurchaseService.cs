@@ -119,5 +119,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
         {
             return PurchaseLineDao.GetPurchasesLines(purchaseId);
         }
+
+        public Card FindCardByCardNumber(long cardnumber)
+        {
+            try
+            {
+                Card card = CardDao.Find(cardnumber);
+
+                return card;
+            }
+            catch (Exception)
+            {
+                throw new ModelUtil.Exceptions.InstanceNotFoundException(cardnumber, "No existe una card asociada {cardnumber}");
+            }
+        }
     }
 }

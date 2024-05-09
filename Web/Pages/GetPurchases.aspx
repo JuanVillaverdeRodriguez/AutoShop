@@ -3,6 +3,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id ="form1" runat="server" style="margin-top: 24px">
+        <style>
+            .card {
+            border: 2px solid #ccc; /* Ajusta el grosor y el color del borde según tus preferencias */
+            border-radius: 5px; /* Añade esquinas redondeadas si lo deseas */
+            }
+        </style>
         <div class="container">
                 <asp:ListView ID="ListView1" runat="server">
                     <ItemTemplate>

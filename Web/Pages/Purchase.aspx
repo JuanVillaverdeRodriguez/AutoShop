@@ -25,14 +25,8 @@
 
 
                             </div>
-                            <asp:ListView ID="ListView1" runat="server">
-                                <ItemTemplate>
-                                    <div>
-                                        <asp:Label runat="server"> ID="labelCardNumber"Text="Card Number: <%#Eval("cardNumber").ToString()%>"</asp:Label>
-                                        <asp:Button ID="Button1" runat="server" Text="Select card" OnClick="divUserCard_Click"/>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:ListView>
+                            <asp:DropDownList ID="ddlCard" runat="server" CssClass="form-control">
+                            </asp:DropDownList>
                             
 
                             <asp:Button ID="ButtonAddCardId" runat="server" Text="Añadir nueva tarjeta"  OnClick="ButtonCreateNewCard"/>
@@ -79,13 +73,9 @@
                                 <asp:DropDownList ID="ddlYear" runat="server" CssClass="form-control" AutoPostBack="true">
                                 </asp:DropDownList>
 
-                                <asp:Label ID="Label3" runat="server" Text="¿Usar como tarjeta por defecto?"></asp:Label>
-                                <br />
 
-                                <asp:CheckBox ID="CheckBoxDefaultCard" runat="server" />
-                                <br />
+                                <asp:Button ID="aceptar" runat="server" Text="aceptar tarjeta" visible="false" OnClick="ButtonAcceptNewCard"/>
 
-                                
 
                                 <asp:Label ID="LabelTarjetaCreada" runat="server" Text="Compra realizada correctamente" Visible="false"></asp:Label>
                                 <br />

@@ -42,13 +42,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         protected global::System.Web.UI.WebControls.TextBox TextBoxPostalCode;
 
         /// <summary>
-        /// Control ListView1.
+        /// Control ddlCard.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCard;
 
         /// <summary>
         /// Control ButtonAddCardId.
@@ -141,22 +141,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         protected global::System.Web.UI.WebControls.DropDownList ddlYear;
 
         /// <summary>
-        /// Control Label3.
+        /// Control aceptar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
-        /// Control CheckBoxDefaultCard.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxDefaultCard;
+        protected global::System.Web.UI.WebControls.Button aceptar;
 
         /// <summary>
         /// Control LabelTarjetaCreada.
