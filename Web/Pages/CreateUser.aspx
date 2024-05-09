@@ -13,55 +13,57 @@
 
     <body>
         <form id="form1" runat="server">
-            <asp:Label ID="Label1" runat="server" Text="Introduce el nombre de usuario"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Introduce el nombre de usuario" Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:TextBox ID="TxtBoxUserName" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TxtBoxUserName" runat="server" Style="margin-left: 20px"></asp:TextBox>
             <br />
 
-            <asp:Label ID="Label4" runat="server" Text="Introduce la contraseña"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text="Introduce la contraseña" Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:TextBox ID="TxtBoxPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TxtBoxPassword" runat="server" Style="margin-left: 20px"></asp:TextBox>
             <br />
 
-            <asp:Label ID="LabelNombre" runat="server" Text="Nombre: "></asp:Label>
+            <asp:Label ID="LabelNombre" runat="server" Text="Nombre: " Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:TextBox ID="TxtBoxNombre" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TxtBoxNombre" runat="server" Style="margin-left: 20px"></asp:TextBox>
             <br />
 
-            <asp:Label ID="LabelApellidos" runat="server" Text="Apellidos: "></asp:Label>
+            <asp:Label ID="LabelApellidos" runat="server" Text="Apellidos: " Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:TextBox ID="TextBoxApellidos" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBoxApellidos" runat="server" Style="margin-left: 20px"></asp:TextBox>
             <br />
 
-            <asp:Label ID="LabelEmail" runat="server" Text="Email: "></asp:Label>
+            <asp:Label ID="LabelEmail" runat="server" Text="Email: " Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:TextBox ID="TextBoxEmail" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBoxEmail" runat="server" Style="margin-left: 20px"></asp:TextBox>
             <br />
 
-            <asp:Label ID="LabelLanguage" runat="server" Text="Idioma: "></asp:Label>
+            <asp:Label ID="LabelLanguage" runat="server" Text="Idioma: " Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:TextBox ID="TextBoxLanguage" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBoxLanguage" runat="server" Style="margin-left: 20px"></asp:TextBox>
             <br />
 
-            <asp:Label ID="LabelWorkshopId" runat="server" Text="WorkshopId: "></asp:Label>
+            <asp:Label ID="LabelWorkshopId" runat="server" Text="WorkshopId: " Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:TextBox ID="TextBoxWorkshopId" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBoxWorkshopId" runat="server" Style="margin-left: 20px"></asp:TextBox>
+
+            <a href="RegisterWorkshop.aspx">Registra tu taller aquí</a>
             <br />
 
-            <asp:Label ID="LabelUserCreated" runat="server" Text="Usuario creado" Visible="false"></asp:Label>
+            <asp:Label ID="LabelUserCreated" runat="server" Text="Usuario creado" Visible="false" Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:Label ID="LabelUserAlreadyCreated" runat="server" Text="Usuario ya existe, no se pudo crear" Visible="false"></asp:Label>
+            <asp:Label ID="LabelUserAlreadyCreated" runat="server" Text="Usuario ya existe, no se pudo crear" Visible="false" Style="margin-left: 20px"></asp:Label>
             <br />
 
-            <asp:Button ID="Button1" runat="server" Text="Dale pa lante" OnClick="Button1_Click" />
+            <asp:Button ID="Button1" runat="server" Text="Registrar" Style="margin-left: 20px" OnClick="Button1_Click" />
 
         </form>
 
