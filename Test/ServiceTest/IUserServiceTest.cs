@@ -104,7 +104,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 var userId = UsuarioService.RegisterUsuario(alias, password, new UserProfileDetails(name, surname, email, language, country, workshopId));
 
 
-                var expected = new SignInResult(4, name, surname, email, language, country, workshopId);
+                var expected = new SignInResult(userId, name, surname, email, language, country, workshopId);
 
                 var actual = UsuarioService.SignIn(alias, password);
 

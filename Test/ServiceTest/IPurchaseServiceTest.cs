@@ -101,7 +101,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test.ServiceTest
                 Assert.AreEqual(36121, pedido.targetPostalCode);
                 Assert.AreEqual("Estoy comprando unicamente para probar", pedido.descriptiveName);
 
-                List<PurchaseLine> purchaseLinesList = PurchaseLineDao.GetPurchasesLines(1);
+                List<PurchaseLine> purchaseLinesList = PurchaseLineDao.GetPurchasesLines(pedido.purchaseId);
 
                 foreach (PurchaseLine purchaseLine in purchaseLinesList)
                 {

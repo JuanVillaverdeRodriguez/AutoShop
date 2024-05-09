@@ -26,9 +26,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.UsuarioService
         public override bool Equals(object obj)
         {
 
-            UserProfileDetails target = (UserProfileDetails)obj;
+            SignInResult target = (SignInResult)obj;
 
-            return (this.user_name == target.user_name)
+            return (this.user_id == target.user_id)
+                  && (this.user_name == target.user_name)
                   && (this.user_surname == target.user_surname)
                   && (this.email == target.email)
                   && (this.language == target.language)
