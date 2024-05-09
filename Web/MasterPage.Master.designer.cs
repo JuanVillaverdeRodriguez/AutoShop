@@ -24,13 +24,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
-        /// Control createUserHL.
+        /// Control Labellogged.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink createUserHL;
+        protected global::System.Web.UI.WebControls.Label Labellogged;
 
         /// <summary>
         /// Control ContentPlaceHolder1.

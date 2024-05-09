@@ -16,25 +16,22 @@
     <body>
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar w/ text</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a class="navbar-brand" href="../Pages/MainPage.aspx" style="margin-left: 15px">
+                    <img src="../Imagenes/homeicon.jpg" alt="Nombre de tu marca" style="max-width: 50px; height: auto;">
+                </a>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="../Pages/MainPage.aspx">Home <span class="sr-only">(current)</span></a>
-                            <p><asp:HyperLink ID="createUserHL" runat="server" NavigateUrl="~/Pages/User/CreateUser.aspx" meta:resourcekey="createUserHL" /></p>
+                        <li class="nav-item">
+                            <a class="nav-link" id="Sesion" href="../Pages/SignIn.aspx" style="border: 1px solid black; margin-left: 15px">Iniciar sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../Pages/SignIn.aspx">Iniciar sesión</a>
+                            <a class="nav-link" href="../Pages/Cart.aspx" style="border: 1px solid black; margin-left: 15px" >Mi carrito</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../Pages/Cart.aspx">Pricing</a>
+                            <a class="nav-link" href="#" style="border: 1px solid black; margin-left: 15px">Pedidos</a>
                         </li>
+                        <asp:Label ID="Labellogged" runat="server" Text="logged" style="margin-left: 15px; font-size: smaller; margin-top: 12px" Visible="false"></asp:Label>
                     </ul>
-                    <span class="navbar-text">Navbar text with an inline element
-                    </span>
                 </div>
             </nav>
         </div>
