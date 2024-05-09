@@ -15,15 +15,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
         {
             if (SessionManager.IsUserAuthenticated(Context))
             {
-                // Obtener una referencia al control de enlace usando su ID
-                HtmlGenericControl sesionLink = (HtmlGenericControl)FindControl("Sesion");
-
-                // Verificar si se encontró el elemento
-                if (sesionLink != null)
-                {
-                    // Hacer que el enlace no sea visible
-                    sesionLink.Style["display"] = "none";
-                }
+                Labellogged.Visible = true;
+                Labellogged.Text = SessionManager.GetUsuarioSession(Context).Alias;
             }
         }
     }

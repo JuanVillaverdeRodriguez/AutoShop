@@ -103,6 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             UsuarioSession usuarioSession = new UsuarioSession();
             usuarioSession.UserProfileId = loginResult.user_id;
             usuarioSession.UserCart = new Cart();
+            usuarioSession.Alias = alias;
 
             Locale locale =
                 new Locale(loginResult.language, loginResult.country);
