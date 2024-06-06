@@ -131,6 +131,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
             Card selectedCard = purchaseService.FindCardByCardNumber(cardnumber);
 
+            string message = "";
+            string isError = "";
 
             try
             {
@@ -140,14 +142,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
                 usuarioSession.UserCart.EmptyCart();
 
-                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+                message = "Se ha realizado la compra con exito.";
 
-
-
-            } catch (OutOfStockException)
+            }
+            catch (OutOfStockException)
             {
                 LabelPurchaseFailedOutOfStockId.Visible = true;
+                message = "No se pudo realizar la compra. Uno de los productos se ha agotado.";
+                isError = "error";
+
             }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "showNotification", $"showNotification('{message}', '{isError}');", true);
 
         }
     }

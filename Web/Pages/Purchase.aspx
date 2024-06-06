@@ -8,8 +8,119 @@
         <head>
             <title> PURCHASE PAGE </title>
             <link href="../CSS/Purchase.css" rel="stylesheet" />
+            <style>
+                .notification {
+                    position: relative;
+                    background-color: #28a745;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.5s ease-in-out;
+                    margin-top: 10px;
+                }
 
+                .notificationError {
+                    position: relative;
+                    background-color: #a7284a;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.5s ease-in-out;
+                    margin-top: 10px;
+                }
+
+                .notification.show {
+                    opacity: 1;
+                }
+
+                .notification.hide {
+                    opacity: 0;
+                    transition: opacity 0.5s ease-in-out;
+                }
+
+                .notification-container {
+                    position: fixed;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: center;
+                    z-index: 1000;
+                    pointer-events: none; /* Para evitar que la notificación bloquee otras acciones*/
+                }
+
+                .notificationError.show {
+                    opacity: 1;
+                }
+
+                .notificationError.hide {
+                    opacity: 0;
+                    transition: opacity 0.5s ease-in-out;
+                }
+
+                .notificationError-container {
+                    position: fixed;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: center;
+                    z-index: 1000;
+                    pointer-events: none; /* Para evitar que la notificación bloquee otras acciones*/
+                }
+            </style>
+            <script>
+                let notificationCount = 0;
+                const maxNotifications = 3;
+
+                function ensureNotificationContainer() {
+                    let notificationContainer = document.querySelector('.notification-container');
+                    if (!notificationContainer) {
+                        notificationContainer = document.createElement('div');
+                        notificationContainer.className = 'notification-container';
+                        document.body.appendChild(notificationContainer);
+                    }
+                    return notificationContainer;
+                }
+
+                function showNotification(message, isError) {
+                    const notificationContainer = ensureNotificationContainer();
+
+                    if (notificationCount >= maxNotifications) {
+                        notificationContainer.removeChild(notificationContainer.lastChild);
+                        notificationCount--;
+                    }
+
+                    const notification = document.createElement('div');
+                    if (isError == "error") {
+                        notification.className = 'notificationError';
+                    }
+                    else {
+                        notification.className = 'notification';
+                    }
+                    notification.innerText = message;
             
+
+                    notificationContainer.insertBefore(notification, notificationContainer.firstChild);
+                    setTimeout(() => notification.classList.add('show'), 100); // Allow DOM to render
+
+                    setTimeout(() => {
+                        notification.classList.add('hide');
+                        setTimeout(() => {
+                            notificationContainer.removeChild(notification);
+                            notificationCount--;
+                        }, 500); // Match the CSS transition duration
+                    }, 3000); // Display time
+
+                    notificationCount++;
+                }
+            </script>
         </head>
     
         <body>
