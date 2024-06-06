@@ -209,9 +209,11 @@
     <Compile Include="PurchaseLine.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\DTOs\CartProduct.cs" />
     <Compile Include="Services\DTOs\SignInResult.cs" />
     <Compile Include="Services\Exceptions\EmptyCartException.cs" />
     <Compile Include="Services\Exceptions\NoDefaultCardException.cs" />
+    <Compile Include="Services\Exceptions\OutOfStockException.cs" />
     <Compile Include="Services\PurchaseService\Cart.cs" />
     <Compile Include="Services\Exceptions\MistakenCredentialsException.cs" />
     <Compile Include="Services\Exceptions\MistakenPasswordException.cs" />

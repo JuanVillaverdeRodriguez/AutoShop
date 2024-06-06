@@ -22,6 +22,8 @@
                         </div>
                         <div class="col-sm">
                             <asp:Label ID="ProductName" Text="" runat="server" Style="font-size: larger"> </asp:Label>
+                            <asp:Label ID="ProductPrice" Text="" runat="server" Style="font-size: larger"> </asp:Label>
+                            <asp:Label ID="ProductStock" Text="" runat="server" Style="font-size: larger"> </asp:Label>
                             <br />
                             <ul id="DetailsList"  runat="server" style="margin-top: 30px">
                             </ul>

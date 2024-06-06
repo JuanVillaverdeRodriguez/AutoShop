@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.Services.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Cart
 {
-    public class Cart
+    /*public class Cart
     {
         private List<long> productIdList;
         public Cart() {
@@ -46,5 +47,67 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.Cart
 
             return groupedProducts;
         }
+    }*/
+
+    public class Cart
+    {
+        private List<CartProduct> cartProducts;
+        public Cart()
+        {
+            cartProducts = new List<CartProduct>();
+        }
+        public void AddProduct(CartProduct cartProduct)
+        {
+            int index = cartProducts.IndexOf(cartProduct);
+
+            // Si el producto no existe aun en el carrito, añadelo
+            if (index == -1)
+            {
+                cartProducts.Add(cartProduct);
+            }
+            else // Si el producto ya existe, añade uno más
+            {
+                cartProducts[index].Quantity += 1;
+            }
+        }
+
+        // Elimina un producto del carrito (Todas las unidades)
+        public void RemoveProduct(CartProduct cartProduct)
+        {
+            cartProducts.RemoveAll(p => p.Equals(cartProduct));
+        }
+
+        // Elimina una unidad del producto del carrito
+        // Si es la ultima, se elimina por completo
+        public void SubstractProduct(CartProduct cartProduct)
+        {
+            int index = cartProducts.IndexOf(cartProduct);
+
+            cartProducts[index].Quantity -= 1;
+
+            if (cartProducts[index].Quantity <= 0)
+            {
+                cartProducts.RemoveAll(p => p.Equals(cartProduct));
+            }
+        }
+        public int GetQuantity(CartProduct cartProduct)
+        {
+            CartProduct cartProductSearched = cartProducts.Find(p => p.Equals(cartProduct));
+
+            if (cartProductSearched != null)
+                return cartProductSearched.Quantity;
+            else
+                return 0;
+        }
+        public List<CartProduct> GetCartProducts()
+        {
+            return cartProducts;
+        }
+
+        public void EmptyCart()
+        {
+            cartProducts = new List<CartProduct>();
+        }
+
     }
 }

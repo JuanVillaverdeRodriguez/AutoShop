@@ -100,6 +100,8 @@
                                 <br />
                                 <asp:Button ID="Button1" runat="server" Text="Comprar" OnClick="ButtonBuy_Click" />
                                 <asp:Label ID="LabelPurchaseOkId" runat="server" Text="Compra realizada exitosamente!"></asp:Label>
+                                <asp:Label ID="LabelPurchaseFailedOutOfStockId" runat="server" Text="No existen suficientes existencias del siguiente producto: "></asp:Label>
+
                         </div>
                     </div>
 

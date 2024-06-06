@@ -2,6 +2,7 @@
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.ProductDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseDao;
 using Es.Udc.DotNet.PracticaMaD.Model.DAOs.PurchaseLineDao;
+using Es.Udc.DotNet.PracticaMaD.Model.Services.DTOs;
 using Es.Udc.DotNet.PracticaMaD.Model.Services.Exceptions;
 using Ninject;
 using System;
@@ -56,8 +57,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
             {
                 throw new NoCardsException("No existe esta tarjeta.");
             }
-            List<(long product, int count)> productList = cart.GetProductsTupleList();
-            if (!productList.Any())
+
+            List<CartProduct> cartProductList = cart.GetCartProducts();
+
+
+            if (!cartProductList.Any())
             {
                 throw new EmptyCartException();
             }
@@ -73,27 +77,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
             //PurchaseDao.Create(newPurchase);
             //Esto no furrula
-            //Solucion tota para coger ID: Buscar el id mas alto guardado en la bd justo despues del Create
+            //Solucion tonta para coger ID: Buscar el id mas alto guardado en la bd justo despues del Create
             long purchaseId = PurchaseDao.CreateAndReturn(newPurchase);
             newPurchase.purchaseId = purchaseId;
 
-            foreach ((long productId, int count) in productList)
+            foreach (CartProduct cartProduct in cartProductList)
             {
-                Product product = ProductDao.Find(productId);
-
                 PurchaseLine newPurchaseLine = new PurchaseLine();
 
-                newPurchaseLine.prize = product.prize;
-                newPurchaseLine.quantity = count;
                 newPurchaseLine.purchaseId = purchaseId;
-                newPurchaseLine.productId = product.productId;
+                newPurchaseLine.productId = cartProduct.ProductId;
+                newPurchaseLine.prize = cartProduct.Price;
+                newPurchaseLine.quantity = cartProduct.Quantity;
 
                 PurchaseLineDao.Create(newPurchaseLine);
 
-                product.stock -= count;
+                Product product = ProductDao.Find(cartProduct.ProductId);
+                product.stock -= cartProduct.Quantity;
 
-                
-
+                if (product.stock < 0)
+                {
+                    product.stock = 0;
+                    throw new OutOfStockException(product.name);
+                }
                 ProductDao.Update(product);
             }
             return newPurchase;

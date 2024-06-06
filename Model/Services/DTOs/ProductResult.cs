@@ -14,10 +14,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
         public DateTime addedDate { get; private set; }
         public String cartUrl { get; private set; }
         public String detailsUrl { get; private set; }
-
-
-
-        public ProductResult(String name, String category, double price, DateTime addedDate, String cartUrl, String detailsUrl)
+        public int stock { get; private set; }
+        public ProductResult(String name, String category, double price, DateTime addedDate, String cartUrl, String detailsUrl, int stock)
         {
             this.name = name;
             this.category = category;
@@ -25,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
             this.addedDate = addedDate;
             this.cartUrl = cartUrl;
             this.detailsUrl = detailsUrl;
-
+            this.stock = stock;
         }
     }
 }

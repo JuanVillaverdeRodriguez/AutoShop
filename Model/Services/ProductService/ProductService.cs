@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
 
                 string detailsUrl = "" + product.productId;
 
-                ProductResult productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
+                ProductResult productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl, product.stock);
 
                 productResultList.Add(productResult);
                 
@@ -60,7 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
                 Category category = CategoryDao.findCategoryById(product.categoryId);
 
 
-                productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
+                productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl, product.stock);
 
             }
             catch (Exception)
@@ -87,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.ProductService
                 {
                     string detailsUrl = "" + product.productId;
 
-                    ProductResult productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl);
+                    ProductResult productResult = new ProductResult(product.name, category.categoryName, product.prize, product.date, "urlCart", detailsUrl, product.stock);
 
                     productResultList.Add(productResult);
                 }
