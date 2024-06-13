@@ -60,7 +60,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.Services.PurchaseService
 
             List<CartProduct> cartProductList = cart.GetCartProducts();
 
-
             if (!cartProductList.Any())
             {
                 throw new EmptyCartException();

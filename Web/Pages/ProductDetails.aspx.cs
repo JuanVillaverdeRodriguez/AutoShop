@@ -30,8 +30,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                 ProductResult productResult = productService.findProductById(productId);
 
                 ProductName.Text = productResult.name;
-                ProductPrice.Text = productResult.price.ToString();
-                ProductStock.Text = productResult.stock.ToString();
+
+                ProductPrice.Text = "Precio: " + productResult.price.ToString() + " €";
+                ProductStock.Text = "Stock: " + productResult.stock.ToString() + " ud(s)";
+
                 ProductImage.ImageUrl = "~/Imagenes/" + productResult.name + ".jpg";
             }
             catch (Exception)
@@ -65,11 +67,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                 Response.Redirect(Response.ApplyAppPathModifier("~/Pages/SignIn.aspx"));
             }
 
-            CartProduct cartProduct = new CartProduct(productId, ProductName.Text, Convert.ToDouble(ProductPrice.Text), 1, Convert.ToInt32(ProductStock.Text));
+            // Extraer los valores numéricos de los textos
+            double productPrice = Convert.ToDouble(ProductPrice.Text.Split(' ')[1]);
+            int productStock = Convert.ToInt32(ProductStock.Text.Split(' ')[1]);
+
+            CartProduct cartProduct = new CartProduct(productId, ProductName.Text, productPrice, 1, productStock);
 
             string message = "";
             string isError = "";
-            if (usuarioSession.UserCart.GetQuantity(cartProduct) + 1 <= Convert.ToInt32(ProductStock.Text))
+            if (usuarioSession.UserCart.GetQuantity(cartProduct) + 1 <= productStock)
             {
                 usuarioSession.UserCart.AddProduct(cartProduct);
                 message = "Producto añadido correctamente al carrito.";

@@ -30,6 +30,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             {
                 SignInResult result = SessionManager.Login(Context, loginName, password);
                 this.LabelUsuarioLogueado.Visible = true;
+
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/MainPage.aspx"));
+
             }
             catch
             {

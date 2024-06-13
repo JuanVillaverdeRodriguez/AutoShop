@@ -3,42 +3,42 @@
 <!DOCTYPE html>
 
 <html>
-    <head runat="server">
-        <link rel="stylesheet" href="/Content/bootstrap.css"/>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-            <title></title>
-
-            <asp:ContentPlaceHolder ID="head" runat="server">
-            </asp:ContentPlaceHolder>
-
-    </head>
-    <body>
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="../Pages/MainPage.aspx" style="margin-left: 15px">
-                    <img src="../Imagenes/homeicon.jpg" alt="Nombre de tu marca" style="max-width: 50px; height: auto;">
-                </a>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" id="Sesion" href="../Pages/SignIn.aspx" style="border: 1px solid black; margin-left: 15px">Iniciar sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Pages/Cart.aspx" style="border: 1px solid black; margin-left: 15px" >Mi carrito</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../Pages/GetPurchases.aspx" style="border: 1px solid black; margin-left: 15px">Pedidos</a>
-                        </li>
-                        <asp:Label ID="Labellogged" runat="server" Text="logged" style="margin-left: 15px; font-size: smaller; margin-top: 12px" Visible="false"></asp:Label>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-        
-    </body>
+<head runat="server">
+    <link rel="stylesheet" href="/Content/bootstrap.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="../Pages/MainPage.aspx" style="margin-left: 15px">
+                <img src="../Imagenes/homeicon.jpg" alt="Nombre de tu marca" style="max-width: 50px; height: auto;">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" id="liSignIn" runat="server">
+                        <a class="nav-link" id="Sesion" href="../Pages/SignIn.aspx" style="border: 1px solid black; margin-left: 15px">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item" id="liCart" runat="server">
+                        <a class="nav-link" href="../Pages/Cart.aspx" style="border: 1px solid black; margin-left: 15px">Mi carrito</a>
+                    </li>
+                    <li class="nav-item" id="liOrders" runat="server">
+                        <a class="nav-link" href="../Pages/GetPurchases.aspx" style="border: 1px solid black; margin-left: 15px">Pedidos</a>
+                    </li>
+                    <li class="nav-item" id="liProfile" runat="server" visible="false">
+                        <a class="nav-link" href="../Pages/Profile.aspx" style="border: 1px solid black; margin-left: 15px">Mi perfil</a>
+                    </li>
+                    <li class="nav-item" id="liLogout" runat="server" visible="false">
+                        <a class="nav-link" href="../Pages/Logout.aspx" style="border: 1px solid black; margin-left: 15px">Cerrar sesión</a>
+                    </li>
+                </ul>
+                <asp:Label ID="Labellogged" runat="server" Text="logged" style="margin-left: 15px; font-size: smaller; margin-top: 12px" Visible="false"></asp:Label>
+            </div>
+        </nav>
+    </div>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    </div>
+</body>
 </html>

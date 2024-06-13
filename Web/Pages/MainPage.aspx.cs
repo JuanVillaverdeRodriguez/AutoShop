@@ -14,23 +14,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
     public partial class MainPage : System.Web.UI.Page
     {
         string SelectedCategory = "";
-        
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) // Si es la primera entrada...
             {
-
-                IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-
-                IProductService productService = iocManager.Resolve<IProductService>();
-
-                List<ProductResult> products = productService.findProduct("");
-
-                ListView1.DataSource = products;
-                ListView1.DataBind();
-
+                LoadProducts();
             }
+        }
+
+        private void LoadProducts()
+        {
+            IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
+            IProductService productService = iocManager.Resolve<IProductService>();
+            List<ProductResult> products = productService.findProduct("");
+            ListView1.DataSource = products;
+            ListView1.DataBind();
         }
 
         private void BindListView()
@@ -53,18 +52,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         private void Buscar()
         {
             IIoCManager iocManager = (IIoCManager)Application["managerIoC"];
-
             IProductService productService = iocManager.Resolve<IProductService>();
 
-            String name = TextBoxBusqueda.Text;
-
+            string name = TextBoxBusqueda.Text;
             List<ProductResult> products;
 
             ListItem selectedListItem = ddlCategory.SelectedItem;
-
             SelectedCategory = selectedListItem.Value;
 
-            if (SelectedCategory == "")
+            if (string.IsNullOrEmpty(SelectedCategory))
             {
                 products = productService.findProduct(name);
             }
@@ -85,6 +81,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             }
             return string.Empty;
         }
-
     }
 }

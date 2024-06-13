@@ -144,12 +144,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
                 message = "Se ha realizado la compra con exito.";
 
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/PurchaseCompleted.aspx"));
+
+
             }
             catch (OutOfStockException)
             {
                 LabelPurchaseFailedOutOfStockId.Visible = true;
                 message = "No se pudo realizar la compra. Uno de los productos se ha agotado.";
                 isError = "error";
+
+                Response.Redirect(Response.ApplyAppPathModifier("~/Pages/PurchaseError.aspx"));
+
 
             }
 

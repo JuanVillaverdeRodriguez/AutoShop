@@ -192,6 +192,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="CSS\CartStyles.css" />
     <Content Include="CSS\CreateUser.css" />
     <Content Include="CSS\Purchase.css" />
     <Content Include="Global.asax" />
@@ -207,15 +208,21 @@
     <Content Include="Imagenes\Superia Bluewin HP SV102.jpg" />
     <Content Include="Imagenes\Superia Bluewin HP SV103.jpg" />
     <Content Include="Imagenes\Taurus 601 MS 3PMSF TL 880073.jpg" />
+    <Content Include="Imagenes\ThumbsDown.jpg" />
+    <Content Include="Imagenes\ThumbsUp.png" />
     <Content Include="Imagenes\Tristar Snowpower HP TU239.jpg" />
     <Content Include="Pages\Card.aspx" />
     <Content Include="Pages\Cart.aspx" />
     <Content Include="Pages\CreateUser.aspx" />
     <Content Include="Pages\Errores\Error404.aspx" />
     <Content Include="Pages\GetPurchases.aspx" />
+    <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\ProductDetails.aspx" />
+    <Content Include="Pages\Profile.aspx" />
     <Content Include="Pages\Purchase.aspx" />
+    <Content Include="Pages\PurchaseCompleted.aspx" />
+    <Content Include="Pages\PurchaseError.aspx" />
     <Content Include="Pages\RegisterWorkshop.aspx" />
     <Content Include="Pages\SignIn.aspx" />
     <Content Include="Pages\UpdateUserDetails.aspx" />
@@ -282,6 +289,13 @@
     <Compile Include="Pages\GetPurchases.aspx.designer.cs">
       <DependentUpon>GetPurchases.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -296,12 +310,33 @@
     <Compile Include="Pages\ProductDetails.aspx.designer.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Purchase.aspx.cs">
       <DependentUpon>Purchase.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Purchase.aspx.designer.cs">
       <DependentUpon>Purchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PurchaseCompleted.aspx.cs">
+      <DependentUpon>PurchaseCompleted.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PurchaseCompleted.aspx.designer.cs">
+      <DependentUpon>PurchaseCompleted.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PurchaseError.aspx.cs">
+      <DependentUpon>PurchaseError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PurchaseError.aspx.designer.cs">
+      <DependentUpon>PurchaseError.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\RegisterWorkshop.aspx.cs">
       <DependentUpon>RegisterWorkshop.aspx</DependentUpon>
