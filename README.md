@@ -7,7 +7,6 @@ This repository contains the source code for a vehicle parts store application b
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Contact](#contact)
 
 ## Introduction
 
