@@ -11,7 +11,7 @@ This repository contains the source code for a vehicle parts store application b
 
 ## Introduction
 
-The Vehicle Parts Store is a web application designed to provide an online platform for users to browse, search, and purchase various vehicle parts. This project aims to deliver a seamless user experience with an intuitive interface and robust backend functionality.
+AutoShop is a web application designed to provide an online platform for users to browse, search, and purchase various vehicle parts. This project aims to deliver a seamless user experience with an intuitive interface and robust backend functionality.
 
 This project was developed by me and Daniel Ferreiro Villamor for the university course "Marcos de desarrollo".
 
