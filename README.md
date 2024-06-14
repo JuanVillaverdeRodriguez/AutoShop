@@ -31,12 +31,3 @@ This project was developed by me and Daniel Ferreiro Villamor for the university
 - **Bootstrap**: For responsive design and UI components.
 - **jQuery**: To enhance the user experience with interactive elements.
 
-## Contact
-
-If you have any questions or suggestions, feel free to reach out:
-
-- **E-Mail**: [juanvillaverderodriguez@gmail.com](juanvillaverderodriguez@gmail.com)
-- **GitHub**: [Juan Villaverde Rodriguez](https://github.com/JuanVillaverdeRodriguez)
-- **GitHub**: [Daniel Ferreiro Villamor](https://github.com/dferreirovillamor)
-
-
