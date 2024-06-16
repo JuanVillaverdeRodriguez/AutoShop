@@ -10,22 +10,20 @@ This repository contains the source code for a vehicle parts store application b
 
 ## Introduction
 
-AutoShop is a web application designed to provide an online platform for users to browse, search, and purchase various vehicle parts. This project aims to deliver a seamless user experience with an intuitive interface and robust backend functionality.
-
+AutoShop is a web application where users can browse, search and purchase various vehicle parts.
 This project was developed by me and Daniel Ferreiro Villamor for the university course "Marcos de desarrollo".
 
 ## Features
 
-- **User Registration and Authentication**: Secure user registration and login functionality.
-- **Product Catalog**: Browse through vehicle parts categorized for easy navigation.
-- **Search Functionality**: Advanced search capabilities to find specific parts quickly.
+- **User Registration and Authentication**
+- **Product Catalog**: You can search by name and filter by product categories.
 - **Shopping Cart**: Add parts to the shopping cart and proceed to checkout.
 - **Order Management**: Users can view their order history.
 
 ## Technologies Used
 
-- **ASP.NET**: The primary framework used to build the web application.
-- **Entity Framework**: For database operations and ORM.
+- **ASP.NET**:
+- **Entity Framework**: For database operations.
 - **SQL Server**: Database management system.
 - **Bootstrap**: For responsive design and UI components.
 - **jQuery**: To enhance the user experience with interactive elements.
