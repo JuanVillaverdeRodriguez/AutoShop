@@ -28,6 +28,15 @@ This project was developed by me and Daniel Ferreiro Villamor for the university
 - **Bootstrap**: For responsive design and UI components.
 - **jQuery**: To enhance the user experience with interactive elements.
 
+# Preview
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="Imagenes/Main.png" alt="Main" width="49%"/>
+  <img src="Imagenes/Carrito.png" alt="Carrito" width="49%"/>
+  <img src="Imagenes/Perfil.png" alt="Perfil" width="49%"/>
+  <img src="Imagenes/Filtros.png" alt="Filtros" width="49%"/>
+</div>
+
 ## Contributors
 
 - [Juan Villaverde Rodriguez](https://github.com/JuanVillaverdeRodriguez)
